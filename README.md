@@ -6,6 +6,8 @@ Uses the official `opengl_constants.odin` in `Odin/core` for constant defines.
 
 Also includes some helper functions, such as a simple shader loader.
 
+#### Note: You will be required to pass your own GetProcAddress equivalent (wglGetProcAddress, glXGetProcAddress, glfwGetProcAddress, etc.)
+
 ## Todo:
 
     - Add forward compatability profile, potentially splitting into multiple files.
