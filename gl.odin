@@ -1594,7 +1594,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
             defer free(error_message);
 
             log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt.printf(string(error_message[0..<len(error_message)-1])); 
+            fmt.printf(string(error_message[0..len(error_message)-1])); 
 
             return true;
         }
