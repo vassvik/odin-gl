@@ -51,7 +51,7 @@ Type conversion overview:
     void*                            -> rawptr
 */
 
-sync_t :: #type ^union {};
+sync_t :: #type ^struct {};
 debug_proc_t :: proc(source: u32, type_: u32, id: u32, severity: u32, length: i32, message: ^u8, userParam: rawptr) #cc_c;
 
 
