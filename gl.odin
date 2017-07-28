@@ -51,7 +51,7 @@ Type conversion overview:
     void*                            -> rawptr
 */
 
-sync_t :: #type ^struct {};
+sync_t :: #type ^union {};
 debug_proc_t :: proc(source: u32, type_: u32, id: u32, severity: u32, length: i32, message: ^u8, userParam: rawptr) #cc_c;
 
 
@@ -106,7 +106,6 @@ DepthRange:             proc(near: f64, far: f64)                               
 Viewport:               proc(x: i32, y: i32, width: i32, height: i32)                                                                                     #cc_c;
 
 load_1_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.0 fun");
     set_proc_address(&CullFace,               "glCullFace\x00");
     set_proc_address(&FrontFace,              "glFrontFace\x00");
     set_proc_address(&Hint,                   "glHint\x00");
@@ -174,7 +173,6 @@ GenTextures:       proc(n: i32, textures: ^u32)                                 
 IsTexture:         proc(texture: u32) -> u8                                                                                                    #cc_c;
 
 load_1_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.1 fun");
     set_proc_address(&DrawArrays,        "glDrawArrays\x00");
     set_proc_address(&DrawElements,      "glDrawElements\x00");
     set_proc_address(&PolygonOffset,     "glPolygonOffset\x00");
@@ -198,7 +196,7 @@ TexSubImage3D:     proc(target: u32, level: i32, xoffset: i32, yoffset: i32, zof
 CopyTexSubImage3D: proc(target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32)                                      #cc_c;
 
 load_1_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.2 fun");
+
     set_proc_address(&DrawRangeElements, "glDrawRangeElements\x00");
     set_proc_address(&TexImage3D,        "glTexImage3D\x00");
     set_proc_address(&TexSubImage3D,     "glTexSubImage3D\x00");
@@ -218,7 +216,6 @@ CompressedTexSubImage1D: proc(target: u32, level: i32, xoffset: i32, width: i32,
 GetCompressedTexImage:   proc(target: u32, level: i32, img: rawptr)                                                                                                              #cc_c;
 
 load_1_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.3 fun");
     set_proc_address(&ActiveTexture,           "glActiveTexture\x00");
     set_proc_address(&SampleCoverage,          "glSampleCoverage\x00");
     set_proc_address(&CompressedTexImage3D,    "glCompressedTexImage3D\x00");
@@ -244,7 +241,6 @@ BlendEquation:     proc(mode: u32)                                              
 
 
 load_1_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.4 fun");
     set_proc_address(&BlendFuncSeparate, "glBlendFuncSeparate\x00");
     set_proc_address(&MultiDrawArrays,   "glMultiDrawArrays\x00");
     set_proc_address(&MultiDrawElements, "glMultiDrawElements\x00");
@@ -279,7 +275,6 @@ GetBufferParameteriv: proc(target: u32, pname: u32, params: ^i32)             #c
 GetBufferPointerv:    proc(target: u32, pname: u32, params: ^rawptr)          #cc_c;
 
 load_1_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 1.5 fun");
     set_proc_address(&GenQueries,           "glGenQueries\x00");
     set_proc_address(&DeleteQueries,        "glDeleteQueries\x00");
     set_proc_address(&IsQuery,              "glIsQuery\x00");
@@ -398,7 +393,6 @@ VertexAttrib4usv:         proc(index: u32, v: ^u16)                             
 VertexAttribPointer:      proc(index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr)          #cc_c;
 
 load_2_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 2.0 fun");
     set_proc_address(&BlendEquationSeparate,    "glBlendEquationSeparate\x00");
     set_proc_address(&DrawBuffers,              "glDrawBuffers\x00");
     set_proc_address(&StencilOpSeparate,        "glStencilOpSeparate\x00");
@@ -504,7 +498,6 @@ UniformMatrix3x4fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) 
 UniformMatrix4x3fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
 
 load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 2.1 fun");
     set_proc_address(&UniformMatrix2x3fv, "glUniformMatrix2x3fv\x00");
     set_proc_address(&UniformMatrix3x2fv, "glUniformMatrix3x2fv\x00");
     set_proc_address(&UniformMatrix2x4fv, "glUniformMatrix2x4fv\x00");
@@ -601,7 +594,6 @@ load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
  IsVertexArray:                       proc(array: u32) -> u8                                                                                                       #cc_c;
 
 load_3_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 3.0 fun");
     set_proc_address(&ColorMaski,                          "glColorMaski\x00");
     set_proc_address(&GetBooleani_v,                       "glGetBooleani_v\x00");
     set_proc_address(&GetIntegeri_v,                       "glGetIntegeri_v\x00");
@@ -704,7 +696,6 @@ GetActiveUniformBlockName: proc(program: u32, uniformBlockIndex: u32, bufSize: i
 UniformBlockBinding:       proc(program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32)                          #cc_c;
 
 load_3_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 3.1 fun");
     set_proc_address(&DrawArraysInstanced,       "glDrawArraysInstanced\x00");
     set_proc_address(&DrawElementsInstanced,     "glDrawElementsInstanced\x00");
     set_proc_address(&TexBuffer,                 "glTexBuffer\x00");
@@ -742,7 +733,6 @@ GetMultisamplefv:                proc(pname: u32, index: u32, val: ^f32)        
 SampleMaski:                     proc(maskNumber: u32, mask: u32)                                                                                    #cc_c;
 
 load_3_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 3.2 fun");
     set_proc_address(&DrawElementsBaseVertex,          "glDrawElementsBaseVertex\x00");
     set_proc_address(&DrawRangeElementsBaseVertex,     "glDrawRangeElementsBaseVertex\x00");
     set_proc_address(&DrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex\x00");
@@ -826,7 +816,6 @@ SecondaryColorP3ui:          proc(type_: u32, color: u32)                       
 SecondaryColorP3uiv:         proc(type_: u32, color: ^u32)                               #cc_c;
 
 load_3_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 3.3 fun");
     set_proc_address(&BindFragDataLocationIndexed, "glBindFragDataLocationIndexed\x00");
     set_proc_address(&GetFragDataIndex,            "glGetFragDataIndex\x00");
     set_proc_address(&GenSamplers,                 "glGenSamplers\x00");
@@ -937,7 +926,6 @@ EndQueryIndexed:                proc(target: u32, index: u32)                   
 GetQueryIndexediv:              proc(target: u32, index: u32, pname: u32, params: ^i32)                                 #cc_c;
 
 load_4_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.0 fun");
     set_proc_address(&MinSampleShading,               "glMinSampleShading\x00");
     set_proc_address(&BlendEquationi,                 "glBlendEquationi\x00");
     set_proc_address(&BlendEquationSeparatei,         "glBlendEquationSeparatei\x00");
@@ -1078,7 +1066,6 @@ GetFloati_v:               proc(target: u32, index: u32, data: ^f32)            
 GetDoublei_v:              proc(target: u32, index: u32, data: ^f64)                                          #cc_c;
 
 load_4_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.1 fun");
     set_proc_address(&ReleaseShaderCompiler,     "glReleaseShaderCompiler\x00");
     set_proc_address(&ShaderBinary,              "glShaderBinary\x00");
     set_proc_address(&GetShaderPrecisionFormat,  "glGetShaderPrecisionFormat\x00");
@@ -1185,7 +1172,6 @@ DrawTransformFeedbackInstanced:              proc(mode: u32, id: u32, instanceco
 DrawTransformFeedbackStreamInstanced:        proc(mode: u32, id: u32, stream: u32, instancecount: i32)                                                        #cc_c;
 
 load_4_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.2 fun");
     set_proc_address(&DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance\x00");
     set_proc_address(&DrawElementsInstancedBaseInstance,           "glDrawElementsInstancedBaseInstance\x00");
     set_proc_address(&DrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance\x00");
@@ -1246,7 +1232,6 @@ ObjectPtrLabel:                  proc(ptr: rawptr, length: i32, label: ^u8)     
 GetObjectPtrLabel:               proc(ptr: rawptr, bufSize: i32, length: ^i32, label: ^u8)                                                                                                                                                      #cc_c;
 
 load_4_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.3 fun");
     set_proc_address(&ClearBufferData,                 "glClearBufferData\x00");
     set_proc_address(&ClearBufferSubData,              "glClearBufferSubData\x00");
     set_proc_address(&DispatchCompute,                 "glDispatchCompute\x00");
@@ -1304,7 +1289,6 @@ BindImageTextures: proc(first: u32, count: i32, textures: ^u32)                 
 BindVertexBuffers: proc(first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32)                                                                            #cc_c;
 
 load_4_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.4 fun");
     set_proc_address(&BufferStorage,     "glBufferStorage\x00");
     set_proc_address(&ClearTexImage,     "glClearTexImage\x00");
     set_proc_address(&ClearTexSubImage,  "glClearTexSubImage\x00");
@@ -1441,7 +1425,6 @@ GetnMinmax:                               proc(target: u32, reset: u8, format: u
 TextureBarrier:                           proc()                                                                                                                                                                   #cc_c;
 
 load_4_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    fmt.println("load 4.5 fun");
     set_proc_address(&ClipControl,                              "glClipControl\x00");
     set_proc_address(&CreateTransformFeedbacks,                 "glCreateTransformFeedbacks\x00");
     set_proc_address(&TransformFeedbackBufferBase,              "glTransformFeedbackBufferBase\x00");
@@ -1574,8 +1557,8 @@ init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 // Helper for loading shaders into a program
 
 import (
-    "os.odin";
-    "fmt.odin";
+    os_gl "os.odin";
+    fmt_gl "fmt.odin";
 )
 
 load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (u32, bool) {
@@ -1594,7 +1577,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
             defer free(error_message);
 
             log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt.printf(string(error_message[0..len(error_message)-1])); 
+            fmt_gl.printf(string(error_message[0..len(error_message)-1])); 
 
             return true;
         }
@@ -1604,16 +1587,16 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 
     // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
     compile_shader_from_file :: proc(shader_filename: string, shader_type: u32) -> (u32, bool) {
-        shader_code, ok := os.read_entire_file(shader_filename);
+        shader_code, ok := os_gl.read_entire_file(shader_filename);
         if !ok {
-            fmt.printf("Could not load file \"%s\"\n", shader_filename);
+            fmt_gl.printf("Could not load file \"%s\"\n", shader_filename);
             return 0, false;
         }
         defer free(shader_code);
 
         shader_id := CreateShader(shader_type);
         length := i32(len(shader_code));
-        ShaderSource(shader_id, 1, ^^u8(&shader_code), &length);
+        ShaderSource(shader_id, 1, cast(^^u8)&shader_code, &length);
         CompileShader(shader_id);
 
         if (check_error(shader_id, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog)) {
