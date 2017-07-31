@@ -23,7 +23,7 @@ main :: proc() {
 
     gl.ClearColor(1.0, 1.0, 1.0, 1.0);
 
-    if !font.init("font_3x1.bin", "shader_font.vs", "shader_font.fs") do return;
+    if !font.init("extra/font_3x1.bin", "shaders/shader_font.vs", "shaders/shader_font.fs") do return;
     defer font.cleanup();
 
     for glfw.WindowShouldClose(window) == glfw.FALSE {
