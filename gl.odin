@@ -1639,3 +1639,34 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 
     return program_id, true;
 }
+
+Uniform_Info :: struct {
+    location, size: i32;
+    kind: u32;
+    name: string;
+}
+
+get_uniforms_from_program :: proc(program: u32) -> map[string]Uniform_Info {
+    uniforms: map[string]Uniform_Info;
+
+    uniform_count: i32;
+    GetProgramiv(program, ACTIVE_UNIFORMS, &uniform_count);
+
+    counter : i32 = 0;
+    for i in 0..uniform_count {
+        using uniform_info: Uniform_Info;
+
+        length: i32;
+        cname: [256]u8;
+        GetActiveUniform(program, u32(i), 256, &length, &size, &kind, &cname[0]);
+
+        location = counter;
+        name = strings.new_string(cast(string)cname[..length]); // @NOTE: These need to be freed
+        uniforms[name] = uniform_info;
+
+        counter += size;
+    }
+
+    return uniforms;
+}
+
