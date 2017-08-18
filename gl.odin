@@ -1557,8 +1557,8 @@ init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 // Helper for loading shaders into a program
 
 import (
-    os_gl "os.odin";
-    fmt_gl "fmt.odin";
+    "os.odin";
+    "fmt.odin";
 )
 
 load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (u32, bool) {
@@ -1577,7 +1577,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
             defer free(error_message);
 
             log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt_gl.printf(string(error_message[0..len(error_message)-1])); 
+            fmt.printf(string(error_message[0..len(error_message)-1])); 
 
             return true;
         }
@@ -1587,9 +1587,9 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 
     // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
     compile_shader_from_file :: proc(shader_filename: string, shader_type: u32) -> (u32, bool) {
-        shader_code, ok := os_gl.read_entire_file(shader_filename);
+        shader_code, ok := os.read_entire_file(shader_filename);
         if !ok {
-            fmt_gl.printf("Could not load file \"%s\"\n", shader_filename);
+            fmt.printf("Could not load file \"%s\"\n", shader_filename);
             return 0, false;
         }
         defer free(shader_code);
@@ -1645,6 +1645,10 @@ Uniform_Info :: struct {
     kind: u32;
     name: string;
 }
+
+import (
+    "strings.odin";
+)
 
 get_uniforms_from_program :: proc(program: u32) -> map[string]Uniform_Info {
     uniforms: map[string]Uniform_Info;
