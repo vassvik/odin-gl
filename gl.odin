@@ -1556,10 +1556,8 @@ init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 // Helper for loading shaders into a program
 
-import (
-    "os.odin";
-    "fmt.odin";
-)
+import "os.odin";
+import "fmt.odin";
 
 load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (u32, bool) {
     // Shader checking and linking checking are identical 
