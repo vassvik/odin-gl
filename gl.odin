@@ -2,7 +2,7 @@
 //     (\^)*(i8|u8|i16|u16|i32|u32|i64|u64|f32|f64|rawptr|int|uint) ([\w_]+)
 //     $3: $1$2
 
-import_load "opengl_constants.odin";
+export "opengl_constants.odin";
 
 
 load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: string)) {
@@ -1639,9 +1639,9 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 }
 
 
-import (
-    "strings.odin";
-)
+
+import "strings.odin";
+
 
 Uniform_Type :: enum i32 {
     FLOAT = 0x1406,
