@@ -1559,7 +1559,7 @@ init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 import "core:os.odin";
 import "core:fmt.odin";
 
-load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (u32, bool) {
+load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (program: u32, success: bool) {
     // Shader checking and linking checking are identical 
     // except for calling differently named GL functions
     // it's a bit ugly looking, but meh
@@ -1774,7 +1774,7 @@ Uniform_Info :: struct {
 }
 
 
-get_uniforms_from_program :: proc(program: u32) -> map[string]Uniform_Info {
+get_uniforms_from_program :: proc(program: u32) -> (uniforms: map[string]Uniform_Info) {
     uniforms: map[string]Uniform_Info;
 
     uniform_count: i32;
