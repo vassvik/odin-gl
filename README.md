@@ -17,7 +17,7 @@ gl.load_up_to(4, 5, set_proc_address);
 #### NOTE: It is recommended to put this into the shared collection:
 ```
 cd Odin/shared
-git clone https://github.com/vassvik/odin-glfw.git
+git clone https://github.com/vassvik/odin-gl.git
 ```
 
 
