@@ -14,6 +14,13 @@ set_proc_address :: proc(p: rawptr, name: string) {
 gl.load_up_to(4, 5, set_proc_address);
 ```
 
+#### NOTE: It is recommended to put this into the shared collection:
+```
+cd Odin/shared
+git clone https://github.com/vassvik/odin-glfw.git
+```
+
+
 ## Extra utility procedures
 
 `odin-gl` currently contains two utility procedures.
