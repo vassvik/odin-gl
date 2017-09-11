@@ -2,7 +2,7 @@
 //     (\^)*(i8|u8|i16|u16|i32|u32|i64|u64|f32|f64|rawptr|int|uint) ([\w_]+)
 //     $3: $1$2
 
-export "opengl_constants.odin";
+export "core:opengl_constants.odin";
 
 
 load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: string)) {
@@ -1556,8 +1556,8 @@ init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 // Helper for loading shaders into a program
 
-import "os.odin";
-import "fmt.odin";
+import "core:os.odin";
+import "core:fmt.odin";
 
 load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (u32, bool) {
     // Shader checking and linking checking are identical 
@@ -1640,7 +1640,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 
 
 
-import "strings.odin";
+import "core:strings.odin";
 
 
 Uniform_Type :: enum i32 {
