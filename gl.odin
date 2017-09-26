@@ -1768,9 +1768,9 @@ Uniform_Type :: enum i32 {
 }
 
 Uniform_Info :: struct {
-    location, size: i32;
-    kind: Uniform_Type;
-    name: string;
+    location, size: i32,
+    kind: Uniform_Type,
+    name: string,
 }
 
 
