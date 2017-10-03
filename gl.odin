@@ -6,7 +6,7 @@ export "core:opengl_constants.odin";
 
 
 load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: string)) {
-    match major*10+minor {
+    switch major*10+minor {
         case 45: load_4_5(set_proc_address); fallthrough;
         case 44: load_4_4(set_proc_address); fallthrough;
         case 43: load_4_3(set_proc_address); fallthrough;
