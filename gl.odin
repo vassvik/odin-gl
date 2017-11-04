@@ -28,8 +28,8 @@ load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: s
     }
 }
 
-/* 
-Type conversion overview: 
+/*
+Type conversion overview:
     typedef unsigned int GLenum;     -> u32
     typedef unsigned char GLboolean; -> u8
     typedef unsigned int GLbitfield; -> u32
@@ -52,58 +52,58 @@ Type conversion overview:
 */
 
 sync_t :: #type ^struct {};
-debug_proc_t :: proc(source: u32, type_: u32, id: u32, severity: u32, length: i32, message: ^u8, userParam: rawptr) #cc_c;
+debug_proc_t :: proc "c" (source: u32, type_: u32, id: u32, severity: u32, length: i32, message: ^u8, userParam: rawptr);
 
 
 // VERSION_1_0
-CullFace:               proc(mode: u32)                                                                                                                   #cc_c;
-FrontFace:              proc(mode: u32)                                                                                                                   #cc_c;
-Hint:                   proc(target: u32, mode: u32)                                                                                                      #cc_c;
-LineWidth:              proc(width: f32)                                                                                                                  #cc_c;
-PointSize:              proc(size: f32)                                                                                                                   #cc_c;
-PolygonMode:            proc(face: u32, mode: u32)                                                                                                        #cc_c;
-Scissor:                proc(x: i32, y: i32, width: i32, height: i32)                                                                                     #cc_c;
-TexParameterf:          proc(target: u32, pname: u32, param: f32)                                                                                         #cc_c;
-TexParameterfv:         proc(target: u32, pname: u32, params: ^f32)                                                                                       #cc_c;
-TexParameteri:          proc(target: u32, pname: u32, param: i32)                                                                                         #cc_c;
-TexParameteriv:         proc(target: u32, pname: u32, params: ^i32)                                                                                       #cc_c;
-TexImage1D:             proc(target: u32, level: i32, internalformat: i32, width: i32, border: i32, format: u32, type_: u32, pixels: rawptr)              #cc_c;
-TexImage2D:             proc(target: u32, level: i32, internalformat: i32, width: i32, height: i32, border: i32, format: u32, type_: u32, pixels: rawptr) #cc_c;
-DrawBuffer:             proc(buf: u32)                                                                                                                    #cc_c;
-Clear:                  proc(mask: u32)                                                                                                                   #cc_c;
-ClearColor:             proc(red: f32, green: f32, blue: f32, alpha: f32)                                                                                 #cc_c;
-ClearStencil:           proc(s: i32)                                                                                                                      #cc_c;
-ClearDepth:             proc(depth: f64)                                                                                                                  #cc_c;
-StencilMask:            proc(mask: u32)                                                                                                                   #cc_c;
-ColorMask:              proc(red: u8, green: u8, blue: u8, alpha: u8)                                                                                     #cc_c;
-DepthMask:              proc(flag: u8)                                                                                                                    #cc_c;
-Disable:                proc(cap: u32)                                                                                                                    #cc_c;
-Enable:                 proc(cap: u32)                                                                                                                    #cc_c;
-Finish:                 proc()                                                                                                                            #cc_c;
-Flush:                  proc()                                                                                                                            #cc_c;
-BlendFunc:              proc(sfactor: u32, dfactor: u32)                                                                                                  #cc_c;
-LogicOp:                proc(opcode: u32)                                                                                                                 #cc_c;
-StencilFunc:            proc(func: u32, ref: i32, mask: u32)                                                                                              #cc_c;
-StencilOp:              proc(fail: u32, zfail: u32, zpass: u32)                                                                                           #cc_c;
-DepthFunc:              proc(func: u32)                                                                                                                   #cc_c;
-PixelStoref:            proc(pname: u32, param: f32)                                                                                                      #cc_c;
-PixelStorei:            proc(pname: u32, param: i32)                                                                                                      #cc_c;
-ReadBuffer:             proc(src: u32)                                                                                                                    #cc_c;
-ReadPixels:             proc(x: i32, y: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr)                                            #cc_c;
-GetBooleanv:            proc(pname: u32, data: ^u8)                                                                                                       #cc_c;
-GetDoublev:             proc(pname: u32, data: ^f64)                                                                                                      #cc_c;
-GetError:               proc() -> u32                                                                                                                     #cc_c;
-GetFloatv:              proc(pname: u32, data: ^f32)                                                                                                      #cc_c;
-GetIntegerv:            proc(pname: u32, data: ^i32)                                                                                                      #cc_c;
-GetString:              proc(name: u32) -> ^u8                                                                                                            #cc_c;
-GetTexImage:            proc(target: u32,  level: i32, format: u32, type_: u32, pixels: rawptr)                                                           #cc_c;
-GetTexParameterfv:      proc(target: u32, pname: u32, params: ^f32)                                                                                       #cc_c;
-GetTexParameteriv:      proc(target: u32, pname: u32, params: ^i32)                                                                                       #cc_c;
-GetTexLevelParameterfv: proc(target: u32, level: i32, pname: u32, params: ^f32)                                                                           #cc_c;
-GetTexLevelParameteriv: proc(target: u32, level: i32, pname: u32, params: ^i32)                                                                           #cc_c;
-IsEnabled:              proc(cap: u32) -> u8                                                                                                              #cc_c;
-DepthRange:             proc(near: f64, far: f64)                                                                                                         #cc_c;
-Viewport:               proc(x: i32, y: i32, width: i32, height: i32)                                                                                     #cc_c;
+CullFace:               proc "c" (mode: u32);
+FrontFace:              proc "c" (mode: u32);
+Hint:                   proc "c" (target: u32, mode: u32);
+LineWidth:              proc "c" (width: f32);
+PointSize:              proc "c" (size: f32);
+PolygonMode:            proc "c" (face: u32, mode: u32);
+Scissor:                proc "c" (x: i32, y: i32, width: i32, height: i32);
+TexParameterf:          proc "c" (target: u32, pname: u32, param: f32);
+TexParameterfv:         proc "c" (target: u32, pname: u32, params: ^f32);
+TexParameteri:          proc "c" (target: u32, pname: u32, param: i32);
+TexParameteriv:         proc "c" (target: u32, pname: u32, params: ^i32);
+TexImage1D:             proc "c" (target: u32, level: i32, internalformat: i32, width: i32, border: i32, format: u32, type_: u32, pixels: rawptr);
+TexImage2D:             proc "c" (target: u32, level: i32, internalformat: i32, width: i32, height: i32, border: i32, format: u32, type_: u32, pixels: rawptr);
+DrawBuffer:             proc "c" (buf: u32);
+Clear:                  proc "c" (mask: u32);
+ClearColor:             proc "c" (red: f32, green: f32, blue: f32, alpha: f32);
+ClearStencil:           proc "c" (s: i32);
+ClearDepth:             proc "c" (depth: f64);
+StencilMask:            proc "c" (mask: u32);
+ColorMask:              proc "c" (red: u8, green: u8, blue: u8, alpha: u8);
+DepthMask:              proc "c" (flag: u8);
+Disable:                proc "c" (cap: u32);
+Enable:                 proc "c" (cap: u32);
+Finish:                 proc "c" ();
+Flush:                  proc "c" ();
+BlendFunc:              proc "c" (sfactor: u32, dfactor: u32);
+LogicOp:                proc "c" (opcode: u32);
+StencilFunc:            proc "c" (func: u32, ref: i32, mask: u32);
+StencilOp:              proc "c" (fail: u32, zfail: u32, zpass: u32);
+DepthFunc:              proc "c" (func: u32);
+PixelStoref:            proc "c" (pname: u32, param: f32);
+PixelStorei:            proc "c" (pname: u32, param: i32);
+ReadBuffer:             proc "c" (src: u32);
+ReadPixels:             proc "c" (x: i32, y: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr);
+GetBooleanv:            proc "c" (pname: u32, data: ^u8);
+GetDoublev:             proc "c" (pname: u32, data: ^f64);
+GetError:               proc "c" () -> u32;
+GetFloatv:              proc "c" (pname: u32, data: ^f32);
+GetIntegerv:            proc "c" (pname: u32, data: ^i32);
+GetString:              proc "c" (name: u32) -> ^u8;
+GetTexImage:            proc "c" (target: u32,  level: i32, format: u32, type_: u32, pixels: rawptr);
+GetTexParameterfv:      proc "c" (target: u32, pname: u32, params: ^f32);
+GetTexParameteriv:      proc "c" (target: u32, pname: u32, params: ^i32);
+GetTexLevelParameterfv: proc "c" (target: u32, level: i32, pname: u32, params: ^f32);
+GetTexLevelParameteriv: proc "c" (target: u32, level: i32, pname: u32, params: ^i32);
+IsEnabled:              proc "c" (cap: u32) -> u8;
+DepthRange:             proc "c" (near: f64, far: f64);
+Viewport:               proc "c" (x: i32, y: i32, width: i32, height: i32);
 
 load_1_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&CullFace,               "glCullFace\x00");
@@ -158,19 +158,19 @@ load_1_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_1_1
-DrawArrays:        proc(mode: u32, first: i32, count: i32)                                                                                     #cc_c;
-DrawElements:      proc(mode: u32, count: i32, type_: u32, indices: rawptr)                                                                    #cc_c;
-PolygonOffset:     proc(factor: f32, units: f32)                                                                                               #cc_c;
-CopyTexImage1D:    proc(target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, border: i32)                                 #cc_c;
-CopyTexImage2D:    proc(target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, height: i32, border: i32)                    #cc_c;
-CopyTexSubImage1D: proc(target: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32)                                                     #cc_c;
-CopyTexSubImage2D: proc(target: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32)                          #cc_c;
-TexSubImage1D:     proc(target: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr)                            #cc_c;
-TexSubImage2D:     proc(target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr) #cc_c;
-BindTexture:       proc(target: u32, texture: u32)                                                                                             #cc_c;
-DeleteTextures:    proc(n: i32, textures: ^u32)                                                                                                #cc_c;
-GenTextures:       proc(n: i32, textures: ^u32)                                                                                                #cc_c;
-IsTexture:         proc(texture: u32) -> u8                                                                                                    #cc_c;
+DrawArrays:        proc "c" (mode: u32, first: i32, count: i32);
+DrawElements:      proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr);
+PolygonOffset:     proc "c" (factor: f32, units: f32);
+CopyTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, border: i32);
+CopyTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, height: i32, border: i32);
+CopyTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32);
+CopyTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32);
+TexSubImage1D:     proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr);
+TexSubImage2D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr);
+BindTexture:       proc "c" (target: u32, texture: u32);
+DeleteTextures:    proc "c" (n: i32, textures: ^u32);
+GenTextures:       proc "c" (n: i32, textures: ^u32);
+IsTexture:         proc "c" (texture: u32) -> u8;
 
 load_1_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&DrawArrays,        "glDrawArrays\x00");
@@ -190,10 +190,10 @@ load_1_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_1_2
-DrawRangeElements: proc(mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr)                                                                        #cc_c;
-TexImage3D:        proc(target: u32, level: i32, internalformat: i32, width: i32, height: i32, depth: i32, border: i32, format: u32, type_: u32, pixels: rawptr)         #cc_c;
-TexSubImage3D:     proc(target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr) #cc_c;
-CopyTexSubImage3D: proc(target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32)                                      #cc_c;
+DrawRangeElements: proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr);
+TexImage3D:        proc "c" (target: u32, level: i32, internalformat: i32, width: i32, height: i32, depth: i32, border: i32, format: u32, type_: u32, pixels: rawptr);
+TexSubImage3D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr);
+CopyTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32);
 
 load_1_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
@@ -205,15 +205,15 @@ load_1_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_1_3
-ActiveTexture:           proc(texture: u32)                                                                                                                                      #cc_c;
-SampleCoverage:          proc(value: f32, invert: u8)                                                                                                                            #cc_c;
-CompressedTexImage3D:    proc(target: u32, level: i32, internalformat: u32, width: i32, height: i32, depth: i32, border: i32, imageSize: i32, data: rawptr)                      #cc_c;
-CompressedTexImage2D:    proc(target: u32, level: i32, internalformat: u32, width: i32, height: i32, border: i32, imageSize: i32, data: rawptr)                                  #cc_c;
-CompressedTexImage1D:    proc(target: u32, level: i32, internalformat: u32, width: i32, border: i32, imageSize: i32, data: rawptr)                                               #cc_c;
-CompressedTexSubImage3D: proc(target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr) #cc_c;
-CompressedTexSubImage2D: proc(target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr)                           #cc_c;
-CompressedTexSubImage1D: proc(target: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr)                                                      #cc_c;
-GetCompressedTexImage:   proc(target: u32, level: i32, img: rawptr)                                                                                                              #cc_c;
+ActiveTexture:           proc "c" (texture: u32);
+SampleCoverage:          proc "c" (value: f32, invert: u8);
+CompressedTexImage3D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, depth: i32, border: i32, imageSize: i32, data: rawptr);
+CompressedTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, border: i32, imageSize: i32, data: rawptr);
+CompressedTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, border: i32, imageSize: i32, data: rawptr);
+CompressedTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr);
+CompressedTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr);
+CompressedTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr);
+GetCompressedTexImage:   proc "c" (target: u32, level: i32, img: rawptr);
 
 load_1_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&ActiveTexture,           "glActiveTexture\x00");
@@ -229,15 +229,15 @@ load_1_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_1_4
-BlendFuncSeparate: proc(sfactorRGB: u32, dfactorRGB: u32, sfactorAlpha: u32, dfactorAlpha: u32) #cc_c;
-MultiDrawArrays:   proc(mode: u32, first: ^i32, count: ^i32, drawcount: i32)                    #cc_c;
-MultiDrawElements: proc(mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32)   #cc_c;
-PointParameterf:   proc(pname: u32, param: f32)                                                 #cc_c;
-PointParameterfv:  proc(pname: u32, params: ^f32)                                               #cc_c;
-PointParameteri:   proc(pname: u32, param: i32)                                                 #cc_c;
-PointParameteriv:  proc(pname: u32, params: ^i32)                                               #cc_c;
-BlendColor:        proc(red: f32, green: f32, blue: f32, alpha: f32)                            #cc_c;
-BlendEquation:     proc(mode: u32)                                                              #cc_c;
+BlendFuncSeparate: proc "c" (sfactorRGB: u32, dfactorRGB: u32, sfactorAlpha: u32, dfactorAlpha: u32);
+MultiDrawArrays:   proc "c" (mode: u32, first: ^i32, count: ^i32, drawcount: i32);
+MultiDrawElements: proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32);
+PointParameterf:   proc "c" (pname: u32, param: f32);
+PointParameterfv:  proc "c" (pname: u32, params: ^f32);
+PointParameteri:   proc "c" (pname: u32, param: i32);
+PointParameteriv:  proc "c" (pname: u32, params: ^i32);
+BlendColor:        proc "c" (red: f32, green: f32, blue: f32, alpha: f32);
+BlendEquation:     proc "c" (mode: u32);
 
 
 load_1_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
@@ -254,25 +254,25 @@ load_1_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_1_5
-GenQueries:           proc(n: i32, ids: ^u32)                                 #cc_c;
-DeleteQueries:        proc(n: i32, ids: ^u32)                                 #cc_c;
-IsQuery:              proc(id: u32) -> u8                                     #cc_c;
-BeginQuery:           proc(target: u32, id: u32)                              #cc_c;
-EndQuery:             proc(target: u32)                                       #cc_c;
-GetQueryiv:           proc(target: u32, pname: u32, params: ^i32)             #cc_c;
-GetQueryObjectiv:     proc(id: u32, pname: u32, params: ^i32)                 #cc_c;
-GetQueryObjectuiv:    proc(id: u32, pname: u32, params: ^u32)                 #cc_c;
-BindBuffer:           proc(target: u32, buffer: u32)                          #cc_c;
-DeleteBuffers:        proc(n: i32, buffers: ^u32)                             #cc_c;
-GenBuffers:           proc(n: i32, buffers: ^u32)                             #cc_c;
-IsBuffer:             proc(buffer: u32) -> u8                                 #cc_c;
-BufferData:           proc(target: u32, size: int, data: rawptr, usage: u32)  #cc_c;
-BufferSubData:        proc(target: u32, offset: int, size: int, data: rawptr) #cc_c;
-GetBufferSubData:     proc(target: u32, offset: int, size: int, data: rawptr) #cc_c;
-MapBuffer:            proc(target: u32, access: u32) -> rawptr                #cc_c;
-UnmapBuffer:          proc(target: u32) -> u8                                 #cc_c;
-GetBufferParameteriv: proc(target: u32, pname: u32, params: ^i32)             #cc_c;
-GetBufferPointerv:    proc(target: u32, pname: u32, params: ^rawptr)          #cc_c;
+GenQueries:           proc "c" (n: i32, ids: ^u32);
+DeleteQueries:        proc "c" (n: i32, ids: ^u32);
+IsQuery:              proc "c" (id: u32) -> u8;
+BeginQuery:           proc "c" (target: u32, id: u32);
+EndQuery:             proc "c" (target: u32);
+GetQueryiv:           proc "c" (target: u32, pname: u32, params: ^i32);
+GetQueryObjectiv:     proc "c" (id: u32, pname: u32, params: ^i32);
+GetQueryObjectuiv:    proc "c" (id: u32, pname: u32, params: ^u32);
+BindBuffer:           proc "c" (target: u32, buffer: u32);
+DeleteBuffers:        proc "c" (n: i32, buffers: ^u32);
+GenBuffers:           proc "c" (n: i32, buffers: ^u32);
+IsBuffer:             proc "c" (buffer: u32) -> u8;
+BufferData:           proc "c" (target: u32, size: int, data: rawptr, usage: u32);
+BufferSubData:        proc "c" (target: u32, offset: int, size: int, data: rawptr);
+GetBufferSubData:     proc "c" (target: u32, offset: int, size: int, data: rawptr);
+MapBuffer:            proc "c" (target: u32, access: u32) -> rawptr;
+UnmapBuffer:          proc "c" (target: u32) -> u8;
+GetBufferParameteriv: proc "c" (target: u32, pname: u32, params: ^i32);
+GetBufferPointerv:    proc "c" (target: u32, pname: u32, params: ^rawptr);
 
 load_1_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&GenQueries,           "glGenQueries\x00");
@@ -298,99 +298,99 @@ load_1_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_2_0
-BlendEquationSeparate:    proc(modeRGB: u32, modeAlpha: u32)                                                             #cc_c;
-DrawBuffers:              proc(n: i32, bufs: ^u32)                                                                       #cc_c;
-StencilOpSeparate:        proc(face: u32, sfail: u32, dpfail: u32, dppass: u32)                                          #cc_c;
-StencilFuncSeparate:      proc(face: u32, func: u32, ref: i32, mask: u32)                                                #cc_c;
-StencilMaskSeparate:      proc(face: u32, mask: u32)                                                                     #cc_c;
-AttachShader:             proc(program: u32, shader: u32)                                                                #cc_c;
-BindAttribLocation:       proc(program: u32, index: u32, name: ^u8)                                                      #cc_c;
-CompileShader:            proc(shader: u32)                                                                              #cc_c;
-CreateProgram:            proc() -> u32                                                                                  #cc_c;
-CreateShader:             proc(type_: u32) -> u32                                                                        #cc_c;
-DeleteProgram:            proc(program: u32)                                                                             #cc_c;
-DeleteShader:             proc(shader: u32)                                                                              #cc_c;
-DetachShader:             proc(program: u32, shader: u32)                                                                #cc_c;
-DisableVertexAttribArray: proc(index: u32)                                                                               #cc_c;
-EnableVertexAttribArray:  proc(index: u32)                                                                               #cc_c;
-GetActiveAttrib:          proc(program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8) #cc_c;
-GetActiveUniform:         proc(program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8) #cc_c;
-GetAttachedShaders:       proc(program: u32, maxCount: i32, count: ^i32, shaders: ^u32)                                  #cc_c;
-GetAttribLocation:        proc(program: u32, name: ^u8) -> i32                                                           #cc_c;
-GetProgramiv:             proc(program: u32, pname: u32, params: ^i32)                                                   #cc_c;
-GetProgramInfoLog:        proc(program: u32, bufSize: i32, length: ^i32, infoLog: ^u8)                                   #cc_c;
-GetShaderiv:              proc(shader: u32, pname: u32, params: ^i32)                                                    #cc_c;
-GetShaderInfoLog:         proc(shader: u32, bufSize: i32, length: ^i32, infoLog: ^u8)                                    #cc_c;
-GetShaderSource:          proc(shader: u32, bufSize: i32, length: ^i32, source: ^u8)                                     #cc_c;
-GetUniformLocation:       proc(program: u32, name: ^u8) -> i32                                                           #cc_c;
-GetUniformfv:             proc(program: u32, location: i32, params: ^f32)                                                #cc_c;
-GetUniformiv:             proc(program: u32, location: i32, params: ^i32)                                                #cc_c;
-GetVertexAttribdv:        proc(index: u32, pname: u32, params: ^f64)                                                     #cc_c;
-GetVertexAttribfv:        proc(index: u32, pname: u32, params: ^f32)                                                     #cc_c;
-GetVertexAttribiv:        proc(index: u32, pname: u32, params: ^i32)                                                     #cc_c;
-GetVertexAttribPointerv:  proc(index: u32, pname: u32, pointer: ^rawptr)                                                 #cc_c;
-IsProgram:                proc(program: u32) -> u8                                                                       #cc_c;
-IsShader:                 proc(shader: u32) -> u8                                                                        #cc_c;
-LinkProgram:              proc(program: u32)                                                                             #cc_c;
-ShaderSource:             proc(shader: u32, count: i32, string: ^^u8, length: ^i32)                                      #cc_c;
-UseProgram:               proc(program: u32)                                                                             #cc_c;
-Uniform1f:                proc(location: i32, v0: f32)                                                                   #cc_c;
-Uniform2f:                proc(location: i32, v0: f32, v1: f32)                                                          #cc_c;
-Uniform3f:                proc(location: i32, v0: f32, v1: f32, v2: f32)                                                 #cc_c;
-Uniform4f:                proc(location: i32, v0: f32, v1: f32, v2: f32, v3: f32)                                        #cc_c;
-Uniform1i:                proc(location: i32, v0: i32)                                                                   #cc_c;
-Uniform2i:                proc(location: i32, v0: i32, v1: i32)                                                          #cc_c;
-Uniform3i:                proc(location: i32, v0: i32, v1: i32, v2: i32)                                                 #cc_c;
-Uniform4i:                proc(location: i32, v0: i32, v1: i32, v2: i32, v3: i32)                                        #cc_c;
-Uniform1fv:               proc(location: i32, count: i32, value: ^f32)                                                   #cc_c;
-Uniform2fv:               proc(location: i32, count: i32, value: ^f32)                                                   #cc_c;
-Uniform3fv:               proc(location: i32, count: i32, value: ^f32)                                                   #cc_c;
-Uniform4fv:               proc(location: i32, count: i32, value: ^f32)                                                   #cc_c;
-Uniform1iv:               proc(location: i32, count: i32, value: ^i32)                                                   #cc_c;
-Uniform2iv:               proc(location: i32, count: i32, value: ^i32)                                                   #cc_c;
-Uniform3iv:               proc(location: i32, count: i32, value: ^i32)                                                   #cc_c;
-Uniform4iv:               proc(location: i32, count: i32, value: ^i32)                                                   #cc_c;
-UniformMatrix2fv:         proc(location: i32, count: i32, transpose: u8, value: ^f32)                                    #cc_c;
-UniformMatrix3fv:         proc(location: i32, count: i32, transpose: u8, value: ^f32)                                    #cc_c;
-UniformMatrix4fv:         proc(location: i32, count: i32, transpose: u8, value: ^f32)                                    #cc_c;
-ValidateProgram:          proc(program: u32)                                                                             #cc_c;
-VertexAttrib1d:           proc(index: u32, x: f64)                                                                       #cc_c;
-VertexAttrib1dv:          proc(index: u32, v: ^f64)                                                                      #cc_c;
-VertexAttrib1f:           proc(index: u32, x: f32)                                                                       #cc_c;
-VertexAttrib1fv:          proc(index: u32, v: ^f32)                                                                      #cc_c;
-VertexAttrib1s:           proc(index: u32, x: i16)                                                                       #cc_c;
-VertexAttrib1sv:          proc(index: u32, v: ^i16)                                                                      #cc_c;
-VertexAttrib2d:           proc(index: u32, x: f64, y: f64)                                                               #cc_c;
-VertexAttrib2dv:          proc(index: u32, v: ^f64)                                                                      #cc_c;
-VertexAttrib2f:           proc(index: u32, x: f32, y: f32)                                                               #cc_c;
-VertexAttrib2fv:          proc(index: u32, v: ^f32)                                                                      #cc_c;
-VertexAttrib2s:           proc(index: u32, x: i16, y: i16)                                                               #cc_c;
-VertexAttrib2sv:          proc(index: u32, v: ^i16)                                                                      #cc_c;
-VertexAttrib3d:           proc(index: u32, x: f64, y: f64, z: f64)                                                       #cc_c;
-VertexAttrib3dv:          proc(index: u32, v: ^f64)                                                                      #cc_c;
-VertexAttrib3f:           proc(index: u32, x: f32, y: f32, z: f32)                                                       #cc_c;
-VertexAttrib3fv:          proc(index: u32, v: ^f32)                                                                      #cc_c;
-VertexAttrib3s:           proc(index: u32, x: i16, y: i16, z: i16)                                                       #cc_c;
-VertexAttrib3sv:          proc(index: u32, v: ^i16)                                                                      #cc_c;
-VertexAttrib4Nbv:         proc(index: u32, v: ^i8)                                                                       #cc_c;
-VertexAttrib4Niv:         proc(index: u32, v: ^i32)                                                                      #cc_c;
-VertexAttrib4Nsv:         proc(index: u32, v: ^i16)                                                                      #cc_c;
-VertexAttrib4Nub:         proc(index: u32, x: u8, y: u8, z: u8, w: u8)                                                   #cc_c;
-VertexAttrib4Nubv:        proc(index: u32, v: ^u8)                                                                       #cc_c;
-VertexAttrib4Nuiv:        proc(index: u32, v: ^u32)                                                                      #cc_c;
-VertexAttrib4Nusv:        proc(index: u32, v: ^u16)                                                                      #cc_c;
-VertexAttrib4bv:          proc(index: u32, v: ^i8)                                                                       #cc_c;
-VertexAttrib4d:           proc(index: u32, x: f64, y: f64, z: f64, w: f64)                                               #cc_c;
-VertexAttrib4dv:          proc(index: u32, v: ^f64)                                                                      #cc_c;
-VertexAttrib4f:           proc(index: u32, x: f32, y: f32, z: f32, w: f32)                                               #cc_c;
-VertexAttrib4fv:          proc(index: u32, v: ^f32)                                                                      #cc_c;
-VertexAttrib4iv:          proc(index: u32, v: ^i32)                                                                      #cc_c;
-VertexAttrib4s:           proc(index: u32, x: i16, y: i16, z: i16, w: i16)                                               #cc_c;
-VertexAttrib4sv:          proc(index: u32, v: ^i16)                                                                      #cc_c;
-VertexAttrib4ubv:         proc(index: u32, v: ^u8)                                                                       #cc_c;
-VertexAttrib4uiv:         proc(index: u32, v: ^u32)                                                                      #cc_c;
-VertexAttrib4usv:         proc(index: u32, v: ^u16)                                                                      #cc_c;
-VertexAttribPointer:      proc(index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr)          #cc_c;
+BlendEquationSeparate:    proc "c" (modeRGB: u32, modeAlpha: u32);
+DrawBuffers:              proc "c" (n: i32, bufs: ^u32);
+StencilOpSeparate:        proc "c" (face: u32, sfail: u32, dpfail: u32, dppass: u32);
+StencilFuncSeparate:      proc "c" (face: u32, func: u32, ref: i32, mask: u32);
+StencilMaskSeparate:      proc "c" (face: u32, mask: u32);
+AttachShader:             proc "c" (program: u32, shader: u32);
+BindAttribLocation:       proc "c" (program: u32, index: u32, name: ^u8);
+CompileShader:            proc "c" (shader: u32);
+CreateProgram:            proc "c" () -> u32;
+CreateShader:             proc "c" (type_: u32) -> u32;
+DeleteProgram:            proc "c" (program: u32);
+DeleteShader:             proc "c" (shader: u32);
+DetachShader:             proc "c" (program: u32, shader: u32);
+DisableVertexAttribArray: proc "c" (index: u32);
+EnableVertexAttribArray:  proc "c" (index: u32);
+GetActiveAttrib:          proc "c" (program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8);
+GetActiveUniform:         proc "c" (program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8);
+GetAttachedShaders:       proc "c" (program: u32, maxCount: i32, count: ^i32, shaders: ^u32);
+GetAttribLocation:        proc "c" (program: u32, name: ^u8) -> i32;
+GetProgramiv:             proc "c" (program: u32, pname: u32, params: ^i32);
+GetProgramInfoLog:        proc "c" (program: u32, bufSize: i32, length: ^i32, infoLog: ^u8);
+GetShaderiv:              proc "c" (shader: u32, pname: u32, params: ^i32);
+GetShaderInfoLog:         proc "c" (shader: u32, bufSize: i32, length: ^i32, infoLog: ^u8);
+GetShaderSource:          proc "c" (shader: u32, bufSize: i32, length: ^i32, source: ^u8);
+GetUniformLocation:       proc "c" (program: u32, name: ^u8) -> i32;
+GetUniformfv:             proc "c" (program: u32, location: i32, params: ^f32);
+GetUniformiv:             proc "c" (program: u32, location: i32, params: ^i32);
+GetVertexAttribdv:        proc "c" (index: u32, pname: u32, params: ^f64);
+GetVertexAttribfv:        proc "c" (index: u32, pname: u32, params: ^f32);
+GetVertexAttribiv:        proc "c" (index: u32, pname: u32, params: ^i32);
+GetVertexAttribPointerv:  proc "c" (index: u32, pname: u32, pointer: ^rawptr);
+IsProgram:                proc "c" (program: u32) -> u8;
+IsShader:                 proc "c" (shader: u32) -> u8;
+LinkProgram:              proc "c" (program: u32);
+ShaderSource:             proc "c" (shader: u32, count: i32, string: ^^u8, length: ^i32);
+UseProgram:               proc "c" (program: u32);
+Uniform1f:                proc "c" (location: i32, v0: f32);
+Uniform2f:                proc "c" (location: i32, v0: f32, v1: f32);
+Uniform3f:                proc "c" (location: i32, v0: f32, v1: f32, v2: f32);
+Uniform4f:                proc "c" (location: i32, v0: f32, v1: f32, v2: f32, v3: f32);
+Uniform1i:                proc "c" (location: i32, v0: i32);
+Uniform2i:                proc "c" (location: i32, v0: i32, v1: i32);
+Uniform3i:                proc "c" (location: i32, v0: i32, v1: i32, v2: i32);
+Uniform4i:                proc "c" (location: i32, v0: i32, v1: i32, v2: i32, v3: i32);
+Uniform1fv:               proc "c" (location: i32, count: i32, value: ^f32);
+Uniform2fv:               proc "c" (location: i32, count: i32, value: ^f32);
+Uniform3fv:               proc "c" (location: i32, count: i32, value: ^f32);
+Uniform4fv:               proc "c" (location: i32, count: i32, value: ^f32);
+Uniform1iv:               proc "c" (location: i32, count: i32, value: ^i32);
+Uniform2iv:               proc "c" (location: i32, count: i32, value: ^i32);
+Uniform3iv:               proc "c" (location: i32, count: i32, value: ^i32);
+Uniform4iv:               proc "c" (location: i32, count: i32, value: ^i32);
+UniformMatrix2fv:         proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix3fv:         proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix4fv:         proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+ValidateProgram:          proc "c" (program: u32);
+VertexAttrib1d:           proc "c" (index: u32, x: f64);
+VertexAttrib1dv:          proc "c" (index: u32, v: ^f64);
+VertexAttrib1f:           proc "c" (index: u32, x: f32);
+VertexAttrib1fv:          proc "c" (index: u32, v: ^f32);
+VertexAttrib1s:           proc "c" (index: u32, x: i16);
+VertexAttrib1sv:          proc "c" (index: u32, v: ^i16);
+VertexAttrib2d:           proc "c" (index: u32, x: f64, y: f64);
+VertexAttrib2dv:          proc "c" (index: u32, v: ^f64);
+VertexAttrib2f:           proc "c" (index: u32, x: f32, y: f32);
+VertexAttrib2fv:          proc "c" (index: u32, v: ^f32);
+VertexAttrib2s:           proc "c" (index: u32, x: i16, y: i16);
+VertexAttrib2sv:          proc "c" (index: u32, v: ^i16);
+VertexAttrib3d:           proc "c" (index: u32, x: f64, y: f64, z: f64);
+VertexAttrib3dv:          proc "c" (index: u32, v: ^f64);
+VertexAttrib3f:           proc "c" (index: u32, x: f32, y: f32, z: f32);
+VertexAttrib3fv:          proc "c" (index: u32, v: ^f32);
+VertexAttrib3s:           proc "c" (index: u32, x: i16, y: i16, z: i16);
+VertexAttrib3sv:          proc "c" (index: u32, v: ^i16);
+VertexAttrib4Nbv:         proc "c" (index: u32, v: ^i8);
+VertexAttrib4Niv:         proc "c" (index: u32, v: ^i32);
+VertexAttrib4Nsv:         proc "c" (index: u32, v: ^i16);
+VertexAttrib4Nub:         proc "c" (index: u32, x: u8, y: u8, z: u8, w: u8);
+VertexAttrib4Nubv:        proc "c" (index: u32, v: ^u8);
+VertexAttrib4Nuiv:        proc "c" (index: u32, v: ^u32);
+VertexAttrib4Nusv:        proc "c" (index: u32, v: ^u16);
+VertexAttrib4bv:          proc "c" (index: u32, v: ^i8);
+VertexAttrib4d:           proc "c" (index: u32, x: f64, y: f64, z: f64, w: f64);
+VertexAttrib4dv:          proc "c" (index: u32, v: ^f64);
+VertexAttrib4f:           proc "c" (index: u32, x: f32, y: f32, z: f32, w: f32);
+VertexAttrib4fv:          proc "c" (index: u32, v: ^f32);
+VertexAttrib4iv:          proc "c" (index: u32, v: ^i32);
+VertexAttrib4s:           proc "c" (index: u32, x: i16, y: i16, z: i16, w: i16);
+VertexAttrib4sv:          proc "c" (index: u32, v: ^i16);
+VertexAttrib4ubv:         proc "c" (index: u32, v: ^u8);
+VertexAttrib4uiv:         proc "c" (index: u32, v: ^u32);
+VertexAttrib4usv:         proc "c" (index: u32, v: ^u16);
+VertexAttribPointer:      proc "c" (index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr);
 
 load_2_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&BlendEquationSeparate,    "glBlendEquationSeparate\x00");
@@ -490,12 +490,12 @@ load_2_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_2_1
-UniformMatrix2x3fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
-UniformMatrix3x2fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
-UniformMatrix2x4fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
-UniformMatrix4x2fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
-UniformMatrix3x4fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
-UniformMatrix4x3fv: proc(location: i32, count: i32, transpose: u8, value: ^f32) #cc_c;
+UniformMatrix2x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix3x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix2x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix4x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix3x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+UniformMatrix4x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
 
 load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&UniformMatrix2x3fv, "glUniformMatrix2x3fv\x00");
@@ -508,90 +508,90 @@ load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_3_0
- ColorMaski:                          proc(index: u32, r: u8, g: u8, b: u8, a: u8)                                                                                 #cc_c;
- GetBooleani_v:                       proc(target: u32, index: u32, data: ^u8)                                                                                     #cc_c;
- GetIntegeri_v:                       proc(target: u32, index: u32, data: ^i32)                                                                                    #cc_c;
- Enablei:                             proc(target: u32, index: u32)                                                                                                #cc_c;
- Disablei:                            proc(target: u32, index: u32)                                                                                                #cc_c;
- IsEnabledi:                          proc(target: u32, index: u32) -> u8                                                                                          #cc_c;
- BeginTransformFeedback:              proc(primitiveMode: u32)                                                                                                     #cc_c;
- EndTransformFeedback:                proc()                                                                                                                       #cc_c;
- BindBufferRange:                     proc(target: u32, index: u32, buffer: u32, offset: int, size: int)                                                           #cc_c;
- BindBufferBase:                      proc(target: u32, index: u32, buffer: u32)                                                                                   #cc_c;
- TransformFeedbackVaryings:           proc(program: u32, count: i32, varyings: ^u8, bufferMode: u32)                                                               #cc_c;
- GetTransformFeedbackVarying:         proc(program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8)                               #cc_c;
- ClampColor:                          proc(target: u32, clamp: u32)                                                                                                #cc_c;
- BeginConditionalRender:              proc(id: u32, mode: u32)                                                                                                     #cc_c;
- EndConditionalRender:                proc()                                                                                                                       #cc_c;
- VertexAttribIPointer:                proc(index: u32, size: i32, type_: u32, stride: i32, pointer: rawptr)                                                        #cc_c;
- GetVertexAttribIiv:                  proc(index: u32, pname: u32, params: ^i32)                                                                                   #cc_c;
- GetVertexAttribIuiv:                 proc(index: u32, pname: u32, params: ^u32)                                                                                   #cc_c;
- VertexAttribI1i:                     proc(index: u32, x: i32)                                                                                                     #cc_c;
- VertexAttribI2i:                     proc(index: u32, x: i32, y: i32)                                                                                             #cc_c;
- VertexAttribI3i:                     proc(index: u32, x: i32, y: i32, z: i32)                                                                                     #cc_c;
- VertexAttribI4i:                     proc(index: u32, x: i32, y: i32, z: i32, w: i32)                                                                             #cc_c;
- VertexAttribI1ui:                    proc(index: u32, x: u32)                                                                                                     #cc_c;
- VertexAttribI2ui:                    proc(index: u32, x: u32, y: u32)                                                                                             #cc_c;
- VertexAttribI3ui:                    proc(index: u32, x: u32, y: u32, z: u32)                                                                                     #cc_c;
- VertexAttribI4ui:                    proc(index: u32, x: u32, y: u32, z: u32, w: u32)                                                                             #cc_c;
- VertexAttribI1iv:                    proc(index: u32, v: ^i32)                                                                                                    #cc_c;
- VertexAttribI2iv:                    proc(index: u32, v: ^i32)                                                                                                    #cc_c;
- VertexAttribI3iv:                    proc(index: u32, v: ^i32)                                                                                                    #cc_c;
- VertexAttribI4iv:                    proc(index: u32, v: ^i32)                                                                                                    #cc_c;
- VertexAttribI1uiv:                   proc(index: u32, v: ^u32)                                                                                                    #cc_c;
- VertexAttribI2uiv:                   proc(index: u32, v: ^u32)                                                                                                    #cc_c;
- VertexAttribI3uiv:                   proc(index: u32, v: ^u32)                                                                                                    #cc_c;
- VertexAttribI4uiv:                   proc(index: u32, v: ^u32)                                                                                                    #cc_c;
- VertexAttribI4bv:                    proc(index: u32, v: ^i8)                                                                                                     #cc_c;
- VertexAttribI4sv:                    proc(index: u32, v: ^i16)                                                                                                    #cc_c;
- VertexAttribI4ubv:                   proc(index: u32, v: ^u8)                                                                                                     #cc_c;
- VertexAttribI4usv:                   proc(index: u32, v: ^u16)                                                                                                    #cc_c;
- GetUniformuiv:                       proc(program: u32, location: i32, params: ^u32)                                                                              #cc_c;
- BindFragDataLocation:                proc(program: u32, color: u32, name: ^u8)                                                                                    #cc_c;
- GetFragDataLocation:                 proc(program: u32, name: ^u8) -> i32                                                                                         #cc_c;
- Uniform1ui:                          proc(location: i32, v0: u32)                                                                                                 #cc_c;
- Uniform2ui:                          proc(location: i32, v0: u32, v1: u32)                                                                                        #cc_c;
- Uniform3ui:                          proc(location: i32, v0: u32, v1: u32, v2: u32)                                                                               #cc_c;
- Uniform4ui:                          proc(location: i32, v0: u32, v1: u32, v2: u32, v3: u32)                                                                      #cc_c;
- Uniform1uiv:                         proc(location: i32, count: i32, value: ^u32)                                                                                 #cc_c;
- Uniform2uiv:                         proc(location: i32, count: i32, value: ^u32)                                                                                 #cc_c;
- Uniform3uiv:                         proc(location: i32, count: i32, value: ^u32)                                                                                 #cc_c;
- Uniform4uiv:                         proc(location: i32, count: i32, value: ^u32)                                                                                 #cc_c;
- TexParameterIiv:                     proc(target: u32, pname: u32, params: ^i32)                                                                                  #cc_c;
- TexParameterIuiv:                    proc(target: u32, pname: u32, params: ^u32)                                                                                  #cc_c;
- GetTexParameterIiv:                  proc(target: u32, pname: u32, params: ^i32)                                                                                  #cc_c;
- GetTexParameterIuiv:                 proc(target: u32, pname: u32, params: ^u32)                                                                                  #cc_c;
- ClearBufferiv:                       proc(buffer: u32, drawbuffer: i32, value: ^i32)                                                                              #cc_c;
- ClearBufferuiv:                      proc(buffer: u32, drawbuffer: i32, value: ^u32)                                                                              #cc_c;
- ClearBufferfv:                       proc(buffer: u32, drawbuffer: i32, value: ^f32)                                                                              #cc_c;
- ClearBufferfi:                       proc(buffer: u32, drawbuffer: i32, depth: f32, stencil: i32) -> rawptr                                                       #cc_c;
- GetStringi:                          proc(name: u32, index: u32) -> u8                                                                                            #cc_c;
- IsRenderbuffer:                      proc(renderbuffer: u32) -> u8                                                                                                #cc_c;
- BindRenderbuffer:                    proc(target: u32, renderbuffer: u32)                                                                                         #cc_c;
- DeleteRenderbuffers:                 proc(n: i32, renderbuffers: ^u32)                                                                                            #cc_c;
- GenRenderbuffers:                    proc(n: i32, renderbuffers: ^u32)                                                                                            #cc_c;
- RenderbufferStorage:                 proc(target: u32, internalformat: u32, width: i32, height: i32)                                                              #cc_c;
- GetRenderbufferParameteriv:          proc(target: u32, pname: u32, params: ^i32)                                                                                  #cc_c;
- IsFramebuffer:                       proc(framebuffer: u32) -> u8                                                                                                 #cc_c;
- BindFramebuffer:                     proc(target: u32, framebuffer: u32)                                                                                          #cc_c;
- DeleteFramebuffers:                  proc(n: i32, framebuffers: ^u32)                                                                                             #cc_c;
- GenFramebuffers:                     proc(n: i32, framebuffers: ^u32)                                                                                             #cc_c;
- CheckFramebufferStatus:              proc(target: u32) -> u32                                                                                                     #cc_c;
- FramebufferTexture1D:                proc(target: u32, attachment: u32, textarget: u32, texture: u32, level: i32)                                                 #cc_c;
- FramebufferTexture2D:                proc(target: u32, attachment: u32, textarget: u32, texture: u32, level: i32)                                                 #cc_c;
- FramebufferTexture3D:                proc(target: u32, attachment: u32, textarget: u32, texture: u32, level: i32, zoffset: i32)                                   #cc_c;
- FramebufferRenderbuffer:             proc(target: u32, attachment: u32, renderbuffertarget: u32, renderbuffer: u32)                                               #cc_c;
- GetFramebufferAttachmentParameteriv: proc(target: u32, attachment: u32, pname: u32, params: ^i32)                                                                 #cc_c;
- GenerateMipmap:                      proc(target: u32)                                                                                                            #cc_c;
- BlitFramebuffer:                     proc(srcX0: i32, srcY0: i32, srcX1: i32, srcY1: i32, dstX0: i32, dstY0: i32, dstX1: i32, dstY1: i32, mask: u32, filter: u32) #cc_c;
- RenderbufferStorageMultisample:      proc(target: u32, samples: i32, internalformat: u32, width: i32, height: i32)                                                #cc_c;
- FramebufferTextureLayer:             proc(target: u32, attachment: u32, texture: u32, level: i32, layer: i32)                                                     #cc_c;
- MapBufferRange:                      proc(target: u32, offset: int, length: int, access: u32) -> rawptr                                                           #cc_c;
- FlushMappedBufferRange:              proc(target: u32, offset: int, length: int)                                                                                  #cc_c;
- BindVertexArray:                     proc(array: u32)                                                                                                             #cc_c;
- DeleteVertexArrays:                  proc(n: i32, arrays: ^u32)                                                                                                   #cc_c;
- GenVertexArrays:                     proc(n: i32, arrays: ^u32)                                                                                                   #cc_c;
- IsVertexArray:                       proc(array: u32) -> u8                                                                                                       #cc_c;
+ ColorMaski:                          proc "c" (index: u32, r: u8, g: u8, b: u8, a: u8);
+ GetBooleani_v:                       proc "c" (target: u32, index: u32, data: ^u8);
+ GetIntegeri_v:                       proc "c" (target: u32, index: u32, data: ^i32);
+ Enablei:                             proc "c" (target: u32, index: u32);
+ Disablei:                            proc "c" (target: u32, index: u32);
+ IsEnabledi:                          proc "c" (target: u32, index: u32) -> u8;
+ BeginTransformFeedback:              proc "c" (primitiveMode: u32);
+ EndTransformFeedback:                proc "c" ();
+ BindBufferRange:                     proc "c" (target: u32, index: u32, buffer: u32, offset: int, size: int);
+ BindBufferBase:                      proc "c" (target: u32, index: u32, buffer: u32);
+ TransformFeedbackVaryings:           proc "c" (program: u32, count: i32, varyings: ^u8, bufferMode: u32);
+ GetTransformFeedbackVarying:         proc "c" (program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8);
+ ClampColor:                          proc "c" (target: u32, clamp: u32);
+ BeginConditionalRender:              proc "c" (id: u32, mode: u32);
+ EndConditionalRender:                proc "c" ();
+ VertexAttribIPointer:                proc "c" (index: u32, size: i32, type_: u32, stride: i32, pointer: rawptr);
+ GetVertexAttribIiv:                  proc "c" (index: u32, pname: u32, params: ^i32);
+ GetVertexAttribIuiv:                 proc "c" (index: u32, pname: u32, params: ^u32);
+ VertexAttribI1i:                     proc "c" (index: u32, x: i32);
+ VertexAttribI2i:                     proc "c" (index: u32, x: i32, y: i32);
+ VertexAttribI3i:                     proc "c" (index: u32, x: i32, y: i32, z: i32);
+ VertexAttribI4i:                     proc "c" (index: u32, x: i32, y: i32, z: i32, w: i32);
+ VertexAttribI1ui:                    proc "c" (index: u32, x: u32);
+ VertexAttribI2ui:                    proc "c" (index: u32, x: u32, y: u32);
+ VertexAttribI3ui:                    proc "c" (index: u32, x: u32, y: u32, z: u32);
+ VertexAttribI4ui:                    proc "c" (index: u32, x: u32, y: u32, z: u32, w: u32);
+ VertexAttribI1iv:                    proc "c" (index: u32, v: ^i32);
+ VertexAttribI2iv:                    proc "c" (index: u32, v: ^i32);
+ VertexAttribI3iv:                    proc "c" (index: u32, v: ^i32);
+ VertexAttribI4iv:                    proc "c" (index: u32, v: ^i32);
+ VertexAttribI1uiv:                   proc "c" (index: u32, v: ^u32);
+ VertexAttribI2uiv:                   proc "c" (index: u32, v: ^u32);
+ VertexAttribI3uiv:                   proc "c" (index: u32, v: ^u32);
+ VertexAttribI4uiv:                   proc "c" (index: u32, v: ^u32);
+ VertexAttribI4bv:                    proc "c" (index: u32, v: ^i8);
+ VertexAttribI4sv:                    proc "c" (index: u32, v: ^i16);
+ VertexAttribI4ubv:                   proc "c" (index: u32, v: ^u8);
+ VertexAttribI4usv:                   proc "c" (index: u32, v: ^u16);
+ GetUniformuiv:                       proc "c" (program: u32, location: i32, params: ^u32);
+ BindFragDataLocation:                proc "c" (program: u32, color: u32, name: ^u8);
+ GetFragDataLocation:                 proc "c" (program: u32, name: ^u8) -> i32;
+ Uniform1ui:                          proc "c" (location: i32, v0: u32);
+ Uniform2ui:                          proc "c" (location: i32, v0: u32, v1: u32);
+ Uniform3ui:                          proc "c" (location: i32, v0: u32, v1: u32, v2: u32);
+ Uniform4ui:                          proc "c" (location: i32, v0: u32, v1: u32, v2: u32, v3: u32);
+ Uniform1uiv:                         proc "c" (location: i32, count: i32, value: ^u32);
+ Uniform2uiv:                         proc "c" (location: i32, count: i32, value: ^u32);
+ Uniform3uiv:                         proc "c" (location: i32, count: i32, value: ^u32);
+ Uniform4uiv:                         proc "c" (location: i32, count: i32, value: ^u32);
+ TexParameterIiv:                     proc "c" (target: u32, pname: u32, params: ^i32);
+ TexParameterIuiv:                    proc "c" (target: u32, pname: u32, params: ^u32);
+ GetTexParameterIiv:                  proc "c" (target: u32, pname: u32, params: ^i32);
+ GetTexParameterIuiv:                 proc "c" (target: u32, pname: u32, params: ^u32);
+ ClearBufferiv:                       proc "c" (buffer: u32, drawbuffer: i32, value: ^i32);
+ ClearBufferuiv:                      proc "c" (buffer: u32, drawbuffer: i32, value: ^u32);
+ ClearBufferfv:                       proc "c" (buffer: u32, drawbuffer: i32, value: ^f32);
+ ClearBufferfi:                       proc "c" (buffer: u32, drawbuffer: i32, depth: f32, stencil: i32) -> rawptr;
+ GetStringi:                          proc "c" (name: u32, index: u32) -> u8;
+ IsRenderbuffer:                      proc "c" (renderbuffer: u32) -> u8;
+ BindRenderbuffer:                    proc "c" (target: u32, renderbuffer: u32);
+ DeleteRenderbuffers:                 proc "c" (n: i32, renderbuffers: ^u32);
+ GenRenderbuffers:                    proc "c" (n: i32, renderbuffers: ^u32);
+ RenderbufferStorage:                 proc "c" (target: u32, internalformat: u32, width: i32, height: i32);
+ GetRenderbufferParameteriv:          proc "c" (target: u32, pname: u32, params: ^i32);
+ IsFramebuffer:                       proc "c" (framebuffer: u32) -> u8;
+ BindFramebuffer:                     proc "c" (target: u32, framebuffer: u32);
+ DeleteFramebuffers:                  proc "c" (n: i32, framebuffers: ^u32);
+ GenFramebuffers:                     proc "c" (n: i32, framebuffers: ^u32);
+ CheckFramebufferStatus:              proc "c" (target: u32) -> u32;
+ FramebufferTexture1D:                proc "c" (target: u32, attachment: u32, textarget: u32, texture: u32, level: i32);
+ FramebufferTexture2D:                proc "c" (target: u32, attachment: u32, textarget: u32, texture: u32, level: i32);
+ FramebufferTexture3D:                proc "c" (target: u32, attachment: u32, textarget: u32, texture: u32, level: i32, zoffset: i32);
+ FramebufferRenderbuffer:             proc "c" (target: u32, attachment: u32, renderbuffertarget: u32, renderbuffer: u32);
+ GetFramebufferAttachmentParameteriv: proc "c" (target: u32, attachment: u32, pname: u32, params: ^i32);
+ GenerateMipmap:                      proc "c" (target: u32);
+ BlitFramebuffer:                     proc "c" (srcX0: i32, srcY0: i32, srcX1: i32, srcY1: i32, dstX0: i32, dstY0: i32, dstX1: i32, dstY1: i32, mask: u32, filter: u32);
+ RenderbufferStorageMultisample:      proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32);
+ FramebufferTextureLayer:             proc "c" (target: u32, attachment: u32, texture: u32, level: i32, layer: i32);
+ MapBufferRange:                      proc "c" (target: u32, offset: int, length: int, access: u32) -> rawptr;
+ FlushMappedBufferRange:              proc "c" (target: u32, offset: int, length: int);
+ BindVertexArray:                     proc "c" (array: u32);
+ DeleteVertexArrays:                  proc "c" (n: i32, arrays: ^u32);
+ GenVertexArrays:                     proc "c" (n: i32, arrays: ^u32);
+ IsVertexArray:                       proc "c" (array: u32) -> u8;
 
 load_3_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&ColorMaski,                          "glColorMaski\x00");
@@ -682,18 +682,18 @@ load_3_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_3_1
-DrawArraysInstanced:       proc(mode: u32, first: i32, count: i32, instancecount: i32)                                   #cc_c;
-DrawElementsInstanced:     proc(mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32)                  #cc_c;
-TexBuffer:                 proc(target: u32, internalformat: u32, buffer: u32)                                           #cc_c;
-PrimitiveRestartIndex:     proc(index: u32)                                                                              #cc_c;
-CopyBufferSubData:         proc(readTarget: u32, writeTarget: u32, readOffset: int, writeOffset: int, size: int)         #cc_c;
-GetUniformIndices:         proc(program: u32, uniformCount: i32, uniformNames: ^u8, uniformIndices: ^u32)                #cc_c;
-GetActiveUniformsiv:       proc(program: u32, uniformCount: i32, uniformIndices: ^u32, pname: u32, params: ^i32)         #cc_c;
-GetActiveUniformName:      proc(program: u32, uniformIndex: u32, bufSize: i32, length: ^i32, uniformName: ^u8)           #cc_c;
-GetUniformBlockIndex:      proc(program: u32, uniformBlockName: ^u8) -> u32                                              #cc_c;
-GetActiveUniformBlockiv:   proc(program: u32, uniformBlockIndex: u32, pname: u32, params: ^i32)                          #cc_c;
-GetActiveUniformBlockName: proc(program: u32, uniformBlockIndex: u32, bufSize: i32, length: ^i32, uniformBlockName: ^u8) #cc_c;
-UniformBlockBinding:       proc(program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32)                          #cc_c;
+DrawArraysInstanced:       proc "c" (mode: u32, first: i32, count: i32, instancecount: i32);
+DrawElementsInstanced:     proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32);
+TexBuffer:                 proc "c" (target: u32, internalformat: u32, buffer: u32);
+PrimitiveRestartIndex:     proc "c" (index: u32);
+CopyBufferSubData:         proc "c" (readTarget: u32, writeTarget: u32, readOffset: int, writeOffset: int, size: int);
+GetUniformIndices:         proc "c" (program: u32, uniformCount: i32, uniformNames: ^u8, uniformIndices: ^u32);
+GetActiveUniformsiv:       proc "c" (program: u32, uniformCount: i32, uniformIndices: ^u32, pname: u32, params: ^i32);
+GetActiveUniformName:      proc "c" (program: u32, uniformIndex: u32, bufSize: i32, length: ^i32, uniformName: ^u8);
+GetUniformBlockIndex:      proc "c" (program: u32, uniformBlockName: ^u8) -> u32;
+GetActiveUniformBlockiv:   proc "c" (program: u32, uniformBlockIndex: u32, pname: u32, params: ^i32);
+GetActiveUniformBlockName: proc "c" (program: u32, uniformBlockIndex: u32, bufSize: i32, length: ^i32, uniformBlockName: ^u8);
+UniformBlockBinding:       proc "c" (program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32);
 
 load_3_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&DrawArraysInstanced,       "glDrawArraysInstanced\x00");
@@ -712,25 +712,25 @@ load_3_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_3_2
-DrawElementsBaseVertex:          proc(mode: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32)                                           #cc_c;
-DrawRangeElementsBaseVertex:     proc(mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32)                     #cc_c;
-DrawElementsInstancedBaseVertex: proc(mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32)                       #cc_c;
-MultiDrawElementsBaseVertex:     proc(mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32, basevertex: ^i32)                        #cc_c;
-ProvokingVertex:                 proc(mode: u32)                                                                                                     #cc_c;
-FenceSync:                       proc(condition: u32, flags: u32) -> sync_t                                                                          #cc_c;
-IsSync:                          proc(sync: sync_t) -> u8                                                                                            #cc_c;
-DeleteSync:                      proc(sync: sync_t)                                                                                                  #cc_c;
-ClientWaitSync:                  proc(sync: sync_t, flags: u32, timeout: u64) -> u32                                                                 #cc_c;
-WaitSync:                        proc(sync: sync_t, flags: u32, timeout: u64)                                                                        #cc_c;
-GetInteger64v:                   proc(pname: u32, data: ^i64)                                                                                        #cc_c;
-GetSynciv:                       proc(sync: sync_t, pname: u32, bufSize: i32, length: ^i32, values: ^i32)                                            #cc_c;
-GetInteger64i_v:                 proc(target: u32, index: u32, data: ^i64)                                                                           #cc_c;
-GetBufferParameteri64v:          proc(target: u32, pname: u32, params: ^i64)                                                                         #cc_c;
-FramebufferTexture:              proc(target: u32, attachment: u32, texture: u32, level: i32)                                                        #cc_c;
-TexImage2DMultisample:           proc(target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8)             #cc_c;
-TexImage3DMultisample:           proc(target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8) #cc_c;
-GetMultisamplefv:                proc(pname: u32, index: u32, val: ^f32)                                                                             #cc_c;
-SampleMaski:                     proc(maskNumber: u32, mask: u32)                                                                                    #cc_c;
+DrawElementsBaseVertex:          proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
+DrawRangeElementsBaseVertex:     proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
+DrawElementsInstancedBaseVertex: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32);
+MultiDrawElementsBaseVertex:     proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32, basevertex: ^i32);
+ProvokingVertex:                 proc "c" (mode: u32);
+FenceSync:                       proc "c" (condition: u32, flags: u32) -> sync_t;
+IsSync:                          proc "c" (sync: sync_t) -> u8;
+DeleteSync:                      proc "c" (sync: sync_t);
+ClientWaitSync:                  proc "c" (sync: sync_t, flags: u32, timeout: u64) -> u32;
+WaitSync:                        proc "c" (sync: sync_t, flags: u32, timeout: u64);
+GetInteger64v:                   proc "c" (pname: u32, data: ^i64);
+GetSynciv:                       proc "c" (sync: sync_t, pname: u32, bufSize: i32, length: ^i32, values: ^i32);
+GetInteger64i_v:                 proc "c" (target: u32, index: u32, data: ^i64);
+GetBufferParameteri64v:          proc "c" (target: u32, pname: u32, params: ^i64);
+FramebufferTexture:              proc "c" (target: u32, attachment: u32, texture: u32, level: i32);
+TexImage2DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8);
+TexImage3DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8);
+GetMultisamplefv:                proc "c" (pname: u32, index: u32, val: ^f32);
+SampleMaski:                     proc "c" (maskNumber: u32, mask: u32);
 
 load_3_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&DrawElementsBaseVertex,          "glDrawElementsBaseVertex\x00");
@@ -756,64 +756,64 @@ load_3_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_3_3
-BindFragDataLocationIndexed: proc(program: u32, colorNumber: u32, index: u32, name: ^u8) #cc_c;
-GetFragDataIndex:            proc(program: u32, name: ^u8) -> i32                        #cc_c;
-GenSamplers:                 proc(count: i32, samplers: ^u32)                            #cc_c;
-DeleteSamplers:              proc(count: i32, samplers: ^u32)                            #cc_c;
-IsSampler:                   proc(sampler: u32) -> u8                                    #cc_c;
-BindSampler:                 proc(unit: u32, sampler: u32)                               #cc_c;
-SamplerParameteri:           proc(sampler: u32, pname: u32, param: i32)                  #cc_c;
-SamplerParameteriv:          proc(sampler: u32, pname: u32, param: ^i32)                 #cc_c;
-SamplerParameterf:           proc(sampler: u32, pname: u32, param: f32)                  #cc_c;
-SamplerParameterfv:          proc(sampler: u32, pname: u32, param: ^f32)                 #cc_c;
-SamplerParameterIiv:         proc(sampler: u32, pname: u32, param: ^i32)                 #cc_c;
-SamplerParameterIuiv:        proc(sampler: u32, pname: u32, param: ^u32)                 #cc_c;
-GetSamplerParameteriv:       proc(sampler: u32, pname: u32, params: ^i32)                #cc_c;
-GetSamplerParameterIiv:      proc(sampler: u32, pname: u32, params: ^i32)                #cc_c;
-GetSamplerParameterfv:       proc(sampler: u32, pname: u32, params: ^f32)                #cc_c;
-GetSamplerParameterIuiv:     proc(sampler: u32, pname: u32, params: ^u32)                #cc_c;
-QueryCounter:                proc(id: u32, target: u32)                                  #cc_c;
-GetQueryObjecti64v:          proc(id: u32, pname: u32, params: ^i64)                     #cc_c;
-GetQueryObjectui64v:         proc(id: u32, pname: u32, params: ^u64)                     #cc_c;
-VertexAttribDivisor:         proc(index: u32, divisor: u32)                              #cc_c;
-VertexAttribP1ui:            proc(index: u32, type_: u32, normalized: u8, value: u32)    #cc_c;
-VertexAttribP1uiv:           proc(index: u32, type_: u32, normalized: u8, value: ^u32)   #cc_c;
-VertexAttribP2ui:            proc(index: u32, type_: u32, normalized: u8, value: u32)    #cc_c;
-VertexAttribP2uiv:           proc(index: u32, type_: u32, normalized: u8, value: ^u32)   #cc_c;
-VertexAttribP3ui:            proc(index: u32, type_: u32, normalized: u8, value: u32)    #cc_c;
-VertexAttribP3uiv:           proc(index: u32, type_: u32, normalized: u8, value: ^u32)   #cc_c;
-VertexAttribP4ui:            proc(index: u32, type_: u32, normalized: u8, value: u32)    #cc_c;
-VertexAttribP4uiv:           proc(index: u32, type_: u32, normalized: u8, value: ^u32)   #cc_c;
-VertexP2ui:                  proc(type_: u32, value: u32)                                #cc_c;
-VertexP2uiv:                 proc(type_: u32, value: ^u32)                               #cc_c;
-VertexP3ui:                  proc(type_: u32, value: u32)                                #cc_c;
-VertexP3uiv:                 proc(type_: u32, value: ^u32)                               #cc_c;
-VertexP4ui:                  proc(type_: u32, value: u32)                                #cc_c;
-VertexP4uiv:                 proc(type_: u32, value: ^u32)                               #cc_c;
-TexCoordP1ui:                proc(type_: u32, coords: u32)                               #cc_c;
-TexCoordP1uiv:               proc(type_: u32, coords: ^u32)                              #cc_c;
-TexCoordP2ui:                proc(type_: u32, coords: u32)                               #cc_c;
-TexCoordP2uiv:               proc(type_: u32, coords: ^u32)                              #cc_c;
-TexCoordP3ui:                proc(type_: u32, coords: u32)                               #cc_c;
-TexCoordP3uiv:               proc(type_: u32, coords: ^u32)                              #cc_c;
-TexCoordP4ui:                proc(type_: u32, coords: u32)                               #cc_c;
-TexCoordP4uiv:               proc(type_: u32, coords: ^u32)                              #cc_c;
-MultiTexCoordP1ui:           proc(texture: u32, type_: u32, coords: u32)                 #cc_c;
-MultiTexCoordP1uiv:          proc(texture: u32, type_: u32, coords: ^u32)                #cc_c;
-MultiTexCoordP2ui:           proc(texture: u32, type_: u32, coords: u32)                 #cc_c;
-MultiTexCoordP2uiv:          proc(texture: u32, type_: u32, coords: ^u32)                #cc_c;
-MultiTexCoordP3ui:           proc(texture: u32, type_: u32, coords: u32)                 #cc_c;
-MultiTexCoordP3uiv:          proc(texture: u32, type_: u32, coords: ^u32)                #cc_c;
-MultiTexCoordP4ui:           proc(texture: u32, type_: u32, coords: u32)                 #cc_c;
-MultiTexCoordP4uiv:          proc(texture: u32, type_: u32, coords: ^u32)                #cc_c;
-NormalP3ui:                  proc(type_: u32, coords: u32)                               #cc_c;
-NormalP3uiv:                 proc(type_: u32, coords: ^u32)                              #cc_c;
-ColorP3ui:                   proc(type_: u32, color: u32)                                #cc_c;
-ColorP3uiv:                  proc(type_: u32, color: ^u32)                               #cc_c;
-ColorP4ui:                   proc(type_: u32, color: u32)                                #cc_c;
-ColorP4uiv:                  proc(type_: u32, color: ^u32)                               #cc_c;
-SecondaryColorP3ui:          proc(type_: u32, color: u32)                                #cc_c;
-SecondaryColorP3uiv:         proc(type_: u32, color: ^u32)                               #cc_c;
+BindFragDataLocationIndexed: proc "c" (program: u32, colorNumber: u32, index: u32, name: ^u8);
+GetFragDataIndex:            proc "c" (program: u32, name: ^u8) -> i32;
+GenSamplers:                 proc "c" (count: i32, samplers: ^u32);
+DeleteSamplers:              proc "c" (count: i32, samplers: ^u32);
+IsSampler:                   proc "c" (sampler: u32) -> u8;
+BindSampler:                 proc "c" (unit: u32, sampler: u32);
+SamplerParameteri:           proc "c" (sampler: u32, pname: u32, param: i32);
+SamplerParameteriv:          proc "c" (sampler: u32, pname: u32, param: ^i32);
+SamplerParameterf:           proc "c" (sampler: u32, pname: u32, param: f32);
+SamplerParameterfv:          proc "c" (sampler: u32, pname: u32, param: ^f32);
+SamplerParameterIiv:         proc "c" (sampler: u32, pname: u32, param: ^i32);
+SamplerParameterIuiv:        proc "c" (sampler: u32, pname: u32, param: ^u32);
+GetSamplerParameteriv:       proc "c" (sampler: u32, pname: u32, params: ^i32);
+GetSamplerParameterIiv:      proc "c" (sampler: u32, pname: u32, params: ^i32);
+GetSamplerParameterfv:       proc "c" (sampler: u32, pname: u32, params: ^f32);
+GetSamplerParameterIuiv:     proc "c" (sampler: u32, pname: u32, params: ^u32);
+QueryCounter:                proc "c" (id: u32, target: u32);
+GetQueryObjecti64v:          proc "c" (id: u32, pname: u32, params: ^i64);
+GetQueryObjectui64v:         proc "c" (id: u32, pname: u32, params: ^u64);
+VertexAttribDivisor:         proc "c" (index: u32, divisor: u32);
+VertexAttribP1ui:            proc "c" (index: u32, type_: u32, normalized: u8, value: u32);
+VertexAttribP1uiv:           proc "c" (index: u32, type_: u32, normalized: u8, value: ^u32);
+VertexAttribP2ui:            proc "c" (index: u32, type_: u32, normalized: u8, value: u32);
+VertexAttribP2uiv:           proc "c" (index: u32, type_: u32, normalized: u8, value: ^u32);
+VertexAttribP3ui:            proc "c" (index: u32, type_: u32, normalized: u8, value: u32);
+VertexAttribP3uiv:           proc "c" (index: u32, type_: u32, normalized: u8, value: ^u32);
+VertexAttribP4ui:            proc "c" (index: u32, type_: u32, normalized: u8, value: u32);
+VertexAttribP4uiv:           proc "c" (index: u32, type_: u32, normalized: u8, value: ^u32);
+VertexP2ui:                  proc "c" (type_: u32, value: u32);
+VertexP2uiv:                 proc "c" (type_: u32, value: ^u32);
+VertexP3ui:                  proc "c" (type_: u32, value: u32);
+VertexP3uiv:                 proc "c" (type_: u32, value: ^u32);
+VertexP4ui:                  proc "c" (type_: u32, value: u32);
+VertexP4uiv:                 proc "c" (type_: u32, value: ^u32);
+TexCoordP1ui:                proc "c" (type_: u32, coords: u32);
+TexCoordP1uiv:               proc "c" (type_: u32, coords: ^u32);
+TexCoordP2ui:                proc "c" (type_: u32, coords: u32);
+TexCoordP2uiv:               proc "c" (type_: u32, coords: ^u32);
+TexCoordP3ui:                proc "c" (type_: u32, coords: u32);
+TexCoordP3uiv:               proc "c" (type_: u32, coords: ^u32);
+TexCoordP4ui:                proc "c" (type_: u32, coords: u32);
+TexCoordP4uiv:               proc "c" (type_: u32, coords: ^u32);
+MultiTexCoordP1ui:           proc "c" (texture: u32, type_: u32, coords: u32);
+MultiTexCoordP1uiv:          proc "c" (texture: u32, type_: u32, coords: ^u32);
+MultiTexCoordP2ui:           proc "c" (texture: u32, type_: u32, coords: u32);
+MultiTexCoordP2uiv:          proc "c" (texture: u32, type_: u32, coords: ^u32);
+MultiTexCoordP3ui:           proc "c" (texture: u32, type_: u32, coords: u32);
+MultiTexCoordP3uiv:          proc "c" (texture: u32, type_: u32, coords: ^u32);
+MultiTexCoordP4ui:           proc "c" (texture: u32, type_: u32, coords: u32);
+MultiTexCoordP4uiv:          proc "c" (texture: u32, type_: u32, coords: ^u32);
+NormalP3ui:                  proc "c" (type_: u32, coords: u32);
+NormalP3uiv:                 proc "c" (type_: u32, coords: ^u32);
+ColorP3ui:                   proc "c" (type_: u32, color: u32);
+ColorP3uiv:                  proc "c" (type_: u32, color: ^u32);
+ColorP4ui:                   proc "c" (type_: u32, color: u32);
+ColorP4uiv:                  proc "c" (type_: u32, color: ^u32);
+SecondaryColorP3ui:          proc "c" (type_: u32, color: u32);
+SecondaryColorP3uiv:         proc "c" (type_: u32, color: ^u32);
 
 load_3_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&BindFragDataLocationIndexed, "glBindFragDataLocationIndexed\x00");
@@ -878,52 +878,52 @@ load_3_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_4_0
-MinSampleShading:               proc(value: f32)                                                                        #cc_c;
-BlendEquationi:                 proc(buf: u32, mode: u32)                                                               #cc_c;
-BlendEquationSeparatei:         proc(buf: u32, modeRGB: u32, modeAlpha: u32)                                            #cc_c;
-BlendFunci:                     proc(buf: u32, src: u32, dst: u32)                                                      #cc_c;
-BlendFuncSeparatei:             proc(buf: u32, srcRGB: u32, dstRGB: u32, srcAlpha: u32, dstAlpha: u32)                  #cc_c;
-DrawArraysIndirect:             proc(mode: u32, indirect: rawptr)                                                       #cc_c;
-DrawElementsIndirect:           proc(mode: u32, type_: u32, indirect: rawptr)                                           #cc_c;
-Uniform1d:                      proc(location: i32, x: f64)                                                             #cc_c;
-Uniform2d:                      proc(location: i32, x: f64, y: f64)                                                     #cc_c;
-Uniform3d:                      proc(location: i32, x: f64, y: f64, z: f64)                                             #cc_c;
-Uniform4d:                      proc(location: i32, x: f64, y: f64, z: f64, w: f64)                                     #cc_c;
-Uniform1dv:                     proc(location: i32, count: i32, value: ^f64)                                            #cc_c;
-Uniform2dv:                     proc(location: i32, count: i32, value: ^f64)                                            #cc_c;
-Uniform3dv:                     proc(location: i32, count: i32, value: ^f64)                                            #cc_c;
-Uniform4dv:                     proc(location: i32, count: i32, value: ^f64)                                            #cc_c;
-UniformMatrix2dv:               proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix3dv:               proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix4dv:               proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix2x3dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix2x4dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix3x2dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix3x4dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix4x2dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-UniformMatrix4x3dv:             proc(location: i32, count: i32, transpose: u8, value: ^f64)                             #cc_c;
-GetUniformdv:                   proc(program: u32, location: i32, params: ^f64)                                         #cc_c;
-GetSubroutineUniformLocation:   proc(program: u32, shadertype_: u32, name: ^u8) -> i32                                  #cc_c;
-GetSubroutineIndex:             proc(program: u32, shadertype_: u32, name: ^u8) -> u32                                  #cc_c;
-GetActiveSubroutineUniformiv:   proc(program: u32, shadertype_: u32, index: u32, pname: u32, values: ^i32)              #cc_c;
-GetActiveSubroutineUniformName: proc(program: u32, shadertype_: u32, index: u32, bufsize: i32, length: ^i32, name: ^u8) #cc_c;
-GetActiveSubroutineName:        proc(program: u32, shadertype_: u32, index: u32, bufsize: i32, length: ^i32, name: ^u8) #cc_c;
-UniformSubroutinesuiv:          proc(shadertype_: u32, count: i32, indices: ^u32)                                       #cc_c;
-GetUniformSubroutineuiv:        proc(shadertype_: u32, location: i32, params: ^u32)                                     #cc_c;
-GetProgramStageiv:              proc(program: u32, shadertype_: u32, pname: u32, values: ^i32)                          #cc_c;
-PatchParameteri:                proc(pname: u32, value: i32)                                                            #cc_c;
-PatchParameterfv:               proc(pname: u32, values: ^f32)                                                          #cc_c;
-BindTransformFeedback:          proc(target: u32, id: u32)                                                              #cc_c;
-DeleteTransformFeedbacks:       proc(n: i32, ids: ^u32)                                                                 #cc_c;
-GenTransformFeedbacks:          proc(n: i32, ids: ^u32)                                                                 #cc_c;
-IsTransformFeedback:            proc(id: u32) -> u8                                                                     #cc_c;
-PauseTransformFeedback:         proc()                                                                                  #cc_c;
-ResumeTransformFeedback:        proc()                                                                                  #cc_c;
-DrawTransformFeedback:          proc(mode: u32, id: u32)                                                                #cc_c;
-DrawTransformFeedbackStream:    proc(mode: u32, id: u32, stream: u32)                                                   #cc_c;
-BeginQueryIndexed:              proc(target: u32, index: u32, id: u32)                                                  #cc_c;
-EndQueryIndexed:                proc(target: u32, index: u32)                                                           #cc_c;
-GetQueryIndexediv:              proc(target: u32, index: u32, pname: u32, params: ^i32)                                 #cc_c;
+MinSampleShading:               proc "c" (value: f32);
+BlendEquationi:                 proc "c" (buf: u32, mode: u32);
+BlendEquationSeparatei:         proc "c" (buf: u32, modeRGB: u32, modeAlpha: u32);
+BlendFunci:                     proc "c" (buf: u32, src: u32, dst: u32);
+BlendFuncSeparatei:             proc "c" (buf: u32, srcRGB: u32, dstRGB: u32, srcAlpha: u32, dstAlpha: u32);
+DrawArraysIndirect:             proc "c" (mode: u32, indirect: rawptr);
+DrawElementsIndirect:           proc "c" (mode: u32, type_: u32, indirect: rawptr);
+Uniform1d:                      proc "c" (location: i32, x: f64);
+Uniform2d:                      proc "c" (location: i32, x: f64, y: f64);
+Uniform3d:                      proc "c" (location: i32, x: f64, y: f64, z: f64);
+Uniform4d:                      proc "c" (location: i32, x: f64, y: f64, z: f64, w: f64);
+Uniform1dv:                     proc "c" (location: i32, count: i32, value: ^f64);
+Uniform2dv:                     proc "c" (location: i32, count: i32, value: ^f64);
+Uniform3dv:                     proc "c" (location: i32, count: i32, value: ^f64);
+Uniform4dv:                     proc "c" (location: i32, count: i32, value: ^f64);
+UniformMatrix2dv:               proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix3dv:               proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix4dv:               proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix2x3dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix2x4dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix3x2dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix3x4dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix4x2dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+UniformMatrix4x3dv:             proc "c" (location: i32, count: i32, transpose: u8, value: ^f64);
+GetUniformdv:                   proc "c" (program: u32, location: i32, params: ^f64);
+GetSubroutineUniformLocation:   proc "c" (program: u32, shadertype_: u32, name: ^u8) -> i32;
+GetSubroutineIndex:             proc "c" (program: u32, shadertype_: u32, name: ^u8) -> u32;
+GetActiveSubroutineUniformiv:   proc "c" (program: u32, shadertype_: u32, index: u32, pname: u32, values: ^i32);
+GetActiveSubroutineUniformName: proc "c" (program: u32, shadertype_: u32, index: u32, bufsize: i32, length: ^i32, name: ^u8);
+GetActiveSubroutineName:        proc "c" (program: u32, shadertype_: u32, index: u32, bufsize: i32, length: ^i32, name: ^u8);
+UniformSubroutinesuiv:          proc "c" (shadertype_: u32, count: i32, indices: ^u32);
+GetUniformSubroutineuiv:        proc "c" (shadertype_: u32, location: i32, params: ^u32);
+GetProgramStageiv:              proc "c" (program: u32, shadertype_: u32, pname: u32, values: ^i32);
+PatchParameteri:                proc "c" (pname: u32, value: i32);
+PatchParameterfv:               proc "c" (pname: u32, values: ^f32);
+BindTransformFeedback:          proc "c" (target: u32, id: u32);
+DeleteTransformFeedbacks:       proc "c" (n: i32, ids: ^u32);
+GenTransformFeedbacks:          proc "c" (n: i32, ids: ^u32);
+IsTransformFeedback:            proc "c" (id: u32) -> u8;
+PauseTransformFeedback:         proc "c" ();
+ResumeTransformFeedback:        proc "c" ();
+DrawTransformFeedback:          proc "c" (mode: u32, id: u32);
+DrawTransformFeedbackStream:    proc "c" (mode: u32, id: u32, stream: u32);
+BeginQueryIndexed:              proc "c" (target: u32, index: u32, id: u32);
+EndQueryIndexed:                proc "c" (target: u32, index: u32);
+GetQueryIndexediv:              proc "c" (target: u32, index: u32, pname: u32, params: ^i32);
 
 load_4_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&MinSampleShading,               "glMinSampleShading\x00");
@@ -976,94 +976,94 @@ load_4_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_4_1
-ReleaseShaderCompiler:     proc()                                                                             #cc_c;
-ShaderBinary:              proc(count: i32, shaders: ^u32, binaryformat: u32, binary: rawptr, length: i32)    #cc_c;
-GetShaderPrecisionFormat:  proc(shadertype_: u32, precisiontype_: u32, range: ^i32, precision: ^i32)          #cc_c;
-DepthRangef:               proc(n: f32, f: f32)                                                               #cc_c;
-ClearDepthf:               proc(d: f32)                                                                       #cc_c;
-GetProgramBinary:          proc(program: u32, bufSize: i32, length: ^i32, binaryFormat: ^u32, binary: rawptr) #cc_c;
-ProgramBinary:             proc(program: u32, binaryFormat: u32, binary: rawptr, length: i32)                 #cc_c;
-ProgramParameteri:         proc(program: u32, pname: u32, value: i32)                                         #cc_c;
-UseProgramStages:          proc(pipeline: u32, stages: u32, program: u32)                                     #cc_c;
-ActiveShaderProgram:       proc(pipeline: u32, program: u32)                                                  #cc_c;
-CreateShaderProgramv:      proc(type_: u32, count: i32, strings: ^u8) -> u32                                  #cc_c;
-BindProgramPipeline:       proc(pipeline: u32)                                                                #cc_c;
-DeleteProgramPipelines:    proc(n: i32, pipelines: ^u32)                                                      #cc_c;
-GenProgramPipelines:       proc(n: i32, pipelines: ^u32)                                                      #cc_c;
-IsProgramPipeline:         proc(pipeline: u32) -> u8                                                          #cc_c;
-GetProgramPipelineiv:      proc(pipeline: u32, pname: u32, params: ^i32)                                      #cc_c;
-ProgramUniform1i:          proc(program: u32, location: i32, v0: i32)                                         #cc_c;
-ProgramUniform1iv:         proc(program: u32, location: i32, count: i32, value: ^i32)                         #cc_c;
-ProgramUniform1f:          proc(program: u32, location: i32, v0: f32)                                         #cc_c;
-ProgramUniform1fv:         proc(program: u32, location: i32, count: i32, value: ^f32)                         #cc_c;
-ProgramUniform1d:          proc(program: u32, location: i32, v0: f64)                                         #cc_c;
-ProgramUniform1dv:         proc(program: u32, location: i32, count: i32, value: ^f64)                         #cc_c;
-ProgramUniform1ui:         proc(program: u32, location: i32, v0: u32)                                         #cc_c;
-ProgramUniform1uiv:        proc(program: u32, location: i32, count: i32, value: ^u32)                         #cc_c;
-ProgramUniform2i:          proc(program: u32, location: i32, v0: i32, v1: i32)                                #cc_c;
-ProgramUniform2iv:         proc(program: u32, location: i32, count: i32, value: ^i32)                         #cc_c;
-ProgramUniform2f:          proc(program: u32, location: i32, v0: f32, v1: f32)                                #cc_c;
-ProgramUniform2fv:         proc(program: u32, location: i32, count: i32, value: ^f32)                         #cc_c;
-ProgramUniform2d:          proc(program: u32, location: i32, v0: f64, v1: f64)                                #cc_c;
-ProgramUniform2dv:         proc(program: u32, location: i32, count: i32, value: ^f64)                         #cc_c;
-ProgramUniform2ui:         proc(program: u32, location: i32, v0: u32, v1: u32)                                #cc_c;
-ProgramUniform2uiv:        proc(program: u32, location: i32, count: i32, value: ^u32)                         #cc_c;
-ProgramUniform3i:          proc(program: u32, location: i32, v0: i32, v1: i32, v2: i32)                       #cc_c;
-ProgramUniform3iv:         proc(program: u32, location: i32, count: i32, value: ^i32)                         #cc_c;
-ProgramUniform3f:          proc(program: u32, location: i32, v0: f32, v1: f32, v2: f32)                       #cc_c;
-ProgramUniform3fv:         proc(program: u32, location: i32, count: i32, value: ^f32)                         #cc_c;
-ProgramUniform3d:          proc(program: u32, location: i32, v0: f64, v1: f64, v2: f64)                       #cc_c;
-ProgramUniform3dv:         proc(program: u32, location: i32, count: i32, value: ^f64)                         #cc_c;
-ProgramUniform3ui:         proc(program: u32, location: i32, v0: u32, v1: u32, v2: u32)                       #cc_c;
-ProgramUniform3uiv:        proc(program: u32, location: i32, count: i32, value: ^u32)                         #cc_c;
-ProgramUniform4i:          proc(program: u32, location: i32, v0: i32, v1: i32, v2: i32, v3: i32)              #cc_c;
-ProgramUniform4iv:         proc(program: u32, location: i32, count: i32, value: ^i32)                         #cc_c;
-ProgramUniform4f:          proc(program: u32, location: i32, v0: f32, v1: f32, v2: f32, v3: f32)              #cc_c;
-ProgramUniform4fv:         proc(program: u32, location: i32, count: i32, value: ^f32)                         #cc_c;
-ProgramUniform4d:          proc(program: u32, location: i32, v0: f64, v1: f64, v2: f64, v3: f64)              #cc_c;
-ProgramUniform4dv:         proc(program: u32, location: i32, count: i32, value: ^f64)                         #cc_c;
-ProgramUniform4ui:         proc(program: u32, location: i32, v0: u32, v1: u32, v2: u32, v3: u32)              #cc_c;
-ProgramUniform4uiv:        proc(program: u32, location: i32, count: i32, value: ^u32)                         #cc_c;
-ProgramUniformMatrix2fv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix3fv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix4fv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix2dv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix3dv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix4dv:   proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix2x3fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix3x2fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix2x4fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix4x2fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix3x4fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix4x3fv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f32)          #cc_c;
-ProgramUniformMatrix2x3dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix3x2dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix2x4dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix4x2dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix3x4dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ProgramUniformMatrix4x3dv: proc(program: u32, location: i32, count: i32, transpose: u8, value: ^f64)          #cc_c;
-ValidateProgramPipeline:   proc(pipeline: u32)                                                                #cc_c;
-GetProgramPipelineInfoLog: proc(pipeline: u32, bufSize: i32, length: ^i32, infoLog: ^u8)                      #cc_c;
-VertexAttribL1d:           proc(index: u32, x: f64)                                                           #cc_c;
-VertexAttribL2d:           proc(index: u32, x: f64, y: f64)                                                   #cc_c;
-VertexAttribL3d:           proc(index: u32, x: f64, y: f64, z: f64)                                           #cc_c;
-VertexAttribL4d:           proc(index: u32, x: f64, y: f64, z: f64, w: f64)                                   #cc_c;
-VertexAttribL1dv:          proc(index: u32, v: ^f64)                                                          #cc_c;
-VertexAttribL2dv:          proc(index: u32, v: ^f64)                                                          #cc_c;
-VertexAttribL3dv:          proc(index: u32, v: ^f64)                                                          #cc_c;
-VertexAttribL4dv:          proc(index: u32, v: ^f64)                                                          #cc_c;
-VertexAttribLPointer:      proc(index: u32, size: i32, type_: u32, stride: i32, pointer: rawptr)              #cc_c;
-GetVertexAttribLdv:        proc(index: u32, pname: u32, params: ^f64)                                         #cc_c;
-ViewportArrayv:            proc(first: u32, count: i32, v: ^f32)                                              #cc_c;
-ViewportIndexedf:          proc(index: u32, x: f32, y: f32, w: f32, h: f32)                                   #cc_c;
-ViewportIndexedfv:         proc(index: u32, v: ^f32)                                                          #cc_c;
-ScissorArrayv:             proc(first: u32, count: i32, v: ^i32)                                              #cc_c;
-ScissorIndexed:            proc(index: u32, left: i32, bottom: i32, width: i32, height: i32)                  #cc_c;
-ScissorIndexedv:           proc(index: u32, v: ^i32)                                                          #cc_c;
-DepthRangeArrayv:          proc(first: u32, count: i32, v: ^f64)                                              #cc_c;
-DepthRangeIndexed:         proc(index: u32, n: f64, f: f64)                                                   #cc_c;
-GetFloati_v:               proc(target: u32, index: u32, data: ^f32)                                          #cc_c;
-GetDoublei_v:              proc(target: u32, index: u32, data: ^f64)                                          #cc_c;
+ReleaseShaderCompiler:     proc "c" ();
+ShaderBinary:              proc "c" (count: i32, shaders: ^u32, binaryformat: u32, binary: rawptr, length: i32);
+GetShaderPrecisionFormat:  proc "c" (shadertype_: u32, precisiontype_: u32, range: ^i32, precision: ^i32);
+DepthRangef:               proc "c" (n: f32, f: f32);
+ClearDepthf:               proc "c" (d: f32);
+GetProgramBinary:          proc "c" (program: u32, bufSize: i32, length: ^i32, binaryFormat: ^u32, binary: rawptr);
+ProgramBinary:             proc "c" (program: u32, binaryFormat: u32, binary: rawptr, length: i32);
+ProgramParameteri:         proc "c" (program: u32, pname: u32, value: i32);
+UseProgramStages:          proc "c" (pipeline: u32, stages: u32, program: u32);
+ActiveShaderProgram:       proc "c" (pipeline: u32, program: u32);
+CreateShaderProgramv:      proc "c" (type_: u32, count: i32, strings: ^u8) -> u32;
+BindProgramPipeline:       proc "c" (pipeline: u32);
+DeleteProgramPipelines:    proc "c" (n: i32, pipelines: ^u32);
+GenProgramPipelines:       proc "c" (n: i32, pipelines: ^u32);
+IsProgramPipeline:         proc "c" (pipeline: u32) -> u8;
+GetProgramPipelineiv:      proc "c" (pipeline: u32, pname: u32, params: ^i32);
+ProgramUniform1i:          proc "c" (program: u32, location: i32, v0: i32);
+ProgramUniform1iv:         proc "c" (program: u32, location: i32, count: i32, value: ^i32);
+ProgramUniform1f:          proc "c" (program: u32, location: i32, v0: f32);
+ProgramUniform1fv:         proc "c" (program: u32, location: i32, count: i32, value: ^f32);
+ProgramUniform1d:          proc "c" (program: u32, location: i32, v0: f64);
+ProgramUniform1dv:         proc "c" (program: u32, location: i32, count: i32, value: ^f64);
+ProgramUniform1ui:         proc "c" (program: u32, location: i32, v0: u32);
+ProgramUniform1uiv:        proc "c" (program: u32, location: i32, count: i32, value: ^u32);
+ProgramUniform2i:          proc "c" (program: u32, location: i32, v0: i32, v1: i32);
+ProgramUniform2iv:         proc "c" (program: u32, location: i32, count: i32, value: ^i32);
+ProgramUniform2f:          proc "c" (program: u32, location: i32, v0: f32, v1: f32);
+ProgramUniform2fv:         proc "c" (program: u32, location: i32, count: i32, value: ^f32);
+ProgramUniform2d:          proc "c" (program: u32, location: i32, v0: f64, v1: f64);
+ProgramUniform2dv:         proc "c" (program: u32, location: i32, count: i32, value: ^f64);
+ProgramUniform2ui:         proc "c" (program: u32, location: i32, v0: u32, v1: u32);
+ProgramUniform2uiv:        proc "c" (program: u32, location: i32, count: i32, value: ^u32);
+ProgramUniform3i:          proc "c" (program: u32, location: i32, v0: i32, v1: i32, v2: i32);
+ProgramUniform3iv:         proc "c" (program: u32, location: i32, count: i32, value: ^i32);
+ProgramUniform3f:          proc "c" (program: u32, location: i32, v0: f32, v1: f32, v2: f32);
+ProgramUniform3fv:         proc "c" (program: u32, location: i32, count: i32, value: ^f32);
+ProgramUniform3d:          proc "c" (program: u32, location: i32, v0: f64, v1: f64, v2: f64);
+ProgramUniform3dv:         proc "c" (program: u32, location: i32, count: i32, value: ^f64);
+ProgramUniform3ui:         proc "c" (program: u32, location: i32, v0: u32, v1: u32, v2: u32);
+ProgramUniform3uiv:        proc "c" (program: u32, location: i32, count: i32, value: ^u32);
+ProgramUniform4i:          proc "c" (program: u32, location: i32, v0: i32, v1: i32, v2: i32, v3: i32);
+ProgramUniform4iv:         proc "c" (program: u32, location: i32, count: i32, value: ^i32);
+ProgramUniform4f:          proc "c" (program: u32, location: i32, v0: f32, v1: f32, v2: f32, v3: f32);
+ProgramUniform4fv:         proc "c" (program: u32, location: i32, count: i32, value: ^f32);
+ProgramUniform4d:          proc "c" (program: u32, location: i32, v0: f64, v1: f64, v2: f64, v3: f64);
+ProgramUniform4dv:         proc "c" (program: u32, location: i32, count: i32, value: ^f64);
+ProgramUniform4ui:         proc "c" (program: u32, location: i32, v0: u32, v1: u32, v2: u32, v3: u32);
+ProgramUniform4uiv:        proc "c" (program: u32, location: i32, count: i32, value: ^u32);
+ProgramUniformMatrix2fv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix3fv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix4fv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix2dv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix3dv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix4dv:   proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix2x3fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix3x2fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix2x4fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix4x2fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix3x4fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix4x3fv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f32);
+ProgramUniformMatrix2x3dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix3x2dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix2x4dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix4x2dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix3x4dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ProgramUniformMatrix4x3dv: proc "c" (program: u32, location: i32, count: i32, transpose: u8, value: ^f64);
+ValidateProgramPipeline:   proc "c" (pipeline: u32);
+GetProgramPipelineInfoLog: proc "c" (pipeline: u32, bufSize: i32, length: ^i32, infoLog: ^u8);
+VertexAttribL1d:           proc "c" (index: u32, x: f64);
+VertexAttribL2d:           proc "c" (index: u32, x: f64, y: f64);
+VertexAttribL3d:           proc "c" (index: u32, x: f64, y: f64, z: f64);
+VertexAttribL4d:           proc "c" (index: u32, x: f64, y: f64, z: f64, w: f64);
+VertexAttribL1dv:          proc "c" (index: u32, v: ^f64);
+VertexAttribL2dv:          proc "c" (index: u32, v: ^f64);
+VertexAttribL3dv:          proc "c" (index: u32, v: ^f64);
+VertexAttribL4dv:          proc "c" (index: u32, v: ^f64);
+VertexAttribLPointer:      proc "c" (index: u32, size: i32, type_: u32, stride: i32, pointer: rawptr);
+GetVertexAttribLdv:        proc "c" (index: u32, pname: u32, params: ^f64);
+ViewportArrayv:            proc "c" (first: u32, count: i32, v: ^f32);
+ViewportIndexedf:          proc "c" (index: u32, x: f32, y: f32, w: f32, h: f32);
+ViewportIndexedfv:         proc "c" (index: u32, v: ^f32);
+ScissorArrayv:             proc "c" (first: u32, count: i32, v: ^i32);
+ScissorIndexed:            proc "c" (index: u32, left: i32, bottom: i32, width: i32, height: i32);
+ScissorIndexedv:           proc "c" (index: u32, v: ^i32);
+DepthRangeArrayv:          proc "c" (first: u32, count: i32, v: ^f64);
+DepthRangeIndexed:         proc "c" (index: u32, n: f64, f: f64);
+GetFloati_v:               proc "c" (target: u32, index: u32, data: ^f32);
+GetDoublei_v:              proc "c" (target: u32, index: u32, data: ^f64);
 
 load_4_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&ReleaseShaderCompiler,     "glReleaseShaderCompiler\x00");
@@ -1158,18 +1158,18 @@ load_4_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 
 
 // VERSION_4_2
-DrawArraysInstancedBaseInstance:             proc(mode: u32, first: i32, count: i32, instancecount: i32, baseinstance: u32)                                   #cc_c;
-DrawElementsInstancedBaseInstance:           proc(mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, baseinstance: u32)                  #cc_c;
-DrawElementsInstancedBaseVertexBaseInstance: proc(mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32, baseinstance: u32) #cc_c;
-GetInternalformativ:                         proc(target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i32)                                   #cc_c;
-GetActiveAtomicCounterBufferiv:              proc(program: u32, bufferIndex: u32, pname: u32, params: ^i32)                                                   #cc_c;
-BindImageTexture:                            proc(unit: u32, texture: u32, level: i32, layered: u8, layer: i32, access: u32, format: u32)                     #cc_c;
-MemoryBarrier:                               proc(barriers: u32)                                                                                              #cc_c;
-TexStorage1D:                                proc(target: u32, levels: i32, internalformat: u32, width: i32)                                                  #cc_c;
-TexStorage2D:                                proc(target: u32, levels: i32, internalformat: u32, width: i32, height: i32)                                     #cc_c;
-TexStorage3D:                                proc(target: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32)                         #cc_c;
-DrawTransformFeedbackInstanced:              proc(mode: u32, id: u32, instancecount: i32)                                                                     #cc_c;
-DrawTransformFeedbackStreamInstanced:        proc(mode: u32, id: u32, stream: u32, instancecount: i32)                                                        #cc_c;
+DrawArraysInstancedBaseInstance:             proc "c" (mode: u32, first: i32, count: i32, instancecount: i32, baseinstance: u32);
+DrawElementsInstancedBaseInstance:           proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, baseinstance: u32);
+DrawElementsInstancedBaseVertexBaseInstance: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32, baseinstance: u32);
+GetInternalformativ:                         proc "c" (target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i32);
+GetActiveAtomicCounterBufferiv:              proc "c" (program: u32, bufferIndex: u32, pname: u32, params: ^i32);
+BindImageTexture:                            proc "c" (unit: u32, texture: u32, level: i32, layered: u8, layer: i32, access: u32, format: u32);
+MemoryBarrier:                               proc "c" (barriers: u32);
+TexStorage1D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32);
+TexStorage2D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32);
+TexStorage3D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32);
+DrawTransformFeedbackInstanced:              proc "c" (mode: u32, id: u32, instancecount: i32);
+DrawTransformFeedbackStreamInstanced:        proc "c" (mode: u32, id: u32, stream: u32, instancecount: i32);
 
 load_4_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance\x00");
@@ -1187,49 +1187,49 @@ load_4_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 }
 
 // VERSION_4_3
-ClearBufferData:                 proc(target: u32, internalformat: u32, format: u32, type_: u32, data: rawptr)                                                                                                                                  #cc_c;
-ClearBufferSubData:              proc(target: u32, internalformat: u32, offset: int, size: int, format: u32, type_: u32, data: rawptr)                                                                                                          #cc_c;
-DispatchCompute:                 proc(num_groups_x: u32, num_groups_y: u32, num_groups_z: u32)                                                                                                                                                  #cc_c;
-DispatchComputeIndirect:         proc(indirect: int)                                                                                                                                                                                            #cc_c;
-CopyImageSubData:                proc(srcName: u32, srcTarget: u32, srcLevel: i32, srcX: i32, srcY: i32, srcZ: i32, dstName: u32, dstTarget: u32, dstLevel: i32, dstX: i32, dstY: i32, dstZ: i32, srcWidth: i32, srcHeight: i32, srcDepth: i32) #cc_c;
-FramebufferParameteri:           proc(target: u32, pname: u32, param: i32)                                                                                                                                                                      #cc_c;
-GetFramebufferParameteriv:       proc(target: u32, pname: u32, params: ^i32)                                                                                                                                                                    #cc_c;
-GetInternalformati64v:           proc(target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i64)                                                                                                                                 #cc_c;
-InvalidateTexSubImage:           proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32)                                                                                                  #cc_c;
-InvalidateTexImage:              proc(texture: u32, level: i32)                                                                                                                                                                                 #cc_c;
-InvalidateBufferSubData:         proc(buffer: u32, offset: int, length: int)                                                                                                                                                                    #cc_c;
-InvalidateBufferData:            proc(buffer: u32)                                                                                                                                                                                              #cc_c;
-InvalidateFramebuffer:           proc(target: u32, numAttachments: i32, attachments: ^u32)                                                                                                                                                      #cc_c;
-InvalidateSubFramebuffer:        proc(target: u32, numAttachments: i32, attachments: ^u32, x: i32, y: i32, width: i32, height: i32)                                                                                                             #cc_c;
-MultiDrawArraysIndirect:         proc(mode: u32, indirect: rawptr, drawcount: i32, stride: i32)                                                                                                                                                 #cc_c;
-MultiDrawElementsIndirect:       proc(mode: u32, type_: u32, indirect: rawptr, drawcount: i32, stride: i32)                                                                                                                                     #cc_c;
-GetProgramInterfaceiv:           proc(program: u32, programInterface: u32, pname: u32, params: ^i32)                                                                                                                                            #cc_c;
-GetProgramResourceIndex:         proc(program: u32, programInterface: u32, name: ^u8) -> u32                                                                                                                                                    #cc_c;
-GetProgramResourceName:          proc(program: u32, programInterface: u32, index: u32, bufSize: i32, length: ^i32, name: ^u8)                                                                                                                   #cc_c;
-GetProgramResourceiv:            proc(program: u32, programInterface: u32, index: u32, propCount: i32, props: ^u32, bufSize: i32, length: ^i32, params: ^i32)                                                                                   #cc_c;
-GetProgramResourceLocation:      proc(program: u32, programInterface: u32, name: ^u8) -> i32                                                                                                                                                    #cc_c;
-GetProgramResourceLocationIndex: proc(program: u32, programInterface: u32, name: ^u8) -> i32                                                                                                                                                    #cc_c;
-ShaderStorageBlockBinding:       proc(program: u32, storageBlockIndex: u32, storageBlockBinding: u32)                                                                                                                                           #cc_c;
-TexBufferRange:                  proc(target: u32, internalformat: u32, buffer: u32, offset: int, size: int)                                                                                                                                    #cc_c;
-TexStorage2DMultisample:         proc(target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8)                                                                                                        #cc_c;
-TexStorage3DMultisample:         proc(target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8)                                                                                            #cc_c;
-TextureView:                     proc(texture: u32, target: u32, origtexture: u32, internalformat: u32, minlevel: u32, numlevels: u32, minlayer: u32, numlayers: u32)                                                                           #cc_c;
-BindVertexBuffer:                proc(bindingindex: u32, buffer: u32, offset: int, stride: i32)                                                                                                                                                 #cc_c;
-VertexAttribFormat:              proc(attribindex: u32, size: i32, type_: u32, normalized: u8, relativeoffset: u32)                                                                                                                             #cc_c;
-VertexAttribIFormat:             proc(attribindex: u32, size: i32, type_: u32, relativeoffset: u32)                                                                                                                                             #cc_c;
-VertexAttribLFormat:             proc(attribindex: u32, size: i32, type_: u32, relativeoffset: u32)                                                                                                                                             #cc_c;
-VertexAttribBinding:             proc(attribindex: u32, bindingindex: u32)                                                                                                                                                                      #cc_c;
-VertexBindingDivisor:            proc(bindingindex: u32, divisor: u32)                                                                                                                                                                          #cc_c;
-DebugMessageControl:             proc(source: u32, type_: u32, severity: u32, count: i32, ids: ^u32, enabled: u8)                                                                                                                               #cc_c;
-DebugMessageInsert:              proc(source: u32, type_: u32, id: u32, severity: u32, length: i32, buf: ^u8)                                                                                                                                   #cc_c;
-DebugMessageCallback:            proc(callback: debug_proc_t, userParam: rawptr)                                                                                                                                                                #cc_c;
-GetDebugMessageLog:              proc(count: u32, bufSize: i32, sources: ^u32, types: ^u32, ids: ^u32, severities: ^u32, lengths: ^i32, messageLog: ^u8) -> u32                                                                                 #cc_c;
-PushDebugGroup:                  proc(source: u32, id: u32, length: i32, message: ^u8)                                                                                                                                                          #cc_c;
-PopDebugGroup:                   proc()                                                                                                                                                                                                         #cc_c;
-ObjectLabel:                     proc(identifier: u32, name: u32, length: i32, label: ^u8)                                                                                                                                                      #cc_c;
-GetObjectLabel:                  proc(identifier: u32, name: u32, bufSize: i32, length: ^i32, label: ^u8)                                                                                                                                       #cc_c;
-ObjectPtrLabel:                  proc(ptr: rawptr, length: i32, label: ^u8)                                                                                                                                                                     #cc_c;
-GetObjectPtrLabel:               proc(ptr: rawptr, bufSize: i32, length: ^i32, label: ^u8)                                                                                                                                                      #cc_c;
+ClearBufferData:                 proc "c" (target: u32, internalformat: u32, format: u32, type_: u32, data: rawptr);
+ClearBufferSubData:              proc "c" (target: u32, internalformat: u32, offset: int, size: int, format: u32, type_: u32, data: rawptr);
+DispatchCompute:                 proc "c" (num_groups_x: u32, num_groups_y: u32, num_groups_z: u32);
+DispatchComputeIndirect:         proc "c" (indirect: int);
+CopyImageSubData:                proc "c" (srcName: u32, srcTarget: u32, srcLevel: i32, srcX: i32, srcY: i32, srcZ: i32, dstName: u32, dstTarget: u32, dstLevel: i32, dstX: i32, dstY: i32, dstZ: i32, srcWidth: i32, srcHeight: i32, srcDepth: i32);
+FramebufferParameteri:           proc "c" (target: u32, pname: u32, param: i32);
+GetFramebufferParameteriv:       proc "c" (target: u32, pname: u32, params: ^i32);
+GetInternalformati64v:           proc "c" (target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i64);
+InvalidateTexSubImage:           proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32);
+InvalidateTexImage:              proc "c" (texture: u32, level: i32);
+InvalidateBufferSubData:         proc "c" (buffer: u32, offset: int, length: int);
+InvalidateBufferData:            proc "c" (buffer: u32);
+InvalidateFramebuffer:           proc "c" (target: u32, numAttachments: i32, attachments: ^u32);
+InvalidateSubFramebuffer:        proc "c" (target: u32, numAttachments: i32, attachments: ^u32, x: i32, y: i32, width: i32, height: i32);
+MultiDrawArraysIndirect:         proc "c" (mode: u32, indirect: rawptr, drawcount: i32, stride: i32);
+MultiDrawElementsIndirect:       proc "c" (mode: u32, type_: u32, indirect: rawptr, drawcount: i32, stride: i32);
+GetProgramInterfaceiv:           proc "c" (program: u32, programInterface: u32, pname: u32, params: ^i32);
+GetProgramResourceIndex:         proc "c" (program: u32, programInterface: u32, name: ^u8) -> u32;
+GetProgramResourceName:          proc "c" (program: u32, programInterface: u32, index: u32, bufSize: i32, length: ^i32, name: ^u8);
+GetProgramResourceiv:            proc "c" (program: u32, programInterface: u32, index: u32, propCount: i32, props: ^u32, bufSize: i32, length: ^i32, params: ^i32);
+GetProgramResourceLocation:      proc "c" (program: u32, programInterface: u32, name: ^u8) -> i32;
+GetProgramResourceLocationIndex: proc "c" (program: u32, programInterface: u32, name: ^u8) -> i32;
+ShaderStorageBlockBinding:       proc "c" (program: u32, storageBlockIndex: u32, storageBlockBinding: u32);
+TexBufferRange:                  proc "c" (target: u32, internalformat: u32, buffer: u32, offset: int, size: int);
+TexStorage2DMultisample:         proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8);
+TexStorage3DMultisample:         proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8);
+TextureView:                     proc "c" (texture: u32, target: u32, origtexture: u32, internalformat: u32, minlevel: u32, numlevels: u32, minlayer: u32, numlayers: u32);
+BindVertexBuffer:                proc "c" (bindingindex: u32, buffer: u32, offset: int, stride: i32);
+VertexAttribFormat:              proc "c" (attribindex: u32, size: i32, type_: u32, normalized: u8, relativeoffset: u32);
+VertexAttribIFormat:             proc "c" (attribindex: u32, size: i32, type_: u32, relativeoffset: u32);
+VertexAttribLFormat:             proc "c" (attribindex: u32, size: i32, type_: u32, relativeoffset: u32);
+VertexAttribBinding:             proc "c" (attribindex: u32, bindingindex: u32);
+VertexBindingDivisor:            proc "c" (bindingindex: u32, divisor: u32);
+DebugMessageControl:             proc "c" (source: u32, type_: u32, severity: u32, count: i32, ids: ^u32, enabled: u8);
+DebugMessageInsert:              proc "c" (source: u32, type_: u32, id: u32, severity: u32, length: i32, buf: ^u8);
+DebugMessageCallback:            proc "c" (callback: debug_proc_t, userParam: rawptr);
+GetDebugMessageLog:              proc "c" (count: u32, bufSize: i32, sources: ^u32, types: ^u32, ids: ^u32, severities: ^u32, lengths: ^i32, messageLog: ^u8) -> u32;
+PushDebugGroup:                  proc "c" (source: u32, id: u32, length: i32, message: ^u8);
+PopDebugGroup:                   proc "c" ();
+ObjectLabel:                     proc "c" (identifier: u32, name: u32, length: i32, label: ^u8);
+GetObjectLabel:                  proc "c" (identifier: u32, name: u32, bufSize: i32, length: ^i32, label: ^u8);
+ObjectPtrLabel:                  proc "c" (ptr: rawptr, length: i32, label: ^u8);
+GetObjectPtrLabel:               proc "c" (ptr: rawptr, bufSize: i32, length: ^i32, label: ^u8);
 
 load_4_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&ClearBufferData,                 "glClearBufferData\x00");
@@ -1278,15 +1278,15 @@ load_4_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 }
 
 // VERSION_4_4
-BufferStorage:     proc(target: u32, size: int, data: rawptr, flags: u32)                                                                                               #cc_c;
-ClearTexImage:     proc(texture: u32, level: i32, format: u32, type_: u32, data: rawptr)                                                                                #cc_c;
-ClearTexSubImage:  proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, data: rawptr) #cc_c;
-BindBuffersBase:   proc(target: u32, first: u32, count: i32, buffers: ^u32)                                                                                             #cc_c;
-BindBuffersRange:  proc(target: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, sizes: ^int)                                                                 #cc_c;
-BindTextures:      proc(first: u32, count: i32, textures: ^u32)                                                                                                         #cc_c;
-BindSamplers:      proc(first: u32, count: i32, samplers: ^u32)                                                                                                         #cc_c;
-BindImageTextures: proc(first: u32, count: i32, textures: ^u32)                                                                                                         #cc_c;
-BindVertexBuffers: proc(first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32)                                                                            #cc_c;
+BufferStorage:     proc "c" (target: u32, size: int, data: rawptr, flags: u32);
+ClearTexImage:     proc "c" (texture: u32, level: i32, format: u32, type_: u32, data: rawptr);
+ClearTexSubImage:  proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, data: rawptr);
+BindBuffersBase:   proc "c" (target: u32, first: u32, count: i32, buffers: ^u32);
+BindBuffersRange:  proc "c" (target: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, sizes: ^int);
+BindTextures:      proc "c" (first: u32, count: i32, textures: ^u32);
+BindSamplers:      proc "c" (first: u32, count: i32, samplers: ^u32);
+BindImageTextures: proc "c" (first: u32, count: i32, textures: ^u32);
+BindVertexBuffers: proc "c" (first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32);
 
 load_4_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&BufferStorage,     "glBufferStorage\x00");
@@ -1301,128 +1301,128 @@ load_4_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
 }
 
 // VERSION_4_5
-ClipControl:                              proc(origin: u32, depth: u32)                                                                                                                                            #cc_c;
-CreateTransformFeedbacks:                 proc(n: i32, ids: ^u32)                                                                                                                                                  #cc_c;
-TransformFeedbackBufferBase:              proc(xfb: u32, index: u32, buffer: u32)                                                                                                                                  #cc_c;
-TransformFeedbackBufferRange:             proc(xfb: u32, index: u32, buffer: u32, offset: int, size: int)                                                                                                          #cc_c;
-GetTransformFeedbackiv:                   proc(xfb: u32, pname: u32, param: ^i32)                                                                                                                                  #cc_c;
-GetTransformFeedbacki_v:                  proc(xfb: u32, pname: u32, index: u32, param: ^i32)                                                                                                                      #cc_c;
-GetTransformFeedbacki64_v:                proc(xfb: u32, pname: u32, index: u32, param: ^i64)                                                                                                                      #cc_c;
-CreateBuffers:                            proc(n: i32, buffers: ^u32)                                                                                                                                              #cc_c;
-NamedBufferStorage:                       proc(buffer: u32, size: int, data: rawptr, flags: u32)                                                                                                                   #cc_c;
-NamedBufferData:                          proc(buffer: u32, size: int, data: rawptr, usage: u32)                                                                                                                   #cc_c;
-NamedBufferSubData:                       proc(buffer: u32, offset: int, size: int, data: rawptr)                                                                                                                  #cc_c;
-CopyNamedBufferSubData:                   proc(readBuffer: u32, writeBuffer: u32, readOffset: int, writeOffset: int, size: int)                                                                                    #cc_c;
-ClearNamedBufferData:                     proc(buffer: u32, internalformat: u32, format: u32, type_: u32, data: rawptr)                                                                                            #cc_c;
-ClearNamedBufferSubData:                  proc(buffer: u32, internalformat: u32, offset: int, size: int, format: u32, type_: u32, data: rawptr)                                                                    #cc_c;
-MapNamedBuffer:                           proc(buffer: u32, access: u32) -> rawptr                                                                                                                                 #cc_c;
-MapNamedBufferRange:                      proc(buffer: u32, offset: int, length: int, access: u32) -> rawptr                                                                                                       #cc_c;
-UnmapNamedBuffer:                         proc(buffer: u32) -> u8                                                                                                                                                  #cc_c;
-FlushMappedNamedBufferRange:              proc(buffer: u32, offset: int, length: int)                                                                                                                              #cc_c;
-GetNamedBufferParameteriv:                proc(buffer: u32, pname: u32, params: ^i32)                                                                                                                              #cc_c;
-GetNamedBufferParameteri64v:              proc(buffer: u32, pname: u32, params: ^i64)                                                                                                                              #cc_c;
-GetNamedBufferPointerv:                   proc(buffer: u32, pname: u32, params: ^rawptr)                                                                                                                           #cc_c;
-GetNamedBufferSubData:                    proc(buffer: u32, offset: int, size: int, data: rawptr)                                                                                                                  #cc_c;
-CreateFramebuffers:                       proc(n: i32, framebuffers: ^u32)                                                                                                                                         #cc_c;
-NamedFramebufferRenderbuffer:             proc(framebuffer: u32, attachment: u32, renderbuffertarget: u32, renderbuffer: u32)                                                                                      #cc_c;
-NamedFramebufferParameteri:               proc(framebuffer: u32, pname: u32, param: i32)                                                                                                                           #cc_c;
-NamedFramebufferTexture:                  proc(framebuffer: u32, attachment: u32, texture: u32, level: i32)                                                                                                        #cc_c;
-NamedFramebufferTextureLayer:             proc(framebuffer: u32, attachment: u32, texture: u32, level: i32, layer: i32)                                                                                            #cc_c;
-NamedFramebufferDrawBuffer:               proc(framebuffer: u32, buf: u32)                                                                                                                                         #cc_c;
-NamedFramebufferDrawBuffers:              proc(framebuffer: u32, n: i32, bufs: ^u32)                                                                                                                               #cc_c;
-NamedFramebufferReadBuffer:               proc(framebuffer: u32, src: u32)                                                                                                                                         #cc_c;
-InvalidateNamedFramebufferData:           proc(framebuffer: u32, numAttachments: i32, attachments: ^u32)                                                                                                           #cc_c;
-InvalidateNamedFramebufferSubData:        proc(framebuffer: u32, numAttachments: i32, attachments: ^u32, x: i32, y: i32, width: i32, height: i32)                                                                  #cc_c;
-ClearNamedFramebufferiv:                  proc(framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^i32)                                                                                                        #cc_c;
-ClearNamedFramebufferuiv:                 proc(framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^u32)                                                                                                        #cc_c;
-ClearNamedFramebufferfv:                  proc(framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^f32)                                                                                                        #cc_c;
-ClearNamedFramebufferfi:                  proc(framebuffer: u32, buffer: u32, drawbuffer: i32, depth: f32, stencil: i32)                                                                                           #cc_c;
-BlitNamedFramebuffer:                     proc(readFramebuffer: u32, drawFramebuffer: u32, srcX0: i32, srcY0: i32, srcX1: i32, srcY1: i32, dstX0: i32, dstY0: i32, dstX1: i32, dstY1: i32, mask: u32, filter: u32) #cc_c;
-CheckNamedFramebufferStatus:              proc(framebuffer: u32, target: u32) -> u32                                                                                                                               #cc_c;
-GetNamedFramebufferParameteriv:           proc(framebuffer: u32, pname: u32, param: ^i32)                                                                                                                          #cc_c;
-GetNamedFramebufferAttachmentParameteriv: proc(framebuffer: u32, attachment: u32, pname: u32, params: ^i32)                                                                                                        #cc_c;
-CreateRenderbuffers:                      proc(n: i32, renderbuffers: ^u32)                                                                                                                                        #cc_c;
-NamedRenderbufferStorage:                 proc(renderbuffer: u32, internalformat: u32, width: i32, height: i32)                                                                                                    #cc_c;
-NamedRenderbufferStorageMultisample:      proc(renderbuffer: u32, samples: i32, internalformat: u32, width: i32, height: i32)                                                                                      #cc_c;
-GetNamedRenderbufferParameteriv:          proc(renderbuffer: u32, pname: u32, params: ^i32)                                                                                                                        #cc_c;
-CreateTextures:                           proc(target: u32, n: i32, textures: ^u32)                                                                                                                                #cc_c;
-TextureBuffer:                            proc(texture: u32, internalformat: u32, buffer: u32)                                                                                                                     #cc_c;
-TextureBufferRange:                       proc(texture: u32, internalformat: u32, buffer: u32, offset: int, size: int)                                                                                             #cc_c;
-TextureStorage1D:                         proc(texture: u32, levels: i32, internalformat: u32, width: i32)                                                                                                         #cc_c;
-TextureStorage2D:                         proc(texture: u32, levels: i32, internalformat: u32, width: i32, height: i32)                                                                                            #cc_c;
-TextureStorage3D:                         proc(texture: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32)                                                                                #cc_c;
-TextureStorage2DMultisample:              proc(texture: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8)                                                                 #cc_c;
-TextureStorage3DMultisample:              proc(texture: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8)                                                     #cc_c;
-TextureSubImage1D:                        proc(texture: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr)                                                                        #cc_c;
-TextureSubImage2D:                        proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr)                                             #cc_c;
-TextureSubImage3D:                        proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr)                   #cc_c;
-CompressedTextureSubImage1D:              proc(texture: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr)                                                                      #cc_c;
-CompressedTextureSubImage2D:              proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr)                                           #cc_c;
-CompressedTextureSubImage3D:              proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr)                 #cc_c;
-CopyTextureSubImage1D:                    proc(texture: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32)                                                                                                 #cc_c;
-CopyTextureSubImage2D:                    proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32)                                                                      #cc_c;
-CopyTextureSubImage3D:                    proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32)                                                        #cc_c;
-TextureParameterf:                        proc(texture: u32, pname: u32, param: f32)                                                                                                                               #cc_c;
-TextureParameterfv:                       proc(texture: u32, pname: u32, param: ^f32)                                                                                                                              #cc_c;
-TextureParameteri:                        proc(texture: u32, pname: u32, param: i32)                                                                                                                               #cc_c;
-TextureParameterIiv:                      proc(texture: u32, pname: u32, params: ^i32)                                                                                                                             #cc_c;
-TextureParameterIuiv:                     proc(texture: u32, pname: u32, params: ^u32)                                                                                                                             #cc_c;
-TextureParameteriv:                       proc(texture: u32, pname: u32, param: ^i32)                                                                                                                              #cc_c;
-GenerateTextureMipmap:                    proc(texture: u32)                                                                                                                                                       #cc_c;
-BindTextureUnit:                          proc(unit: u32, texture: u32)                                                                                                                                            #cc_c;
-GetTextureImage:                          proc(texture: u32, level: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr)                                                                                    #cc_c;
-GetCompressedTextureImage:                proc(texture: u32, level: i32, bufSize: i32, pixels: rawptr)                                                                                                             #cc_c;
-GetTextureLevelParameterfv:               proc(texture: u32, level: i32, pname: u32, params: ^f32)                                                                                                                 #cc_c;
-GetTextureLevelParameteriv:               proc(texture: u32, level: i32, pname: u32, params: ^i32)                                                                                                                 #cc_c;
-GetTextureParameterfv:                    proc(texture: u32, pname: u32, params: ^f32)                                                                                                                             #cc_c;
-GetTextureParameterIiv:                   proc(texture: u32, pname: u32, params: ^i32)                                                                                                                             #cc_c;
-GetTextureParameterIuiv:                  proc(texture: u32, pname: u32, params: ^u32)                                                                                                                             #cc_c;
-GetTextureParameteriv:                    proc(texture: u32, pname: u32, params: ^i32)                                                                                                                             #cc_c;
-CreateVertexArrays:                       proc(n: i32, arrays: ^u32)                                                                                                                                               #cc_c;
-DisableVertexArrayAttrib:                 proc(vaobj: u32, index: u32)                                                                                                                                             #cc_c;
-EnableVertexArrayAttrib:                  proc(vaobj: u32, index: u32)                                                                                                                                             #cc_c;
-VertexArrayElementBuffer:                 proc(vaobj: u32, buffer: u32)                                                                                                                                            #cc_c;
-VertexArrayVertexBuffer:                  proc(vaobj: u32, bindingindex: u32, buffer: u32, offset: int, stride: i32)                                                                                               #cc_c;
-VertexArrayVertexBuffers:                 proc(vaobj: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32)                                                                                    #cc_c;
-VertexArrayAttribBinding:                 proc(vaobj: u32, attribindex: u32, bindingindex: u32)                                                                                                                    #cc_c;
-VertexArrayAttribFormat:                  proc(vaobj: u32, attribindex: u32, size: i32, type_: u32, normalized: u8, relativeoffset: u32)                                                                           #cc_c;
-VertexArrayAttribIFormat:                 proc(vaobj: u32, attribindex: u32, size: i32, type_: u32, relativeoffset: u32)                                                                                           #cc_c;
-VertexArrayAttribLFormat:                 proc(vaobj: u32, attribindex: u32, size: i32, type_: u32, relativeoffset: u32)                                                                                           #cc_c;
-VertexArrayBindingDivisor:                proc(vaobj: u32, bindingindex: u32, divisor: u32)                                                                                                                        #cc_c;
-GetVertexArrayiv:                         proc(vaobj: u32, pname: u32, param: ^i32)                                                                                                                                #cc_c;
-GetVertexArrayIndexediv:                  proc(vaobj: u32, index: u32, pname: u32, param: ^i32)                                                                                                                    #cc_c;
-GetVertexArrayIndexed64iv:                proc(vaobj: u32, index: u32, pname: u32, param: ^i64)                                                                                                                    #cc_c;
-CreateSamplers:                           proc(n: i32, samplers: ^u32)                                                                                                                                             #cc_c;
-CreateProgramPipelines:                   proc(n: i32, pipelines: ^u32)                                                                                                                                            #cc_c;
-CreateQueries:                            proc(target: u32, n: i32, ids: ^u32)                                                                                                                                     #cc_c;
-GetQueryBufferObjecti64v:                 proc(id: u32, buffer: u32, pname: u32, offset: int)                                                                                                                      #cc_c;
-GetQueryBufferObjectiv:                   proc(id: u32, buffer: u32, pname: u32, offset: int)                                                                                                                      #cc_c;
-GetQueryBufferObjectui64v:                proc(id: u32, buffer: u32, pname: u32, offset: int)                                                                                                                      #cc_c;
-GetQueryBufferObjectuiv:                  proc(id: u32, buffer: u32, pname: u32, offset: int)                                                                                                                      #cc_c;
-MemoryBarrierByRegion:                    proc(barriers: u32)                                                                                                                                                      #cc_c;
-GetTextureSubImage:                       proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr)     #cc_c;
-GetCompressedTextureSubImage:             proc(texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, bufSize: i32, pixels: rawptr)                              #cc_c;
-GetGraphicsResetStatus:                   proc() -> u32                                                                                                                                                            #cc_c;
-GetnCompressedTexImage:                   proc(target: u32, lod: i32, bufSize: i32, pixels: rawptr)                                                                                                                #cc_c;
-GetnTexImage:                             proc(target: u32, level: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr)                                                                                     #cc_c;
-GetnUniformdv:                            proc(program: u32, location: i32, bufSize: i32, params: ^f64)                                                                                                            #cc_c;
-GetnUniformfv:                            proc(program: u32, location: i32, bufSize: i32, params: ^f32)                                                                                                            #cc_c;
-GetnUniformiv:                            proc(program: u32, location: i32, bufSize: i32, params: ^i32)                                                                                                            #cc_c;
-GetnUniformuiv:                           proc(program: u32, location: i32, bufSize: i32, params: ^u32)                                                                                                            #cc_c;
-ReadnPixels:                              proc(x: i32, y: i32, width: i32, height: i32, format: u32, type_: u32, bufSize: i32, data: rawptr)                                                                       #cc_c;
-GetnMapdv:                                proc(target: u32, query: u32, bufSize: i32, v: ^f64)                                                                                                                     #cc_c;
-GetnMapfv:                                proc(target: u32, query: u32, bufSize: i32, v: ^f32)                                                                                                                     #cc_c;
-GetnMapiv:                                proc(target: u32, query: u32, bufSize: i32, v: ^i32)                                                                                                                     #cc_c;
-GetnPixelMapusv:                          proc(map_: u32, bufSize: i32, values: ^u16)                                                                                                                              #cc_c;
-GetnPixelMapfv:                           proc(map_: u32, bufSize: i32, values: ^f32)                                                                                                                              #cc_c;
-GetnPixelMapuiv:                          proc(map_: u32, bufSize: i32, values: ^u32)                                                                                                                              #cc_c;
-GetnPolygonStipple:                       proc(bufSize: i32, pattern: ^u8)                                                                                                                                         #cc_c;
-GetnColorTable:                           proc(target: u32, format: u32, type_: u32, bufSize: i32, table: rawptr)                                                                                                  #cc_c;
-GetnConvolutionFilter:                    proc(target: u32, format: u32, type_: u32, bufSize: i32, image: rawptr)                                                                                                  #cc_c;
-GetnSeparableFilter:                      proc(target: u32, format: u32, type_: u32, rowBufSize: i32, row: rawptr, columnBufSize: i32, column: rawptr, span: rawptr)                                               #cc_c;
-GetnHistogram:                            proc(target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr)                                                                                      #cc_c;
-GetnMinmax:                               proc(target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr)                                                                                      #cc_c;
-TextureBarrier:                           proc()                                                                                                                                                                   #cc_c;
+ClipControl:                              proc "c" (origin: u32, depth: u32);
+CreateTransformFeedbacks:                 proc "c" (n: i32, ids: ^u32);
+TransformFeedbackBufferBase:              proc "c" (xfb: u32, index: u32, buffer: u32);
+TransformFeedbackBufferRange:             proc "c" (xfb: u32, index: u32, buffer: u32, offset: int, size: int);
+GetTransformFeedbackiv:                   proc "c" (xfb: u32, pname: u32, param: ^i32);
+GetTransformFeedbacki_v:                  proc "c" (xfb: u32, pname: u32, index: u32, param: ^i32);
+GetTransformFeedbacki64_v:                proc "c" (xfb: u32, pname: u32, index: u32, param: ^i64);
+CreateBuffers:                            proc "c" (n: i32, buffers: ^u32);
+NamedBufferStorage:                       proc "c" (buffer: u32, size: int, data: rawptr, flags: u32);
+NamedBufferData:                          proc "c" (buffer: u32, size: int, data: rawptr, usage: u32);
+NamedBufferSubData:                       proc "c" (buffer: u32, offset: int, size: int, data: rawptr);
+CopyNamedBufferSubData:                   proc "c" (readBuffer: u32, writeBuffer: u32, readOffset: int, writeOffset: int, size: int);
+ClearNamedBufferData:                     proc "c" (buffer: u32, internalformat: u32, format: u32, type_: u32, data: rawptr);
+ClearNamedBufferSubData:                  proc "c" (buffer: u32, internalformat: u32, offset: int, size: int, format: u32, type_: u32, data: rawptr);
+MapNamedBuffer:                           proc "c" (buffer: u32, access: u32) -> rawptr;
+MapNamedBufferRange:                      proc "c" (buffer: u32, offset: int, length: int, access: u32) -> rawptr;
+UnmapNamedBuffer:                         proc "c" (buffer: u32) -> u8;
+FlushMappedNamedBufferRange:              proc "c" (buffer: u32, offset: int, length: int);
+GetNamedBufferParameteriv:                proc "c" (buffer: u32, pname: u32, params: ^i32);
+GetNamedBufferParameteri64v:              proc "c" (buffer: u32, pname: u32, params: ^i64);
+GetNamedBufferPointerv:                   proc "c" (buffer: u32, pname: u32, params: ^rawptr);
+GetNamedBufferSubData:                    proc "c" (buffer: u32, offset: int, size: int, data: rawptr);
+CreateFramebuffers:                       proc "c" (n: i32, framebuffers: ^u32);
+NamedFramebufferRenderbuffer:             proc "c" (framebuffer: u32, attachment: u32, renderbuffertarget: u32, renderbuffer: u32);
+NamedFramebufferParameteri:               proc "c" (framebuffer: u32, pname: u32, param: i32);
+NamedFramebufferTexture:                  proc "c" (framebuffer: u32, attachment: u32, texture: u32, level: i32);
+NamedFramebufferTextureLayer:             proc "c" (framebuffer: u32, attachment: u32, texture: u32, level: i32, layer: i32);
+NamedFramebufferDrawBuffer:               proc "c" (framebuffer: u32, buf: u32);
+NamedFramebufferDrawBuffers:              proc "c" (framebuffer: u32, n: i32, bufs: ^u32);
+NamedFramebufferReadBuffer:               proc "c" (framebuffer: u32, src: u32);
+InvalidateNamedFramebufferData:           proc "c" (framebuffer: u32, numAttachments: i32, attachments: ^u32);
+InvalidateNamedFramebufferSubData:        proc "c" (framebuffer: u32, numAttachments: i32, attachments: ^u32, x: i32, y: i32, width: i32, height: i32);
+ClearNamedFramebufferiv:                  proc "c" (framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^i32);
+ClearNamedFramebufferuiv:                 proc "c" (framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^u32);
+ClearNamedFramebufferfv:                  proc "c" (framebuffer: u32, buffer: u32, drawbuffer: i32, value: ^f32);
+ClearNamedFramebufferfi:                  proc "c" (framebuffer: u32, buffer: u32, drawbuffer: i32, depth: f32, stencil: i32);
+BlitNamedFramebuffer:                     proc "c" (readFramebuffer: u32, drawFramebuffer: u32, srcX0: i32, srcY0: i32, srcX1: i32, srcY1: i32, dstX0: i32, dstY0: i32, dstX1: i32, dstY1: i32, mask: u32, filter: u32);
+CheckNamedFramebufferStatus:              proc "c" (framebuffer: u32, target: u32) -> u32;
+GetNamedFramebufferParameteriv:           proc "c" (framebuffer: u32, pname: u32, param: ^i32);
+GetNamedFramebufferAttachmentParameteriv: proc "c" (framebuffer: u32, attachment: u32, pname: u32, params: ^i32);
+CreateRenderbuffers:                      proc "c" (n: i32, renderbuffers: ^u32);
+NamedRenderbufferStorage:                 proc "c" (renderbuffer: u32, internalformat: u32, width: i32, height: i32);
+NamedRenderbufferStorageMultisample:      proc "c" (renderbuffer: u32, samples: i32, internalformat: u32, width: i32, height: i32);
+GetNamedRenderbufferParameteriv:          proc "c" (renderbuffer: u32, pname: u32, params: ^i32);
+CreateTextures:                           proc "c" (target: u32, n: i32, textures: ^u32);
+TextureBuffer:                            proc "c" (texture: u32, internalformat: u32, buffer: u32);
+TextureBufferRange:                       proc "c" (texture: u32, internalformat: u32, buffer: u32, offset: int, size: int);
+TextureStorage1D:                         proc "c" (texture: u32, levels: i32, internalformat: u32, width: i32);
+TextureStorage2D:                         proc "c" (texture: u32, levels: i32, internalformat: u32, width: i32, height: i32);
+TextureStorage3D:                         proc "c" (texture: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32);
+TextureStorage2DMultisample:              proc "c" (texture: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8);
+TextureStorage3DMultisample:              proc "c" (texture: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8);
+TextureSubImage1D:                        proc "c" (texture: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr);
+TextureSubImage2D:                        proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr);
+TextureSubImage3D:                        proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr);
+CompressedTextureSubImage1D:              proc "c" (texture: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr);
+CompressedTextureSubImage2D:              proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr);
+CompressedTextureSubImage3D:              proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr);
+CopyTextureSubImage1D:                    proc "c" (texture: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32);
+CopyTextureSubImage2D:                    proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32);
+CopyTextureSubImage3D:                    proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32);
+TextureParameterf:                        proc "c" (texture: u32, pname: u32, param: f32);
+TextureParameterfv:                       proc "c" (texture: u32, pname: u32, param: ^f32);
+TextureParameteri:                        proc "c" (texture: u32, pname: u32, param: i32);
+TextureParameterIiv:                      proc "c" (texture: u32, pname: u32, params: ^i32);
+TextureParameterIuiv:                     proc "c" (texture: u32, pname: u32, params: ^u32);
+TextureParameteriv:                       proc "c" (texture: u32, pname: u32, param: ^i32);
+GenerateTextureMipmap:                    proc "c" (texture: u32);
+BindTextureUnit:                          proc "c" (unit: u32, texture: u32);
+GetTextureImage:                          proc "c" (texture: u32, level: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr);
+GetCompressedTextureImage:                proc "c" (texture: u32, level: i32, bufSize: i32, pixels: rawptr);
+GetTextureLevelParameterfv:               proc "c" (texture: u32, level: i32, pname: u32, params: ^f32);
+GetTextureLevelParameteriv:               proc "c" (texture: u32, level: i32, pname: u32, params: ^i32);
+GetTextureParameterfv:                    proc "c" (texture: u32, pname: u32, params: ^f32);
+GetTextureParameterIiv:                   proc "c" (texture: u32, pname: u32, params: ^i32);
+GetTextureParameterIuiv:                  proc "c" (texture: u32, pname: u32, params: ^u32);
+GetTextureParameteriv:                    proc "c" (texture: u32, pname: u32, params: ^i32);
+CreateVertexArrays:                       proc "c" (n: i32, arrays: ^u32);
+DisableVertexArrayAttrib:                 proc "c" (vaobj: u32, index: u32);
+EnableVertexArrayAttrib:                  proc "c" (vaobj: u32, index: u32);
+VertexArrayElementBuffer:                 proc "c" (vaobj: u32, buffer: u32);
+VertexArrayVertexBuffer:                  proc "c" (vaobj: u32, bindingindex: u32, buffer: u32, offset: int, stride: i32);
+VertexArrayVertexBuffers:                 proc "c" (vaobj: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32);
+VertexArrayAttribBinding:                 proc "c" (vaobj: u32, attribindex: u32, bindingindex: u32);
+VertexArrayAttribFormat:                  proc "c" (vaobj: u32, attribindex: u32, size: i32, type_: u32, normalized: u8, relativeoffset: u32);
+VertexArrayAttribIFormat:                 proc "c" (vaobj: u32, attribindex: u32, size: i32, type_: u32, relativeoffset: u32);
+VertexArrayAttribLFormat:                 proc "c" (vaobj: u32, attribindex: u32, size: i32, type_: u32, relativeoffset: u32);
+VertexArrayBindingDivisor:                proc "c" (vaobj: u32, bindingindex: u32, divisor: u32);
+GetVertexArrayiv:                         proc "c" (vaobj: u32, pname: u32, param: ^i32);
+GetVertexArrayIndexediv:                  proc "c" (vaobj: u32, index: u32, pname: u32, param: ^i32);
+GetVertexArrayIndexed64iv:                proc "c" (vaobj: u32, index: u32, pname: u32, param: ^i64);
+CreateSamplers:                           proc "c" (n: i32, samplers: ^u32);
+CreateProgramPipelines:                   proc "c" (n: i32, pipelines: ^u32);
+CreateQueries:                            proc "c" (target: u32, n: i32, ids: ^u32);
+GetQueryBufferObjecti64v:                 proc "c" (id: u32, buffer: u32, pname: u32, offset: int);
+GetQueryBufferObjectiv:                   proc "c" (id: u32, buffer: u32, pname: u32, offset: int);
+GetQueryBufferObjectui64v:                proc "c" (id: u32, buffer: u32, pname: u32, offset: int);
+GetQueryBufferObjectuiv:                  proc "c" (id: u32, buffer: u32, pname: u32, offset: int);
+MemoryBarrierByRegion:                    proc "c" (barriers: u32);
+GetTextureSubImage:                       proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr);
+GetCompressedTextureSubImage:             proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, bufSize: i32, pixels: rawptr);
+GetGraphicsResetStatus:                   proc "c" () -> u32;
+GetnCompressedTexImage:                   proc "c" (target: u32, lod: i32, bufSize: i32, pixels: rawptr);
+GetnTexImage:                             proc "c" (target: u32, level: i32, format: u32, type_: u32, bufSize: i32, pixels: rawptr);
+GetnUniformdv:                            proc "c" (program: u32, location: i32, bufSize: i32, params: ^f64);
+GetnUniformfv:                            proc "c" (program: u32, location: i32, bufSize: i32, params: ^f32);
+GetnUniformiv:                            proc "c" (program: u32, location: i32, bufSize: i32, params: ^i32);
+GetnUniformuiv:                           proc "c" (program: u32, location: i32, bufSize: i32, params: ^u32);
+ReadnPixels:                              proc "c" (x: i32, y: i32, width: i32, height: i32, format: u32, type_: u32, bufSize: i32, data: rawptr);
+GetnMapdv:                                proc "c" (target: u32, query: u32, bufSize: i32, v: ^f64);
+GetnMapfv:                                proc "c" (target: u32, query: u32, bufSize: i32, v: ^f32);
+GetnMapiv:                                proc "c" (target: u32, query: u32, bufSize: i32, v: ^i32);
+GetnPixelMapusv:                          proc "c" (map_: u32, bufSize: i32, values: ^u16);
+GetnPixelMapfv:                           proc "c" (map_: u32, bufSize: i32, values: ^f32);
+GetnPixelMapuiv:                          proc "c" (map_: u32, bufSize: i32, values: ^u32);
+GetnPolygonStipple:                       proc "c" (bufSize: i32, pattern: ^u8);
+GetnColorTable:                           proc "c" (target: u32, format: u32, type_: u32, bufSize: i32, table: rawptr);
+GetnConvolutionFilter:                    proc "c" (target: u32, format: u32, type_: u32, bufSize: i32, image: rawptr);
+GetnSeparableFilter:                      proc "c" (target: u32, format: u32, type_: u32, rowBufSize: i32, row: rawptr, columnBufSize: i32, column: rawptr, span: rawptr);
+GetnHistogram:                            proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
+GetnMinmax:                               proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
+TextureBarrier:                           proc "c" ();
 
 load_4_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
     set_proc_address(&ClipControl,                              "glClipControl\x00");
@@ -1560,12 +1560,12 @@ import "core:os.odin";
 import "core:fmt.odin";
 
 load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (program: u32, success: bool) {
-    // Shader checking and linking checking are identical 
+    // Shader checking and linking checking are identical
     // except for calling differently named GL functions
     // it's a bit ugly looking, but meh
-    check_error :: proc(id: u32, status: u32, 
-                     iv_func: proc(u32, u32, ^i32) #cc_c, 
-                     log_func: proc(u32, i32, ^i32, ^u8) #cc_c) -> (bool) {
+    check_error :: proc(id: u32, status: u32,
+                     iv_func: proc "c" (u32, u32, ^i32),
+                     log_func: proc "c" (u32, i32, ^i32, ^u8)) -> (bool) {
         result, info_log_length : i32;
         iv_func(id, status, &result);
         iv_func(id, INFO_LOG_LENGTH, &info_log_length);
@@ -1575,7 +1575,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
             defer free(error_message);
 
             log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt.printf(string(error_message[0..len(error_message)-1])); 
+            fmt.printf(string(error_message[0..len(error_message)-1]));
 
             return true;
         }
@@ -1608,7 +1608,7 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
     create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
         program_id := CreateProgram();
         for id in shader_ids {
-            AttachShader(program_id, id);   
+            AttachShader(program_id, id);
         }
         LinkProgram(program_id);
 
@@ -1648,12 +1648,12 @@ Uniform_Type :: enum i32 {
     FLOAT_VEC2 = 0x8B50,
     FLOAT_VEC3 = 0x8B51,
     FLOAT_VEC4 = 0x8B52,
-    
+
     DOUBLE = 0x140A,
     DOUBLE_VEC2 = 0x8FFC,
     DOUBLE_VEC3 = 0x8FFD,
     DOUBLE_VEC4 = 0x8FFE,
-    
+
     INT = 0x1404,
     INT_VEC2 = 0x8B53,
     INT_VEC3 = 0x8B54,
@@ -1751,7 +1751,7 @@ Uniform_Type :: enum i32 {
     INT_IMAGE_CUBE_MAP_ARRAY = 0x905F,
     INT_IMAGE_2D_MULTISAMPLE = 0x9060,
     INT_IMAGE_2D_MULTISAMPLE_ARRAY = 0x9061,
-    
+
     UNSIGNED_INT_IMAGE_1D = 0x9062,
     UNSIGNED_INT_IMAGE_2D = 0x9063,
     UNSIGNED_INT_IMAGE_3D = 0x9064,
