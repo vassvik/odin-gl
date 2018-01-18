@@ -1580,7 +1580,20 @@ Shader_Type :: enum i32 {
     SHADER_LINK            = 0x0000, // @Note: Not an OpenGL constant, but used for error checking.
 }
 
-load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -> (program: u32, success: bool) {
+load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
+    vs_data, success_vs := os.read_entire_file(vs_filename);
+    if !success_vs do return 0, false;
+    defer free(vs_data);
+    fs_data, success_fs := os.read_entire_file(fs_filename);
+    if !success_fs do return 0, false;
+    defer free(fs_data);
+
+
+    return load_shaders_source(string(vs_data), string(fs_data));
+
+}
+
+load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
     // Shader checking and linking checking are identical
     // except for calling differently named GL functions
     // it's a bit ugly looking, but meh
@@ -1605,17 +1618,10 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
     }
 
     // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
-    compile_shader_from_file :: proc(shader_filename: string, shader_type: Shader_Type) -> (u32, bool) {
-        shader_code, ok := os.read_entire_file(shader_filename);
-        if !ok {
-            fmt.printf_err("Could not load file \"%s\"\n", shader_filename);
-            return 0, false;
-        }
-        defer free(shader_code);
-
+    compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
         shader_id := CreateShader(cast(u32)shader_type);
-        length := i32(len(shader_code));
-        ShaderSource(shader_id, 1, (^^u8)(&shader_code), &length);
+        length := i32(len(shader_data));
+        ShaderSource(shader_id, 1, (^^u8)(&shader_data), &length);
         CompileShader(shader_id);
 
         if check_error(shader_id, shader_type, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog) {
@@ -1641,10 +1647,10 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
     }
 
     // actual function from here
-    vertex_shader_id, ok1 := compile_shader_from_file(vertex_shader_filename, Shader_Type.VERTEX_SHADER);
+    vertex_shader_id, ok1 := compile_shader_from_source(vs_source, Shader_Type.VERTEX_SHADER);
     defer DeleteShader(vertex_shader_id);
 
-    fragment_shader_id, ok2 := compile_shader_from_file(fragment_shader_filename, Shader_Type.FRAGMENT_SHADER);
+    fragment_shader_id, ok2 := compile_shader_from_source(fs_source, Shader_Type.FRAGMENT_SHADER);
     defer DeleteShader(fragment_shader_id);
 
     if !ok1 || !ok2 {
@@ -1658,6 +1664,9 @@ load_shaders :: proc(vertex_shader_filename, fragment_shader_filename: string) -
 
     return program_id, true;
 }
+
+load_shaders :: load_shaders_file;
+
 
 when ODIN_OS == "windows" {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time) {
@@ -1821,20 +1830,21 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: map[string]Uniform
     uniform_count: i32;
     GetProgramiv(program, ACTIVE_UNIFORMS, &uniform_count);
 
-    counter: i32 = 0;
     for i in 0..uniform_count {
         using uniform_info: Uniform_Info;
 
         length: i32;
         cname: [256]u8;
-        GetActiveUniform(program, u32(i), 256, &length, &size, (^u32)(&kind), &cname[0]);
+        GetActiveUniform(program, u32(i), 256, &length, &size, cast(^u32)&kind, &cname[0]);
 
         location = GetUniformLocation(program, &cname[0]);
         name = strings.new_string(string(cname[..length])); // @NOTE: These need to be freed
         uniforms[name] = uniform_info;
-
-        counter += size;
     }
 
     return uniforms;
+}
+
+get_uniform_location :: proc(program: u32, name: string) -> i32 {
+    return GetUniformLocation(program, &name[0]);
 }
