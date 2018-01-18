@@ -1825,8 +1825,6 @@ Uniform_Info :: struct {
 
 
 get_uniforms_from_program :: proc(program: u32) -> (uniforms: map[string]Uniform_Info) {
-    uniforms: map[string]Uniform_Info;
-
     uniform_count: i32;
     GetProgramiv(program, ACTIVE_UNIFORMS, &uniform_count);
 
