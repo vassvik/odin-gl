@@ -1,6 +1,16 @@
 export "core:opengl_constants.odin"
 
+loaded_up_to: string;
+loaded_up_to_major := 0;
+loaded_up_to_minor := 0;
+
 load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: string)) {
+    loaded_up_to = "0.0";
+    loaded_up_to[0] = '0' + u8(major);
+    loaded_up_to[2] = '0' + u8(minor);
+    loaded_up_to_major = major;
+    loaded_up_to_minor = minor;
+
     switch major*10+minor {
     case 46: load_4_6(set_proc_address); fallthrough;
     case 45: load_4_5(set_proc_address); fallthrough;
