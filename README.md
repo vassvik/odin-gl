@@ -1,6 +1,6 @@
 # odin-gl: opengl loader in Odin
 
-Includes procedures to load OpenGL function pointers. Currently only supports the `core` profile, up to version 4.5. Based on the output from the [glad](https://github.com/Dav1dde/glad) webservice using 4.5 `core`.
+Includes procedures to load OpenGL function pointers. Currently only supports the `core` profile, up to version 4.6. Based on the output from the [glad](https://github.com/Dav1dde/glad) webservice using 4.6 `core`.
 
 Uses the official `opengl_constants.odin` in `Odin/core` for constant defines. 
 
@@ -21,7 +21,7 @@ git clone https://github.com/vassvik/odin-gl.git
 ```
 
 
-## Extra utility procedures
+## Extra utility procedures (Outdated. See the end of `gl.odin`)
 
 `odin-gl` currently contains two utility procedures.
 
@@ -35,10 +35,3 @@ The following procedure grabs all the active uniforms in the given program and o
 get_uniforms_from_program :: proc(program: u32) -> (uniforms: map[string]Uniform_Info)
 ```
 
-
-## Todo:
-
-    - Add forward compatability profile, potentially splitting into multiple files.
-    - Automatic version detection.
-    - Odin wrappers
-    - More utility procedures
