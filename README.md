@@ -7,11 +7,7 @@ Uses the official `opengl_constants.odin` in `Odin/core` for constant defines.
 #### Note: You will be required to pass your own GetProcAddress equivalent (wglGetProcAddress, glXGetProcAddress, glfwGetProcAddress, etc.), for example:
 
 ```go
-set_proc_address :: proc(p: rawptr, name: string) { 
-    ^rawptr(p)^ = rawptr(glfw.GetProcAddress(&name[0]));
-}
-
-gl.load_up_to(4, 5, set_proc_address);
+gl.load_up_to(4, 5, proc(p: rawptr, name: string) do (cast(^rawptr)p)^ = glfw.GetProcAddress(&name[0]); );
 ```
 
 #### NOTE: It is recommended to put this into the shared collection:
