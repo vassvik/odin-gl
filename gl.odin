@@ -4,7 +4,9 @@ loaded_up_to: string;
 loaded_up_to_major := 0;
 loaded_up_to_minor := 0;
 
-load_up_to :: proc(major, minor : int, set_proc_address: proc(p: rawptr, name: string)) {
+Set_Proc_Address_Type :: #type proc(p: rawptr, name: cstring);
+
+load_up_to :: proc(major, minor : int, set_proc_address: Set_Proc_Address_Type) {
     loaded_up_to = "0.0";
     loaded_up_to[0] = '0' + u8(major);
     loaded_up_to[2] = '0' + u8(minor);
@@ -111,55 +113,55 @@ IsEnabled:              proc "c" (cap: u32) -> u8;
 DepthRange:             proc "c" (near: f64, far: f64);
 Viewport:               proc "c" (x: i32, y: i32, width: i32, height: i32);
 
-load_1_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&CullFace,               "glCullFace\x00");
-    set_proc_address(&FrontFace,              "glFrontFace\x00");
-    set_proc_address(&Hint,                   "glHint\x00");
-    set_proc_address(&LineWidth,              "glLineWidth\x00");
-    set_proc_address(&PointSize,              "glPointSize\x00");
-    set_proc_address(&PolygonMode,            "glPolygonMode\x00");
-    set_proc_address(&Scissor,                "glScissor\x00");
-    set_proc_address(&TexParameterf,          "glTexParameterf\x00");
-    set_proc_address(&TexParameterfv,         "glTexParameterfv\x00");
-    set_proc_address(&TexParameteri,          "glTexParameteri\x00");
-    set_proc_address(&TexParameteriv,         "glTexParameteriv\x00");
-    set_proc_address(&TexImage1D,             "glTexImage1D\x00");
-    set_proc_address(&TexImage2D,             "glTexImage2D\x00");
-    set_proc_address(&DrawBuffer,             "glDrawBuffer\x00");
-    set_proc_address(&Clear,                  "glClear\x00");
-    set_proc_address(&ClearColor,             "glClearColor\x00");
-    set_proc_address(&ClearStencil,           "glClearStencil\x00");
-    set_proc_address(&ClearDepth,             "glClearDepth\x00");
-    set_proc_address(&StencilMask,            "glStencilMask\x00");
-    set_proc_address(&ColorMask,              "glColorMask\x00");
-    set_proc_address(&DepthMask,              "glDepthMask\x00");
-    set_proc_address(&Disable,                "glDisable\x00");
-    set_proc_address(&Enable,                 "glEnable\x00");
-    set_proc_address(&Finish,                 "glFinish\x00");
-    set_proc_address(&Flush,                  "glFlush\x00");
-    set_proc_address(&BlendFunc,              "glBlendFunc\x00");
-    set_proc_address(&LogicOp,                "glLogicOp\x00");
-    set_proc_address(&StencilFunc,            "glStencilFunc\x00");
-    set_proc_address(&StencilOp,              "glStencilOp\x00");
-    set_proc_address(&DepthFunc,              "glDepthFunc\x00");
-    set_proc_address(&PixelStoref,            "glPixelStoref\x00");
-    set_proc_address(&PixelStorei,            "glPixelStorei\x00");
-    set_proc_address(&ReadBuffer,             "glReadBuffer\x00");
-    set_proc_address(&ReadPixels,             "glReadPixels\x00");
-    set_proc_address(&GetBooleanv,            "glGetBooleanv\x00");
-    set_proc_address(&GetDoublev,             "glGetDoublev\x00");
-    set_proc_address(&GetError,               "glGetError\x00");
-    set_proc_address(&GetFloatv,              "glGetFloatv\x00");
-    set_proc_address(&GetIntegerv,            "glGetIntegerv\x00");
-    set_proc_address(&GetString,              "glGetString\x00");
-    set_proc_address(&GetTexImage,            "glGetTexImage\x00");
-    set_proc_address(&GetTexParameterfv,      "glGetTexParameterfv\x00");
-    set_proc_address(&GetTexParameteriv,      "glGetTexParameteriv\x00");
-    set_proc_address(&GetTexLevelParameterfv, "glGetTexLevelParameterfv\x00");
-    set_proc_address(&GetTexLevelParameteriv, "glGetTexLevelParameteriv\x00");
-    set_proc_address(&IsEnabled,              "glIsEnabled\x00");
-    set_proc_address(&DepthRange,             "glDepthRange\x00");
-    set_proc_address(&Viewport,               "glViewport\x00");
+load_1_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&CullFace,               "glCullFace");
+    set_proc_address(&FrontFace,              "glFrontFace");
+    set_proc_address(&Hint,                   "glHint");
+    set_proc_address(&LineWidth,              "glLineWidth");
+    set_proc_address(&PointSize,              "glPointSize");
+    set_proc_address(&PolygonMode,            "glPolygonMode");
+    set_proc_address(&Scissor,                "glScissor");
+    set_proc_address(&TexParameterf,          "glTexParameterf");
+    set_proc_address(&TexParameterfv,         "glTexParameterfv");
+    set_proc_address(&TexParameteri,          "glTexParameteri");
+    set_proc_address(&TexParameteriv,         "glTexParameteriv");
+    set_proc_address(&TexImage1D,             "glTexImage1D");
+    set_proc_address(&TexImage2D,             "glTexImage2D");
+    set_proc_address(&DrawBuffer,             "glDrawBuffer");
+    set_proc_address(&Clear,                  "glClear");
+    set_proc_address(&ClearColor,             "glClearColor");
+    set_proc_address(&ClearStencil,           "glClearStencil");
+    set_proc_address(&ClearDepth,             "glClearDepth");
+    set_proc_address(&StencilMask,            "glStencilMask");
+    set_proc_address(&ColorMask,              "glColorMask");
+    set_proc_address(&DepthMask,              "glDepthMask");
+    set_proc_address(&Disable,                "glDisable");
+    set_proc_address(&Enable,                 "glEnable");
+    set_proc_address(&Finish,                 "glFinish");
+    set_proc_address(&Flush,                  "glFlush");
+    set_proc_address(&BlendFunc,              "glBlendFunc");
+    set_proc_address(&LogicOp,                "glLogicOp");
+    set_proc_address(&StencilFunc,            "glStencilFunc");
+    set_proc_address(&StencilOp,              "glStencilOp");
+    set_proc_address(&DepthFunc,              "glDepthFunc");
+    set_proc_address(&PixelStoref,            "glPixelStoref");
+    set_proc_address(&PixelStorei,            "glPixelStorei");
+    set_proc_address(&ReadBuffer,             "glReadBuffer");
+    set_proc_address(&ReadPixels,             "glReadPixels");
+    set_proc_address(&GetBooleanv,            "glGetBooleanv");
+    set_proc_address(&GetDoublev,             "glGetDoublev");
+    set_proc_address(&GetError,               "glGetError");
+    set_proc_address(&GetFloatv,              "glGetFloatv");
+    set_proc_address(&GetIntegerv,            "glGetIntegerv");
+    set_proc_address(&GetString,              "glGetString");
+    set_proc_address(&GetTexImage,            "glGetTexImage");
+    set_proc_address(&GetTexParameterfv,      "glGetTexParameterfv");
+    set_proc_address(&GetTexParameteriv,      "glGetTexParameteriv");
+    set_proc_address(&GetTexLevelParameterfv, "glGetTexLevelParameterfv");
+    set_proc_address(&GetTexLevelParameteriv, "glGetTexLevelParameteriv");
+    set_proc_address(&IsEnabled,              "glIsEnabled");
+    set_proc_address(&DepthRange,             "glDepthRange");
+    set_proc_address(&Viewport,               "glViewport");
 }
 
 
@@ -178,20 +180,20 @@ DeleteTextures:    proc "c" (n: i32, textures: ^u32);
 GenTextures:       proc "c" (n: i32, textures: ^u32);
 IsTexture:         proc "c" (texture: u32) -> u8;
 
-load_1_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&DrawArrays,        "glDrawArrays\x00");
-    set_proc_address(&DrawElements,      "glDrawElements\x00");
-    set_proc_address(&PolygonOffset,     "glPolygonOffset\x00");
-    set_proc_address(&CopyTexImage1D,    "glCopyTexImage1D\x00");
-    set_proc_address(&CopyTexImage2D,    "glCopyTexImage2D\x00");
-    set_proc_address(&CopyTexSubImage1D, "glCopyTexSubImage1D\x00");
-    set_proc_address(&CopyTexSubImage2D, "glCopyTexSubImage2D\x00");
-    set_proc_address(&TexSubImage1D,     "glTexSubImage1D\x00");
-    set_proc_address(&TexSubImage2D,     "glTexSubImage2D\x00");
-    set_proc_address(&BindTexture,       "glBindTexture\x00");
-    set_proc_address(&DeleteTextures,    "glDeleteTextures\x00");
-    set_proc_address(&GenTextures,       "glGenTextures\x00");
-    set_proc_address(&IsTexture,         "glIsTexture\x00");
+load_1_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&DrawArrays,        "glDrawArrays");
+    set_proc_address(&DrawElements,      "glDrawElements");
+    set_proc_address(&PolygonOffset,     "glPolygonOffset");
+    set_proc_address(&CopyTexImage1D,    "glCopyTexImage1D");
+    set_proc_address(&CopyTexImage2D,    "glCopyTexImage2D");
+    set_proc_address(&CopyTexSubImage1D, "glCopyTexSubImage1D");
+    set_proc_address(&CopyTexSubImage2D, "glCopyTexSubImage2D");
+    set_proc_address(&TexSubImage1D,     "glTexSubImage1D");
+    set_proc_address(&TexSubImage2D,     "glTexSubImage2D");
+    set_proc_address(&BindTexture,       "glBindTexture");
+    set_proc_address(&DeleteTextures,    "glDeleteTextures");
+    set_proc_address(&GenTextures,       "glGenTextures");
+    set_proc_address(&IsTexture,         "glIsTexture");
 }
 
 
@@ -201,12 +203,12 @@ TexImage3D:        proc "c" (target: u32, level: i32, internalformat: i32, width
 TexSubImage3D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr);
 CopyTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32);
 
-load_1_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
+load_1_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
-    set_proc_address(&DrawRangeElements, "glDrawRangeElements\x00");
-    set_proc_address(&TexImage3D,        "glTexImage3D\x00");
-    set_proc_address(&TexSubImage3D,     "glTexSubImage3D\x00");
-    set_proc_address(&CopyTexSubImage3D, "glCopyTexSubImage3D\x00");
+    set_proc_address(&DrawRangeElements, "glDrawRangeElements");
+    set_proc_address(&TexImage3D,        "glTexImage3D");
+    set_proc_address(&TexSubImage3D,     "glTexSubImage3D");
+    set_proc_address(&CopyTexSubImage3D, "glCopyTexSubImage3D");
 }
 
 
@@ -221,16 +223,16 @@ CompressedTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffse
 CompressedTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr);
 GetCompressedTexImage:   proc "c" (target: u32, level: i32, img: rawptr);
 
-load_1_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&ActiveTexture,           "glActiveTexture\x00");
-    set_proc_address(&SampleCoverage,          "glSampleCoverage\x00");
-    set_proc_address(&CompressedTexImage3D,    "glCompressedTexImage3D\x00");
-    set_proc_address(&CompressedTexImage2D,    "glCompressedTexImage2D\x00");
-    set_proc_address(&CompressedTexImage1D,    "glCompressedTexImage1D\x00");
-    set_proc_address(&CompressedTexSubImage3D, "glCompressedTexSubImage3D\x00");
-    set_proc_address(&CompressedTexSubImage2D, "glCompressedTexSubImage2D\x00");
-    set_proc_address(&CompressedTexSubImage1D, "glCompressedTexSubImage1D\x00");
-    set_proc_address(&GetCompressedTexImage,   "glGetCompressedTexImage\x00");
+load_1_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&ActiveTexture,           "glActiveTexture");
+    set_proc_address(&SampleCoverage,          "glSampleCoverage");
+    set_proc_address(&CompressedTexImage3D,    "glCompressedTexImage3D");
+    set_proc_address(&CompressedTexImage2D,    "glCompressedTexImage2D");
+    set_proc_address(&CompressedTexImage1D,    "glCompressedTexImage1D");
+    set_proc_address(&CompressedTexSubImage3D, "glCompressedTexSubImage3D");
+    set_proc_address(&CompressedTexSubImage2D, "glCompressedTexSubImage2D");
+    set_proc_address(&CompressedTexSubImage1D, "glCompressedTexSubImage1D");
+    set_proc_address(&GetCompressedTexImage,   "glGetCompressedTexImage");
 }
 
 
@@ -246,16 +248,16 @@ BlendColor:        proc "c" (red: f32, green: f32, blue: f32, alpha: f32);
 BlendEquation:     proc "c" (mode: u32);
 
 
-load_1_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&BlendFuncSeparate, "glBlendFuncSeparate\x00");
-    set_proc_address(&MultiDrawArrays,   "glMultiDrawArrays\x00");
-    set_proc_address(&MultiDrawElements, "glMultiDrawElements\x00");
-    set_proc_address(&PointParameterf,   "glPointParameterf\x00");
-    set_proc_address(&PointParameterfv,  "glPointParameterfv\x00");
-    set_proc_address(&PointParameteri,   "glPointParameteri\x00");
-    set_proc_address(&PointParameteriv,  "glPointParameteriv\x00");
-    set_proc_address(&BlendColor,        "glBlendColor\x00");
-    set_proc_address(&BlendEquation,     "glBlendEquation\x00");
+load_1_4 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&BlendFuncSeparate, "glBlendFuncSeparate");
+    set_proc_address(&MultiDrawArrays,   "glMultiDrawArrays");
+    set_proc_address(&MultiDrawElements, "glMultiDrawElements");
+    set_proc_address(&PointParameterf,   "glPointParameterf");
+    set_proc_address(&PointParameterfv,  "glPointParameterfv");
+    set_proc_address(&PointParameteri,   "glPointParameteri");
+    set_proc_address(&PointParameteriv,  "glPointParameteriv");
+    set_proc_address(&BlendColor,        "glBlendColor");
+    set_proc_address(&BlendEquation,     "glBlendEquation");
 }
 
 
@@ -280,26 +282,26 @@ UnmapBuffer:          proc "c" (target: u32) -> u8;
 GetBufferParameteriv: proc "c" (target: u32, pname: u32, params: ^i32);
 GetBufferPointerv:    proc "c" (target: u32, pname: u32, params: ^rawptr);
 
-load_1_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&GenQueries,           "glGenQueries\x00");
-    set_proc_address(&DeleteQueries,        "glDeleteQueries\x00");
-    set_proc_address(&IsQuery,              "glIsQuery\x00");
-    set_proc_address(&BeginQuery,           "glBeginQuery\x00");
-    set_proc_address(&EndQuery,             "glEndQuery\x00");
-    set_proc_address(&GetQueryiv,           "glGetQueryiv\x00");
-    set_proc_address(&GetQueryObjectiv,     "glGetQueryObjectiv\x00");
-    set_proc_address(&GetQueryObjectuiv,    "glGetQueryObjectuiv\x00");
-    set_proc_address(&BindBuffer,           "glBindBuffer\x00");
-    set_proc_address(&DeleteBuffers,        "glDeleteBuffers\x00");
-    set_proc_address(&GenBuffers,           "glGenBuffers\x00");
-    set_proc_address(&IsBuffer,             "glIsBuffer\x00");
-    set_proc_address(&BufferData,           "glBufferData\x00");
-    set_proc_address(&BufferSubData,        "glBufferSubData\x00");
-    set_proc_address(&GetBufferSubData,     "glGetBufferSubData\x00");
-    set_proc_address(&MapBuffer,            "glMapBuffer\x00");
-    set_proc_address(&UnmapBuffer,          "glUnmapBuffer\x00");
-    set_proc_address(&GetBufferParameteriv, "glGetBufferParameteriv\x00");
-    set_proc_address(&GetBufferPointerv,    "glGetBufferPointerv\x00");
+load_1_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&GenQueries,           "glGenQueries");
+    set_proc_address(&DeleteQueries,        "glDeleteQueries");
+    set_proc_address(&IsQuery,              "glIsQuery");
+    set_proc_address(&BeginQuery,           "glBeginQuery");
+    set_proc_address(&EndQuery,             "glEndQuery");
+    set_proc_address(&GetQueryiv,           "glGetQueryiv");
+    set_proc_address(&GetQueryObjectiv,     "glGetQueryObjectiv");
+    set_proc_address(&GetQueryObjectuiv,    "glGetQueryObjectuiv");
+    set_proc_address(&BindBuffer,           "glBindBuffer");
+    set_proc_address(&DeleteBuffers,        "glDeleteBuffers");
+    set_proc_address(&GenBuffers,           "glGenBuffers");
+    set_proc_address(&IsBuffer,             "glIsBuffer");
+    set_proc_address(&BufferData,           "glBufferData");
+    set_proc_address(&BufferSubData,        "glBufferSubData");
+    set_proc_address(&GetBufferSubData,     "glGetBufferSubData");
+    set_proc_address(&MapBuffer,            "glMapBuffer");
+    set_proc_address(&UnmapBuffer,          "glUnmapBuffer");
+    set_proc_address(&GetBufferParameteriv, "glGetBufferParameteriv");
+    set_proc_address(&GetBufferPointerv,    "glGetBufferPointerv");
 }
 
 
@@ -398,100 +400,100 @@ VertexAttrib4uiv:         proc "c" (index: u32, v: ^u32);
 VertexAttrib4usv:         proc "c" (index: u32, v: ^u16);
 VertexAttribPointer:      proc "c" (index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr);
 
-load_2_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&BlendEquationSeparate,    "glBlendEquationSeparate\x00");
-    set_proc_address(&DrawBuffers,              "glDrawBuffers\x00");
-    set_proc_address(&StencilOpSeparate,        "glStencilOpSeparate\x00");
-    set_proc_address(&StencilFuncSeparate,      "glStencilFuncSeparate\x00");
-    set_proc_address(&StencilMaskSeparate,      "glStencilMaskSeparate\x00");
-    set_proc_address(&AttachShader,             "glAttachShader\x00");
-    set_proc_address(&BindAttribLocation,       "glBindAttribLocation\x00");
-    set_proc_address(&CompileShader,            "glCompileShader\x00");
-    set_proc_address(&CreateProgram,            "glCreateProgram\x00");
-    set_proc_address(&CreateShader,             "glCreateShader\x00");
-    set_proc_address(&DeleteProgram,            "glDeleteProgram\x00");
-    set_proc_address(&DeleteShader,             "glDeleteShader\x00");
-    set_proc_address(&DetachShader,             "glDetachShader\x00");
-    set_proc_address(&DisableVertexAttribArray, "glDisableVertexAttribArray\x00");
-    set_proc_address(&EnableVertexAttribArray,  "glEnableVertexAttribArray\x00");
-    set_proc_address(&GetActiveAttrib,          "glGetActiveAttrib\x00");
-    set_proc_address(&GetActiveUniform,         "glGetActiveUniform\x00");
-    set_proc_address(&GetAttachedShaders,       "glGetAttachedShaders\x00");
-    set_proc_address(&GetAttribLocation,        "glGetAttribLocation\x00");
-    set_proc_address(&GetProgramiv,             "glGetProgramiv\x00");
-    set_proc_address(&GetProgramInfoLog,        "glGetProgramInfoLog\x00");
-    set_proc_address(&GetShaderiv,              "glGetShaderiv\x00");
-    set_proc_address(&GetShaderInfoLog,         "glGetShaderInfoLog\x00");
-    set_proc_address(&GetShaderSource,          "glGetShaderSource\x00");
-    set_proc_address(&GetUniformLocation,       "glGetUniformLocation\x00");
-    set_proc_address(&GetUniformfv,             "glGetUniformfv\x00");
-    set_proc_address(&GetUniformiv,             "glGetUniformiv\x00");
-    set_proc_address(&GetVertexAttribdv,        "glGetVertexAttribdv\x00");
-    set_proc_address(&GetVertexAttribfv,        "glGetVertexAttribfv\x00");
-    set_proc_address(&GetVertexAttribiv,        "glGetVertexAttribiv\x00");
-    set_proc_address(&GetVertexAttribPointerv,  "glGetVertexAttribPointerv\x00");
-    set_proc_address(&IsProgram,                "glIsProgram\x00");
-    set_proc_address(&IsShader,                 "glIsShader\x00");
-    set_proc_address(&LinkProgram,              "glLinkProgram\x00");
-    set_proc_address(&ShaderSource,             "glShaderSource\x00");
-    set_proc_address(&UseProgram,               "glUseProgram\x00");
-    set_proc_address(&Uniform1f,                "glUniform1f\x00");
-    set_proc_address(&Uniform2f,                "glUniform2f\x00");
-    set_proc_address(&Uniform3f,                "glUniform3f\x00");
-    set_proc_address(&Uniform4f,                "glUniform4f\x00");
-    set_proc_address(&Uniform1i,                "glUniform1i\x00");
-    set_proc_address(&Uniform2i,                "glUniform2i\x00");
-    set_proc_address(&Uniform3i,                "glUniform3i\x00");
-    set_proc_address(&Uniform4i,                "glUniform4i\x00");
-    set_proc_address(&Uniform1fv,               "glUniform1fv\x00");
-    set_proc_address(&Uniform2fv,               "glUniform2fv\x00");
-    set_proc_address(&Uniform3fv,               "glUniform3fv\x00");
-    set_proc_address(&Uniform4fv,               "glUniform4fv\x00");
-    set_proc_address(&Uniform1iv,               "glUniform1iv\x00");
-    set_proc_address(&Uniform2iv,               "glUniform2iv\x00");
-    set_proc_address(&Uniform3iv,               "glUniform3iv\x00");
-    set_proc_address(&Uniform4iv,               "glUniform4iv\x00");
-    set_proc_address(&UniformMatrix2fv,         "glUniformMatrix2fv\x00");
-    set_proc_address(&UniformMatrix3fv,         "glUniformMatrix3fv\x00");
-    set_proc_address(&UniformMatrix4fv,         "glUniformMatrix4fv\x00");
-    set_proc_address(&ValidateProgram,          "glValidateProgram\x00");
-    set_proc_address(&VertexAttrib1d,           "glVertexAttrib1d\x00");
-    set_proc_address(&VertexAttrib1dv,          "glVertexAttrib1dv\x00");
-    set_proc_address(&VertexAttrib1f,           "glVertexAttrib1f\x00");
-    set_proc_address(&VertexAttrib1fv,          "glVertexAttrib1fv\x00");
-    set_proc_address(&VertexAttrib1s,           "glVertexAttrib1s\x00");
-    set_proc_address(&VertexAttrib1sv,          "glVertexAttrib1sv\x00");
-    set_proc_address(&VertexAttrib2d,           "glVertexAttrib2d\x00");
-    set_proc_address(&VertexAttrib2dv,          "glVertexAttrib2dv\x00");
-    set_proc_address(&VertexAttrib2f,           "glVertexAttrib2f\x00");
-    set_proc_address(&VertexAttrib2fv,          "glVertexAttrib2fv\x00");
-    set_proc_address(&VertexAttrib2s,           "glVertexAttrib2s\x00");
-    set_proc_address(&VertexAttrib2sv,          "glVertexAttrib2sv\x00");
-    set_proc_address(&VertexAttrib3d,           "glVertexAttrib3d\x00");
-    set_proc_address(&VertexAttrib3dv,          "glVertexAttrib3dv\x00");
-    set_proc_address(&VertexAttrib3f,           "glVertexAttrib3f\x00");
-    set_proc_address(&VertexAttrib3fv,          "glVertexAttrib3fv\x00");
-    set_proc_address(&VertexAttrib3s,           "glVertexAttrib3s\x00");
-    set_proc_address(&VertexAttrib3sv,          "glVertexAttrib3sv\x00");
-    set_proc_address(&VertexAttrib4Nbv,         "glVertexAttrib4Nbv\x00");
-    set_proc_address(&VertexAttrib4Niv,         "glVertexAttrib4Niv\x00");
-    set_proc_address(&VertexAttrib4Nsv,         "glVertexAttrib4Nsv\x00");
-    set_proc_address(&VertexAttrib4Nub,         "glVertexAttrib4Nub\x00");
-    set_proc_address(&VertexAttrib4Nubv,        "glVertexAttrib4Nubv\x00");
-    set_proc_address(&VertexAttrib4Nuiv,        "glVertexAttrib4Nuiv\x00");
-    set_proc_address(&VertexAttrib4Nusv,        "glVertexAttrib4Nusv\x00");
-    set_proc_address(&VertexAttrib4bv,          "glVertexAttrib4bv\x00");
-    set_proc_address(&VertexAttrib4d,           "glVertexAttrib4d\x00");
-    set_proc_address(&VertexAttrib4dv,          "glVertexAttrib4dv\x00");
-    set_proc_address(&VertexAttrib4f,           "glVertexAttrib4f\x00");
-    set_proc_address(&VertexAttrib4fv,          "glVertexAttrib4fv\x00");
-    set_proc_address(&VertexAttrib4iv,          "glVertexAttrib4iv\x00");
-    set_proc_address(&VertexAttrib4s,           "glVertexAttrib4s\x00");
-    set_proc_address(&VertexAttrib4sv,          "glVertexAttrib4sv\x00");
-    set_proc_address(&VertexAttrib4ubv,         "glVertexAttrib4ubv\x00");
-    set_proc_address(&VertexAttrib4uiv,         "glVertexAttrib4uiv\x00");
-    set_proc_address(&VertexAttrib4usv,         "glVertexAttrib4usv\x00");
-    set_proc_address(&VertexAttribPointer,      "glVertexAttribPointer\x00");
+load_2_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&BlendEquationSeparate,    "glBlendEquationSeparate");
+    set_proc_address(&DrawBuffers,              "glDrawBuffers");
+    set_proc_address(&StencilOpSeparate,        "glStencilOpSeparate");
+    set_proc_address(&StencilFuncSeparate,      "glStencilFuncSeparate");
+    set_proc_address(&StencilMaskSeparate,      "glStencilMaskSeparate");
+    set_proc_address(&AttachShader,             "glAttachShader");
+    set_proc_address(&BindAttribLocation,       "glBindAttribLocation");
+    set_proc_address(&CompileShader,            "glCompileShader");
+    set_proc_address(&CreateProgram,            "glCreateProgram");
+    set_proc_address(&CreateShader,             "glCreateShader");
+    set_proc_address(&DeleteProgram,            "glDeleteProgram");
+    set_proc_address(&DeleteShader,             "glDeleteShader");
+    set_proc_address(&DetachShader,             "glDetachShader");
+    set_proc_address(&DisableVertexAttribArray, "glDisableVertexAttribArray");
+    set_proc_address(&EnableVertexAttribArray,  "glEnableVertexAttribArray");
+    set_proc_address(&GetActiveAttrib,          "glGetActiveAttrib");
+    set_proc_address(&GetActiveUniform,         "glGetActiveUniform");
+    set_proc_address(&GetAttachedShaders,       "glGetAttachedShaders");
+    set_proc_address(&GetAttribLocation,        "glGetAttribLocation");
+    set_proc_address(&GetProgramiv,             "glGetProgramiv");
+    set_proc_address(&GetProgramInfoLog,        "glGetProgramInfoLog");
+    set_proc_address(&GetShaderiv,              "glGetShaderiv");
+    set_proc_address(&GetShaderInfoLog,         "glGetShaderInfoLog");
+    set_proc_address(&GetShaderSource,          "glGetShaderSource");
+    set_proc_address(&GetUniformLocation,       "glGetUniformLocation");
+    set_proc_address(&GetUniformfv,             "glGetUniformfv");
+    set_proc_address(&GetUniformiv,             "glGetUniformiv");
+    set_proc_address(&GetVertexAttribdv,        "glGetVertexAttribdv");
+    set_proc_address(&GetVertexAttribfv,        "glGetVertexAttribfv");
+    set_proc_address(&GetVertexAttribiv,        "glGetVertexAttribiv");
+    set_proc_address(&GetVertexAttribPointerv,  "glGetVertexAttribPointerv");
+    set_proc_address(&IsProgram,                "glIsProgram");
+    set_proc_address(&IsShader,                 "glIsShader");
+    set_proc_address(&LinkProgram,              "glLinkProgram");
+    set_proc_address(&ShaderSource,             "glShaderSource");
+    set_proc_address(&UseProgram,               "glUseProgram");
+    set_proc_address(&Uniform1f,                "glUniform1f");
+    set_proc_address(&Uniform2f,                "glUniform2f");
+    set_proc_address(&Uniform3f,                "glUniform3f");
+    set_proc_address(&Uniform4f,                "glUniform4f");
+    set_proc_address(&Uniform1i,                "glUniform1i");
+    set_proc_address(&Uniform2i,                "glUniform2i");
+    set_proc_address(&Uniform3i,                "glUniform3i");
+    set_proc_address(&Uniform4i,                "glUniform4i");
+    set_proc_address(&Uniform1fv,               "glUniform1fv");
+    set_proc_address(&Uniform2fv,               "glUniform2fv");
+    set_proc_address(&Uniform3fv,               "glUniform3fv");
+    set_proc_address(&Uniform4fv,               "glUniform4fv");
+    set_proc_address(&Uniform1iv,               "glUniform1iv");
+    set_proc_address(&Uniform2iv,               "glUniform2iv");
+    set_proc_address(&Uniform3iv,               "glUniform3iv");
+    set_proc_address(&Uniform4iv,               "glUniform4iv");
+    set_proc_address(&UniformMatrix2fv,         "glUniformMatrix2fv");
+    set_proc_address(&UniformMatrix3fv,         "glUniformMatrix3fv");
+    set_proc_address(&UniformMatrix4fv,         "glUniformMatrix4fv");
+    set_proc_address(&ValidateProgram,          "glValidateProgram");
+    set_proc_address(&VertexAttrib1d,           "glVertexAttrib1d");
+    set_proc_address(&VertexAttrib1dv,          "glVertexAttrib1dv");
+    set_proc_address(&VertexAttrib1f,           "glVertexAttrib1f");
+    set_proc_address(&VertexAttrib1fv,          "glVertexAttrib1fv");
+    set_proc_address(&VertexAttrib1s,           "glVertexAttrib1s");
+    set_proc_address(&VertexAttrib1sv,          "glVertexAttrib1sv");
+    set_proc_address(&VertexAttrib2d,           "glVertexAttrib2d");
+    set_proc_address(&VertexAttrib2dv,          "glVertexAttrib2dv");
+    set_proc_address(&VertexAttrib2f,           "glVertexAttrib2f");
+    set_proc_address(&VertexAttrib2fv,          "glVertexAttrib2fv");
+    set_proc_address(&VertexAttrib2s,           "glVertexAttrib2s");
+    set_proc_address(&VertexAttrib2sv,          "glVertexAttrib2sv");
+    set_proc_address(&VertexAttrib3d,           "glVertexAttrib3d");
+    set_proc_address(&VertexAttrib3dv,          "glVertexAttrib3dv");
+    set_proc_address(&VertexAttrib3f,           "glVertexAttrib3f");
+    set_proc_address(&VertexAttrib3fv,          "glVertexAttrib3fv");
+    set_proc_address(&VertexAttrib3s,           "glVertexAttrib3s");
+    set_proc_address(&VertexAttrib3sv,          "glVertexAttrib3sv");
+    set_proc_address(&VertexAttrib4Nbv,         "glVertexAttrib4Nbv");
+    set_proc_address(&VertexAttrib4Niv,         "glVertexAttrib4Niv");
+    set_proc_address(&VertexAttrib4Nsv,         "glVertexAttrib4Nsv");
+    set_proc_address(&VertexAttrib4Nub,         "glVertexAttrib4Nub");
+    set_proc_address(&VertexAttrib4Nubv,        "glVertexAttrib4Nubv");
+    set_proc_address(&VertexAttrib4Nuiv,        "glVertexAttrib4Nuiv");
+    set_proc_address(&VertexAttrib4Nusv,        "glVertexAttrib4Nusv");
+    set_proc_address(&VertexAttrib4bv,          "glVertexAttrib4bv");
+    set_proc_address(&VertexAttrib4d,           "glVertexAttrib4d");
+    set_proc_address(&VertexAttrib4dv,          "glVertexAttrib4dv");
+    set_proc_address(&VertexAttrib4f,           "glVertexAttrib4f");
+    set_proc_address(&VertexAttrib4fv,          "glVertexAttrib4fv");
+    set_proc_address(&VertexAttrib4iv,          "glVertexAttrib4iv");
+    set_proc_address(&VertexAttrib4s,           "glVertexAttrib4s");
+    set_proc_address(&VertexAttrib4sv,          "glVertexAttrib4sv");
+    set_proc_address(&VertexAttrib4ubv,         "glVertexAttrib4ubv");
+    set_proc_address(&VertexAttrib4uiv,         "glVertexAttrib4uiv");
+    set_proc_address(&VertexAttrib4usv,         "glVertexAttrib4usv");
+    set_proc_address(&VertexAttribPointer,      "glVertexAttribPointer");
 }
 
 
@@ -503,13 +505,13 @@ UniformMatrix4x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^
 UniformMatrix3x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
 UniformMatrix4x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
 
-load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&UniformMatrix2x3fv, "glUniformMatrix2x3fv\x00");
-    set_proc_address(&UniformMatrix3x2fv, "glUniformMatrix3x2fv\x00");
-    set_proc_address(&UniformMatrix2x4fv, "glUniformMatrix2x4fv\x00");
-    set_proc_address(&UniformMatrix4x2fv, "glUniformMatrix4x2fv\x00");
-    set_proc_address(&UniformMatrix3x4fv, "glUniformMatrix3x4fv\x00");
-    set_proc_address(&UniformMatrix4x3fv, "glUniformMatrix4x3fv\x00");
+load_2_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&UniformMatrix2x3fv, "glUniformMatrix2x3fv");
+    set_proc_address(&UniformMatrix3x2fv, "glUniformMatrix3x2fv");
+    set_proc_address(&UniformMatrix2x4fv, "glUniformMatrix2x4fv");
+    set_proc_address(&UniformMatrix4x2fv, "glUniformMatrix4x2fv");
+    set_proc_address(&UniformMatrix3x4fv, "glUniformMatrix3x4fv");
+    set_proc_address(&UniformMatrix4x3fv, "glUniformMatrix4x3fv");
 }
 
 
@@ -599,91 +601,91 @@ load_2_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
  GenVertexArrays:                     proc "c" (n: i32, arrays: ^u32);
  IsVertexArray:                       proc "c" (array: u32) -> u8;
 
-load_3_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&ColorMaski,                          "glColorMaski\x00");
-    set_proc_address(&GetBooleani_v,                       "glGetBooleani_v\x00");
-    set_proc_address(&GetIntegeri_v,                       "glGetIntegeri_v\x00");
-    set_proc_address(&Enablei,                             "glEnablei\x00");
-    set_proc_address(&Disablei,                            "glDisablei\x00");
-    set_proc_address(&IsEnabledi,                          "glIsEnabledi\x00");
-    set_proc_address(&BeginTransformFeedback,              "glBeginTransformFeedback\x00");
-    set_proc_address(&EndTransformFeedback,                "glEndTransformFeedback\x00");
-    set_proc_address(&BindBufferRange,                     "glBindBufferRange\x00");
-    set_proc_address(&BindBufferBase,                      "glBindBufferBase\x00");
-    set_proc_address(&TransformFeedbackVaryings,           "glTransformFeedbackVaryings\x00");
-    set_proc_address(&GetTransformFeedbackVarying,         "glGetTransformFeedbackVarying\x00");
-    set_proc_address(&ClampColor,                          "glClampColor\x00");
-    set_proc_address(&BeginConditionalRender,              "glBeginConditionalRender\x00");
-    set_proc_address(&EndConditionalRender,                "glEndConditionalRender\x00");
-    set_proc_address(&VertexAttribIPointer,                "glVertexAttribIPointer\x00");
-    set_proc_address(&GetVertexAttribIiv,                  "glGetVertexAttribIiv\x00");
-    set_proc_address(&GetVertexAttribIuiv,                 "glGetVertexAttribIuiv\x00");
-    set_proc_address(&VertexAttribI1i,                     "glVertexAttribI1i\x00");
-    set_proc_address(&VertexAttribI2i,                     "glVertexAttribI2i\x00");
-    set_proc_address(&VertexAttribI3i,                     "glVertexAttribI3i\x00");
-    set_proc_address(&VertexAttribI4i,                     "glVertexAttribI4i\x00");
-    set_proc_address(&VertexAttribI1ui,                    "glVertexAttribI1ui\x00");
-    set_proc_address(&VertexAttribI2ui,                    "glVertexAttribI2ui\x00");
-    set_proc_address(&VertexAttribI3ui,                    "glVertexAttribI3ui\x00");
-    set_proc_address(&VertexAttribI4ui,                    "glVertexAttribI4ui\x00");
-    set_proc_address(&VertexAttribI1iv,                    "glVertexAttribI1iv\x00");
-    set_proc_address(&VertexAttribI2iv,                    "glVertexAttribI2iv\x00");
-    set_proc_address(&VertexAttribI3iv,                    "glVertexAttribI3iv\x00");
-    set_proc_address(&VertexAttribI4iv,                    "glVertexAttribI4iv\x00");
-    set_proc_address(&VertexAttribI1uiv,                   "glVertexAttribI1uiv\x00");
-    set_proc_address(&VertexAttribI2uiv,                   "glVertexAttribI2uiv\x00");
-    set_proc_address(&VertexAttribI3uiv,                   "glVertexAttribI3uiv\x00");
-    set_proc_address(&VertexAttribI4uiv,                   "glVertexAttribI4uiv\x00");
-    set_proc_address(&VertexAttribI4bv,                    "glVertexAttribI4bv\x00");
-    set_proc_address(&VertexAttribI4sv,                    "glVertexAttribI4sv\x00");
-    set_proc_address(&VertexAttribI4ubv,                   "glVertexAttribI4ubv\x00");
-    set_proc_address(&VertexAttribI4usv,                   "glVertexAttribI4usv\x00");
-    set_proc_address(&GetUniformuiv,                       "glGetUniformuiv\x00");
-    set_proc_address(&BindFragDataLocation,                "glBindFragDataLocation\x00");
-    set_proc_address(&GetFragDataLocation,                 "glGetFragDataLocation\x00");
-    set_proc_address(&Uniform1ui,                          "glUniform1ui\x00");
-    set_proc_address(&Uniform2ui,                          "glUniform2ui\x00");
-    set_proc_address(&Uniform3ui,                          "glUniform3ui\x00");
-    set_proc_address(&Uniform4ui,                          "glUniform4ui\x00");
-    set_proc_address(&Uniform1uiv,                         "glUniform1uiv\x00");
-    set_proc_address(&Uniform2uiv,                         "glUniform2uiv\x00");
-    set_proc_address(&Uniform3uiv,                         "glUniform3uiv\x00");
-    set_proc_address(&Uniform4uiv,                         "glUniform4uiv\x00");
-    set_proc_address(&TexParameterIiv,                     "glTexParameterIiv\x00");
-    set_proc_address(&TexParameterIuiv,                    "glTexParameterIuiv\x00");
-    set_proc_address(&GetTexParameterIiv,                  "glGetTexParameterIiv\x00");
-    set_proc_address(&GetTexParameterIuiv,                 "glGetTexParameterIuiv\x00");
-    set_proc_address(&ClearBufferiv,                       "glClearBufferiv\x00");
-    set_proc_address(&ClearBufferuiv,                      "glClearBufferuiv\x00");
-    set_proc_address(&ClearBufferfv,                       "glClearBufferfv\x00");
-    set_proc_address(&ClearBufferfi,                       "glClearBufferfi\x00");
-    set_proc_address(&GetStringi,                          "glGetStringi\x00");
-    set_proc_address(&IsRenderbuffer,                      "glIsRenderbuffer\x00");
-    set_proc_address(&BindRenderbuffer,                    "glBindRenderbuffer\x00");
-    set_proc_address(&DeleteRenderbuffers,                 "glDeleteRenderbuffers\x00");
-    set_proc_address(&GenRenderbuffers,                    "glGenRenderbuffers\x00");
-    set_proc_address(&RenderbufferStorage,                 "glRenderbufferStorage\x00");
-    set_proc_address(&GetRenderbufferParameteriv,          "glGetRenderbufferParameteriv\x00");
-    set_proc_address(&IsFramebuffer,                       "glIsFramebuffer\x00");
-    set_proc_address(&BindFramebuffer,                     "glBindFramebuffer\x00");
-    set_proc_address(&DeleteFramebuffers,                  "glDeleteFramebuffers\x00");
-    set_proc_address(&GenFramebuffers,                     "glGenFramebuffers\x00");
-    set_proc_address(&CheckFramebufferStatus,              "glCheckFramebufferStatus\x00");
-    set_proc_address(&FramebufferTexture1D,                "glFramebufferTexture1D\x00");
-    set_proc_address(&FramebufferTexture2D,                "glFramebufferTexture2D\x00");
-    set_proc_address(&FramebufferTexture3D,                "glFramebufferTexture3D\x00");
-    set_proc_address(&FramebufferRenderbuffer,             "glFramebufferRenderbuffer\x00");
-    set_proc_address(&GetFramebufferAttachmentParameteriv, "glGetFramebufferAttachmentParameteriv\x00");
-    set_proc_address(&GenerateMipmap,                      "glGenerateMipmap\x00");
-    set_proc_address(&BlitFramebuffer,                     "glBlitFramebuffer\x00");
-    set_proc_address(&RenderbufferStorageMultisample,      "glRenderbufferStorageMultisample\x00");
-    set_proc_address(&FramebufferTextureLayer,             "glFramebufferTextureLayer\x00");
-    set_proc_address(&MapBufferRange,                      "glMapBufferRange\x00");
-    set_proc_address(&FlushMappedBufferRange,              "glFlushMappedBufferRange\x00");
-    set_proc_address(&BindVertexArray,                     "glBindVertexArray\x00");
-    set_proc_address(&DeleteVertexArrays,                  "glDeleteVertexArrays\x00");
-    set_proc_address(&GenVertexArrays,                     "glGenVertexArrays\x00");
-    set_proc_address(&IsVertexArray,                       "glIsVertexArray\x00");
+load_3_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&ColorMaski,                          "glColorMaski");
+    set_proc_address(&GetBooleani_v,                       "glGetBooleani_v");
+    set_proc_address(&GetIntegeri_v,                       "glGetIntegeri_v");
+    set_proc_address(&Enablei,                             "glEnablei");
+    set_proc_address(&Disablei,                            "glDisablei");
+    set_proc_address(&IsEnabledi,                          "glIsEnabledi");
+    set_proc_address(&BeginTransformFeedback,              "glBeginTransformFeedback");
+    set_proc_address(&EndTransformFeedback,                "glEndTransformFeedback");
+    set_proc_address(&BindBufferRange,                     "glBindBufferRange");
+    set_proc_address(&BindBufferBase,                      "glBindBufferBase");
+    set_proc_address(&TransformFeedbackVaryings,           "glTransformFeedbackVaryings");
+    set_proc_address(&GetTransformFeedbackVarying,         "glGetTransformFeedbackVarying");
+    set_proc_address(&ClampColor,                          "glClampColor");
+    set_proc_address(&BeginConditionalRender,              "glBeginConditionalRender");
+    set_proc_address(&EndConditionalRender,                "glEndConditionalRender");
+    set_proc_address(&VertexAttribIPointer,                "glVertexAttribIPointer");
+    set_proc_address(&GetVertexAttribIiv,                  "glGetVertexAttribIiv");
+    set_proc_address(&GetVertexAttribIuiv,                 "glGetVertexAttribIuiv");
+    set_proc_address(&VertexAttribI1i,                     "glVertexAttribI1i");
+    set_proc_address(&VertexAttribI2i,                     "glVertexAttribI2i");
+    set_proc_address(&VertexAttribI3i,                     "glVertexAttribI3i");
+    set_proc_address(&VertexAttribI4i,                     "glVertexAttribI4i");
+    set_proc_address(&VertexAttribI1ui,                    "glVertexAttribI1ui");
+    set_proc_address(&VertexAttribI2ui,                    "glVertexAttribI2ui");
+    set_proc_address(&VertexAttribI3ui,                    "glVertexAttribI3ui");
+    set_proc_address(&VertexAttribI4ui,                    "glVertexAttribI4ui");
+    set_proc_address(&VertexAttribI1iv,                    "glVertexAttribI1iv");
+    set_proc_address(&VertexAttribI2iv,                    "glVertexAttribI2iv");
+    set_proc_address(&VertexAttribI3iv,                    "glVertexAttribI3iv");
+    set_proc_address(&VertexAttribI4iv,                    "glVertexAttribI4iv");
+    set_proc_address(&VertexAttribI1uiv,                   "glVertexAttribI1uiv");
+    set_proc_address(&VertexAttribI2uiv,                   "glVertexAttribI2uiv");
+    set_proc_address(&VertexAttribI3uiv,                   "glVertexAttribI3uiv");
+    set_proc_address(&VertexAttribI4uiv,                   "glVertexAttribI4uiv");
+    set_proc_address(&VertexAttribI4bv,                    "glVertexAttribI4bv");
+    set_proc_address(&VertexAttribI4sv,                    "glVertexAttribI4sv");
+    set_proc_address(&VertexAttribI4ubv,                   "glVertexAttribI4ubv");
+    set_proc_address(&VertexAttribI4usv,                   "glVertexAttribI4usv");
+    set_proc_address(&GetUniformuiv,                       "glGetUniformuiv");
+    set_proc_address(&BindFragDataLocation,                "glBindFragDataLocation");
+    set_proc_address(&GetFragDataLocation,                 "glGetFragDataLocation");
+    set_proc_address(&Uniform1ui,                          "glUniform1ui");
+    set_proc_address(&Uniform2ui,                          "glUniform2ui");
+    set_proc_address(&Uniform3ui,                          "glUniform3ui");
+    set_proc_address(&Uniform4ui,                          "glUniform4ui");
+    set_proc_address(&Uniform1uiv,                         "glUniform1uiv");
+    set_proc_address(&Uniform2uiv,                         "glUniform2uiv");
+    set_proc_address(&Uniform3uiv,                         "glUniform3uiv");
+    set_proc_address(&Uniform4uiv,                         "glUniform4uiv");
+    set_proc_address(&TexParameterIiv,                     "glTexParameterIiv");
+    set_proc_address(&TexParameterIuiv,                    "glTexParameterIuiv");
+    set_proc_address(&GetTexParameterIiv,                  "glGetTexParameterIiv");
+    set_proc_address(&GetTexParameterIuiv,                 "glGetTexParameterIuiv");
+    set_proc_address(&ClearBufferiv,                       "glClearBufferiv");
+    set_proc_address(&ClearBufferuiv,                      "glClearBufferuiv");
+    set_proc_address(&ClearBufferfv,                       "glClearBufferfv");
+    set_proc_address(&ClearBufferfi,                       "glClearBufferfi");
+    set_proc_address(&GetStringi,                          "glGetStringi");
+    set_proc_address(&IsRenderbuffer,                      "glIsRenderbuffer");
+    set_proc_address(&BindRenderbuffer,                    "glBindRenderbuffer");
+    set_proc_address(&DeleteRenderbuffers,                 "glDeleteRenderbuffers");
+    set_proc_address(&GenRenderbuffers,                    "glGenRenderbuffers");
+    set_proc_address(&RenderbufferStorage,                 "glRenderbufferStorage");
+    set_proc_address(&GetRenderbufferParameteriv,          "glGetRenderbufferParameteriv");
+    set_proc_address(&IsFramebuffer,                       "glIsFramebuffer");
+    set_proc_address(&BindFramebuffer,                     "glBindFramebuffer");
+    set_proc_address(&DeleteFramebuffers,                  "glDeleteFramebuffers");
+    set_proc_address(&GenFramebuffers,                     "glGenFramebuffers");
+    set_proc_address(&CheckFramebufferStatus,              "glCheckFramebufferStatus");
+    set_proc_address(&FramebufferTexture1D,                "glFramebufferTexture1D");
+    set_proc_address(&FramebufferTexture2D,                "glFramebufferTexture2D");
+    set_proc_address(&FramebufferTexture3D,                "glFramebufferTexture3D");
+    set_proc_address(&FramebufferRenderbuffer,             "glFramebufferRenderbuffer");
+    set_proc_address(&GetFramebufferAttachmentParameteriv, "glGetFramebufferAttachmentParameteriv");
+    set_proc_address(&GenerateMipmap,                      "glGenerateMipmap");
+    set_proc_address(&BlitFramebuffer,                     "glBlitFramebuffer");
+    set_proc_address(&RenderbufferStorageMultisample,      "glRenderbufferStorageMultisample");
+    set_proc_address(&FramebufferTextureLayer,             "glFramebufferTextureLayer");
+    set_proc_address(&MapBufferRange,                      "glMapBufferRange");
+    set_proc_address(&FlushMappedBufferRange,              "glFlushMappedBufferRange");
+    set_proc_address(&BindVertexArray,                     "glBindVertexArray");
+    set_proc_address(&DeleteVertexArrays,                  "glDeleteVertexArrays");
+    set_proc_address(&GenVertexArrays,                     "glGenVertexArrays");
+    set_proc_address(&IsVertexArray,                       "glIsVertexArray");
 }
 
 
@@ -701,19 +703,19 @@ GetActiveUniformBlockiv:   proc "c" (program: u32, uniformBlockIndex: u32, pname
 GetActiveUniformBlockName: proc "c" (program: u32, uniformBlockIndex: u32, bufSize: i32, length: ^i32, uniformBlockName: ^u8);
 UniformBlockBinding:       proc "c" (program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32);
 
-load_3_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&DrawArraysInstanced,       "glDrawArraysInstanced\x00");
-    set_proc_address(&DrawElementsInstanced,     "glDrawElementsInstanced\x00");
-    set_proc_address(&TexBuffer,                 "glTexBuffer\x00");
-    set_proc_address(&PrimitiveRestartIndex,     "glPrimitiveRestartIndex\x00");
-    set_proc_address(&CopyBufferSubData,         "glCopyBufferSubData\x00");
-    set_proc_address(&GetUniformIndices,         "glGetUniformIndices\x00");
-    set_proc_address(&GetActiveUniformsiv,       "glGetActiveUniformsiv\x00");
-    set_proc_address(&GetActiveUniformName,      "glGetActiveUniformName\x00");
-    set_proc_address(&GetUniformBlockIndex,      "glGetUniformBlockIndex\x00");
-    set_proc_address(&GetActiveUniformBlockiv,   "glGetActiveUniformBlockiv\x00");
-    set_proc_address(&GetActiveUniformBlockName, "glGetActiveUniformBlockName\x00");
-    set_proc_address(&UniformBlockBinding,       "glUniformBlockBinding\x00");
+load_3_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&DrawArraysInstanced,       "glDrawArraysInstanced");
+    set_proc_address(&DrawElementsInstanced,     "glDrawElementsInstanced");
+    set_proc_address(&TexBuffer,                 "glTexBuffer");
+    set_proc_address(&PrimitiveRestartIndex,     "glPrimitiveRestartIndex");
+    set_proc_address(&CopyBufferSubData,         "glCopyBufferSubData");
+    set_proc_address(&GetUniformIndices,         "glGetUniformIndices");
+    set_proc_address(&GetActiveUniformsiv,       "glGetActiveUniformsiv");
+    set_proc_address(&GetActiveUniformName,      "glGetActiveUniformName");
+    set_proc_address(&GetUniformBlockIndex,      "glGetUniformBlockIndex");
+    set_proc_address(&GetActiveUniformBlockiv,   "glGetActiveUniformBlockiv");
+    set_proc_address(&GetActiveUniformBlockName, "glGetActiveUniformBlockName");
+    set_proc_address(&UniformBlockBinding,       "glUniformBlockBinding");
 }
 
 
@@ -738,26 +740,26 @@ TexImage3DMultisample:           proc "c" (target: u32, samples: i32, internalfo
 GetMultisamplefv:                proc "c" (pname: u32, index: u32, val: ^f32);
 SampleMaski:                     proc "c" (maskNumber: u32, mask: u32);
 
-load_3_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&DrawElementsBaseVertex,          "glDrawElementsBaseVertex\x00");
-    set_proc_address(&DrawRangeElementsBaseVertex,     "glDrawRangeElementsBaseVertex\x00");
-    set_proc_address(&DrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex\x00");
-    set_proc_address(&MultiDrawElementsBaseVertex,     "glMultiDrawElementsBaseVertex\x00");
-    set_proc_address(&ProvokingVertex,                 "glProvokingVertex\x00");
-    set_proc_address(&FenceSync,                       "glFenceSync\x00");
-    set_proc_address(&IsSync,                          "glIsSync\x00");
-    set_proc_address(&DeleteSync,                      "glDeleteSync\x00");
-    set_proc_address(&ClientWaitSync,                  "glClientWaitSync\x00");
-    set_proc_address(&WaitSync,                        "glWaitSync\x00");
-    set_proc_address(&GetInteger64v,                   "glGetInteger64v\x00");
-    set_proc_address(&GetSynciv,                       "glGetSynciv\x00");
-    set_proc_address(&GetInteger64i_v,                 "glGetInteger64i_v\x00");
-    set_proc_address(&GetBufferParameteri64v,          "glGetBufferParameteri64v\x00");
-    set_proc_address(&FramebufferTexture,              "glFramebufferTexture\x00");
-    set_proc_address(&TexImage2DMultisample,           "glTexImage2DMultisample\x00");
-    set_proc_address(&TexImage3DMultisample,           "glTexImage3DMultisample\x00");
-    set_proc_address(&GetMultisamplefv,                "glGetMultisamplefv\x00");
-    set_proc_address(&SampleMaski,                     "glSampleMaski\x00");
+load_3_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&DrawElementsBaseVertex,          "glDrawElementsBaseVertex");
+    set_proc_address(&DrawRangeElementsBaseVertex,     "glDrawRangeElementsBaseVertex");
+    set_proc_address(&DrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex");
+    set_proc_address(&MultiDrawElementsBaseVertex,     "glMultiDrawElementsBaseVertex");
+    set_proc_address(&ProvokingVertex,                 "glProvokingVertex");
+    set_proc_address(&FenceSync,                       "glFenceSync");
+    set_proc_address(&IsSync,                          "glIsSync");
+    set_proc_address(&DeleteSync,                      "glDeleteSync");
+    set_proc_address(&ClientWaitSync,                  "glClientWaitSync");
+    set_proc_address(&WaitSync,                        "glWaitSync");
+    set_proc_address(&GetInteger64v,                   "glGetInteger64v");
+    set_proc_address(&GetSynciv,                       "glGetSynciv");
+    set_proc_address(&GetInteger64i_v,                 "glGetInteger64i_v");
+    set_proc_address(&GetBufferParameteri64v,          "glGetBufferParameteri64v");
+    set_proc_address(&FramebufferTexture,              "glFramebufferTexture");
+    set_proc_address(&TexImage2DMultisample,           "glTexImage2DMultisample");
+    set_proc_address(&TexImage3DMultisample,           "glTexImage3DMultisample");
+    set_proc_address(&GetMultisamplefv,                "glGetMultisamplefv");
+    set_proc_address(&SampleMaski,                     "glSampleMaski");
 }
 
 
@@ -821,65 +823,65 @@ ColorP4uiv:                  proc "c" (type_: u32, color: ^u32);
 SecondaryColorP3ui:          proc "c" (type_: u32, color: u32);
 SecondaryColorP3uiv:         proc "c" (type_: u32, color: ^u32);
 
-load_3_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&BindFragDataLocationIndexed, "glBindFragDataLocationIndexed\x00");
-    set_proc_address(&GetFragDataIndex,            "glGetFragDataIndex\x00");
-    set_proc_address(&GenSamplers,                 "glGenSamplers\x00");
-    set_proc_address(&DeleteSamplers,              "glDeleteSamplers\x00");
-    set_proc_address(&IsSampler,                   "glIsSampler\x00");
-    set_proc_address(&BindSampler,                 "glBindSampler\x00");
-    set_proc_address(&SamplerParameteri,           "glSamplerParameteri\x00");
-    set_proc_address(&SamplerParameteriv,          "glSamplerParameteriv\x00");
-    set_proc_address(&SamplerParameterf,           "glSamplerParameterf\x00");
-    set_proc_address(&SamplerParameterfv,          "glSamplerParameterfv\x00");
-    set_proc_address(&SamplerParameterIiv,         "glSamplerParameterIiv\x00");
-    set_proc_address(&SamplerParameterIuiv,        "glSamplerParameterIuiv\x00");
-    set_proc_address(&GetSamplerParameteriv,       "glGetSamplerParameteriv\x00");
-    set_proc_address(&GetSamplerParameterIiv,      "glGetSamplerParameterIiv\x00");
-    set_proc_address(&GetSamplerParameterfv,       "glGetSamplerParameterfv\x00");
-    set_proc_address(&GetSamplerParameterIuiv,     "glGetSamplerParameterIuiv\x00");
-    set_proc_address(&QueryCounter,                "glQueryCounter\x00");
-    set_proc_address(&GetQueryObjecti64v,          "glGetQueryObjecti64v\x00");
-    set_proc_address(&GetQueryObjectui64v,         "glGetQueryObjectui64v\x00");
-    set_proc_address(&VertexAttribDivisor,         "glVertexAttribDivisor\x00");
-    set_proc_address(&VertexAttribP1ui,            "glVertexAttribP1ui\x00");
-    set_proc_address(&VertexAttribP1uiv,           "glVertexAttribP1uiv\x00");
-    set_proc_address(&VertexAttribP2ui,            "glVertexAttribP2ui\x00");
-    set_proc_address(&VertexAttribP2uiv,           "glVertexAttribP2uiv\x00");
-    set_proc_address(&VertexAttribP3ui,            "glVertexAttribP3ui\x00");
-    set_proc_address(&VertexAttribP3uiv,           "glVertexAttribP3uiv\x00");
-    set_proc_address(&VertexAttribP4ui,            "glVertexAttribP4ui\x00");
-    set_proc_address(&VertexAttribP4uiv,           "glVertexAttribP4uiv\x00");
-    set_proc_address(&VertexP2ui,                  "glVertexP2ui\x00");
-    set_proc_address(&VertexP2uiv,                 "glVertexP2uiv\x00");
-    set_proc_address(&VertexP3ui,                  "glVertexP3ui\x00");
-    set_proc_address(&VertexP3uiv,                 "glVertexP3uiv\x00");
-    set_proc_address(&VertexP4ui,                  "glVertexP4ui\x00");
-    set_proc_address(&VertexP4uiv,                 "glVertexP4uiv\x00");
-    set_proc_address(&TexCoordP1ui,                "glTexCoordP1ui\x00");
-    set_proc_address(&TexCoordP1uiv,               "glTexCoordP1uiv\x00");
-    set_proc_address(&TexCoordP2ui,                "glTexCoordP2ui\x00");
-    set_proc_address(&TexCoordP2uiv,               "glTexCoordP2uiv\x00");
-    set_proc_address(&TexCoordP3ui,                "glTexCoordP3ui\x00");
-    set_proc_address(&TexCoordP3uiv,               "glTexCoordP3uiv\x00");
-    set_proc_address(&TexCoordP4ui,                "glTexCoordP4ui\x00");
-    set_proc_address(&TexCoordP4uiv,               "glTexCoordP4uiv\x00");
-    set_proc_address(&MultiTexCoordP1ui,           "glMultiTexCoordP1ui\x00");
-    set_proc_address(&MultiTexCoordP1uiv,          "glMultiTexCoordP1uiv\x00");
-    set_proc_address(&MultiTexCoordP2ui,           "glMultiTexCoordP2ui\x00");
-    set_proc_address(&MultiTexCoordP2uiv,          "glMultiTexCoordP2uiv\x00");
-    set_proc_address(&MultiTexCoordP3ui,           "glMultiTexCoordP3ui\x00");
-    set_proc_address(&MultiTexCoordP3uiv,          "glMultiTexCoordP3uiv\x00");
-    set_proc_address(&MultiTexCoordP4ui,           "glMultiTexCoordP4ui\x00");
-    set_proc_address(&MultiTexCoordP4uiv,          "glMultiTexCoordP4uiv\x00");
-    set_proc_address(&NormalP3ui,                  "glNormalP3ui\x00");
-    set_proc_address(&NormalP3uiv,                 "glNormalP3uiv\x00");
-    set_proc_address(&ColorP3ui,                   "glColorP3ui\x00");
-    set_proc_address(&ColorP3uiv,                  "glColorP3uiv\x00");
-    set_proc_address(&ColorP4ui,                   "glColorP4ui\x00");
-    set_proc_address(&ColorP4uiv,                  "glColorP4uiv\x00");
-    set_proc_address(&SecondaryColorP3ui,          "glSecondaryColorP3ui\x00");
-    set_proc_address(&SecondaryColorP3uiv,         "glSecondaryColorP3uiv\x00");
+load_3_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&BindFragDataLocationIndexed, "glBindFragDataLocationIndexed");
+    set_proc_address(&GetFragDataIndex,            "glGetFragDataIndex");
+    set_proc_address(&GenSamplers,                 "glGenSamplers");
+    set_proc_address(&DeleteSamplers,              "glDeleteSamplers");
+    set_proc_address(&IsSampler,                   "glIsSampler");
+    set_proc_address(&BindSampler,                 "glBindSampler");
+    set_proc_address(&SamplerParameteri,           "glSamplerParameteri");
+    set_proc_address(&SamplerParameteriv,          "glSamplerParameteriv");
+    set_proc_address(&SamplerParameterf,           "glSamplerParameterf");
+    set_proc_address(&SamplerParameterfv,          "glSamplerParameterfv");
+    set_proc_address(&SamplerParameterIiv,         "glSamplerParameterIiv");
+    set_proc_address(&SamplerParameterIuiv,        "glSamplerParameterIuiv");
+    set_proc_address(&GetSamplerParameteriv,       "glGetSamplerParameteriv");
+    set_proc_address(&GetSamplerParameterIiv,      "glGetSamplerParameterIiv");
+    set_proc_address(&GetSamplerParameterfv,       "glGetSamplerParameterfv");
+    set_proc_address(&GetSamplerParameterIuiv,     "glGetSamplerParameterIuiv");
+    set_proc_address(&QueryCounter,                "glQueryCounter");
+    set_proc_address(&GetQueryObjecti64v,          "glGetQueryObjecti64v");
+    set_proc_address(&GetQueryObjectui64v,         "glGetQueryObjectui64v");
+    set_proc_address(&VertexAttribDivisor,         "glVertexAttribDivisor");
+    set_proc_address(&VertexAttribP1ui,            "glVertexAttribP1ui");
+    set_proc_address(&VertexAttribP1uiv,           "glVertexAttribP1uiv");
+    set_proc_address(&VertexAttribP2ui,            "glVertexAttribP2ui");
+    set_proc_address(&VertexAttribP2uiv,           "glVertexAttribP2uiv");
+    set_proc_address(&VertexAttribP3ui,            "glVertexAttribP3ui");
+    set_proc_address(&VertexAttribP3uiv,           "glVertexAttribP3uiv");
+    set_proc_address(&VertexAttribP4ui,            "glVertexAttribP4ui");
+    set_proc_address(&VertexAttribP4uiv,           "glVertexAttribP4uiv");
+    set_proc_address(&VertexP2ui,                  "glVertexP2ui");
+    set_proc_address(&VertexP2uiv,                 "glVertexP2uiv");
+    set_proc_address(&VertexP3ui,                  "glVertexP3ui");
+    set_proc_address(&VertexP3uiv,                 "glVertexP3uiv");
+    set_proc_address(&VertexP4ui,                  "glVertexP4ui");
+    set_proc_address(&VertexP4uiv,                 "glVertexP4uiv");
+    set_proc_address(&TexCoordP1ui,                "glTexCoordP1ui");
+    set_proc_address(&TexCoordP1uiv,               "glTexCoordP1uiv");
+    set_proc_address(&TexCoordP2ui,                "glTexCoordP2ui");
+    set_proc_address(&TexCoordP2uiv,               "glTexCoordP2uiv");
+    set_proc_address(&TexCoordP3ui,                "glTexCoordP3ui");
+    set_proc_address(&TexCoordP3uiv,               "glTexCoordP3uiv");
+    set_proc_address(&TexCoordP4ui,                "glTexCoordP4ui");
+    set_proc_address(&TexCoordP4uiv,               "glTexCoordP4uiv");
+    set_proc_address(&MultiTexCoordP1ui,           "glMultiTexCoordP1ui");
+    set_proc_address(&MultiTexCoordP1uiv,          "glMultiTexCoordP1uiv");
+    set_proc_address(&MultiTexCoordP2ui,           "glMultiTexCoordP2ui");
+    set_proc_address(&MultiTexCoordP2uiv,          "glMultiTexCoordP2uiv");
+    set_proc_address(&MultiTexCoordP3ui,           "glMultiTexCoordP3ui");
+    set_proc_address(&MultiTexCoordP3uiv,          "glMultiTexCoordP3uiv");
+    set_proc_address(&MultiTexCoordP4ui,           "glMultiTexCoordP4ui");
+    set_proc_address(&MultiTexCoordP4uiv,          "glMultiTexCoordP4uiv");
+    set_proc_address(&NormalP3ui,                  "glNormalP3ui");
+    set_proc_address(&NormalP3uiv,                 "glNormalP3uiv");
+    set_proc_address(&ColorP3ui,                   "glColorP3ui");
+    set_proc_address(&ColorP3uiv,                  "glColorP3uiv");
+    set_proc_address(&ColorP4ui,                   "glColorP4ui");
+    set_proc_address(&ColorP4uiv,                  "glColorP4uiv");
+    set_proc_address(&SecondaryColorP3ui,          "glSecondaryColorP3ui");
+    set_proc_address(&SecondaryColorP3uiv,         "glSecondaryColorP3uiv");
 }
 
 
@@ -931,53 +933,53 @@ BeginQueryIndexed:              proc "c" (target: u32, index: u32, id: u32);
 EndQueryIndexed:                proc "c" (target: u32, index: u32);
 GetQueryIndexediv:              proc "c" (target: u32, index: u32, pname: u32, params: ^i32);
 
-load_4_0 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&MinSampleShading,               "glMinSampleShading\x00");
-    set_proc_address(&BlendEquationi,                 "glBlendEquationi\x00");
-    set_proc_address(&BlendEquationSeparatei,         "glBlendEquationSeparatei\x00");
-    set_proc_address(&BlendFunci,                     "glBlendFunci\x00");
-    set_proc_address(&BlendFuncSeparatei,             "glBlendFuncSeparatei\x00");
-    set_proc_address(&DrawArraysIndirect,             "glDrawArraysIndirect\x00");
-    set_proc_address(&DrawElementsIndirect,           "glDrawElementsIndirect\x00");
-    set_proc_address(&Uniform1d,                      "glUniform1d\x00");
-    set_proc_address(&Uniform2d,                      "glUniform2d\x00");
-    set_proc_address(&Uniform3d,                      "glUniform3d\x00");
-    set_proc_address(&Uniform4d,                      "glUniform4d\x00");
-    set_proc_address(&Uniform1dv,                     "glUniform1dv\x00");
-    set_proc_address(&Uniform2dv,                     "glUniform2dv\x00");
-    set_proc_address(&Uniform3dv,                     "glUniform3dv\x00");
-    set_proc_address(&Uniform4dv,                     "glUniform4dv\x00");
-    set_proc_address(&UniformMatrix2dv,               "glUniformMatrix2dv\x00");
-    set_proc_address(&UniformMatrix3dv,               "glUniformMatrix3dv\x00");
-    set_proc_address(&UniformMatrix4dv,               "glUniformMatrix4dv\x00");
-    set_proc_address(&UniformMatrix2x3dv,             "glUniformMatrix2x3dv\x00");
-    set_proc_address(&UniformMatrix2x4dv,             "glUniformMatrix2x4dv\x00");
-    set_proc_address(&UniformMatrix3x2dv,             "glUniformMatrix3x2dv\x00");
-    set_proc_address(&UniformMatrix3x4dv,             "glUniformMatrix3x4dv\x00");
-    set_proc_address(&UniformMatrix4x2dv,             "glUniformMatrix4x2dv\x00");
-    set_proc_address(&UniformMatrix4x3dv,             "glUniformMatrix4x3dv\x00");
-    set_proc_address(&GetUniformdv,                   "glGetUniformdv\x00");
-    set_proc_address(&GetSubroutineUniformLocation,   "glGetSubroutineUniformLocation\x00");
-    set_proc_address(&GetSubroutineIndex,             "glGetSubroutineIndex\x00");
-    set_proc_address(&GetActiveSubroutineUniformiv,   "glGetActiveSubroutineUniformiv\x00");
-    set_proc_address(&GetActiveSubroutineUniformName, "glGetActiveSubroutineUniformName\x00");
-    set_proc_address(&GetActiveSubroutineName,        "glGetActiveSubroutineName\x00");
-    set_proc_address(&UniformSubroutinesuiv,          "glUniformSubroutinesuiv\x00");
-    set_proc_address(&GetUniformSubroutineuiv,        "glGetUniformSubroutineuiv\x00");
-    set_proc_address(&GetProgramStageiv,              "glGetProgramStageiv\x00");
-    set_proc_address(&PatchParameteri,                "glPatchParameteri\x00");
-    set_proc_address(&PatchParameterfv,               "glPatchParameterfv\x00");
-    set_proc_address(&BindTransformFeedback,          "glBindTransformFeedback\x00");
-    set_proc_address(&DeleteTransformFeedbacks,       "glDeleteTransformFeedbacks\x00");
-    set_proc_address(&GenTransformFeedbacks,          "glGenTransformFeedbacks\x00");
-    set_proc_address(&IsTransformFeedback,            "glIsTransformFeedback\x00");
-    set_proc_address(&PauseTransformFeedback,         "glPauseTransformFeedback\x00");
-    set_proc_address(&ResumeTransformFeedback,        "glResumeTransformFeedback\x00");
-    set_proc_address(&DrawTransformFeedback,          "glDrawTransformFeedback\x00");
-    set_proc_address(&DrawTransformFeedbackStream,    "glDrawTransformFeedbackStream\x00");
-    set_proc_address(&BeginQueryIndexed,              "glBeginQueryIndexed\x00");
-    set_proc_address(&EndQueryIndexed,                "glEndQueryIndexed\x00");
-    set_proc_address(&GetQueryIndexediv,              "glGetQueryIndexediv\x00");
+load_4_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&MinSampleShading,               "glMinSampleShading");
+    set_proc_address(&BlendEquationi,                 "glBlendEquationi");
+    set_proc_address(&BlendEquationSeparatei,         "glBlendEquationSeparatei");
+    set_proc_address(&BlendFunci,                     "glBlendFunci");
+    set_proc_address(&BlendFuncSeparatei,             "glBlendFuncSeparatei");
+    set_proc_address(&DrawArraysIndirect,             "glDrawArraysIndirect");
+    set_proc_address(&DrawElementsIndirect,           "glDrawElementsIndirect");
+    set_proc_address(&Uniform1d,                      "glUniform1d");
+    set_proc_address(&Uniform2d,                      "glUniform2d");
+    set_proc_address(&Uniform3d,                      "glUniform3d");
+    set_proc_address(&Uniform4d,                      "glUniform4d");
+    set_proc_address(&Uniform1dv,                     "glUniform1dv");
+    set_proc_address(&Uniform2dv,                     "glUniform2dv");
+    set_proc_address(&Uniform3dv,                     "glUniform3dv");
+    set_proc_address(&Uniform4dv,                     "glUniform4dv");
+    set_proc_address(&UniformMatrix2dv,               "glUniformMatrix2dv");
+    set_proc_address(&UniformMatrix3dv,               "glUniformMatrix3dv");
+    set_proc_address(&UniformMatrix4dv,               "glUniformMatrix4dv");
+    set_proc_address(&UniformMatrix2x3dv,             "glUniformMatrix2x3dv");
+    set_proc_address(&UniformMatrix2x4dv,             "glUniformMatrix2x4dv");
+    set_proc_address(&UniformMatrix3x2dv,             "glUniformMatrix3x2dv");
+    set_proc_address(&UniformMatrix3x4dv,             "glUniformMatrix3x4dv");
+    set_proc_address(&UniformMatrix4x2dv,             "glUniformMatrix4x2dv");
+    set_proc_address(&UniformMatrix4x3dv,             "glUniformMatrix4x3dv");
+    set_proc_address(&GetUniformdv,                   "glGetUniformdv");
+    set_proc_address(&GetSubroutineUniformLocation,   "glGetSubroutineUniformLocation");
+    set_proc_address(&GetSubroutineIndex,             "glGetSubroutineIndex");
+    set_proc_address(&GetActiveSubroutineUniformiv,   "glGetActiveSubroutineUniformiv");
+    set_proc_address(&GetActiveSubroutineUniformName, "glGetActiveSubroutineUniformName");
+    set_proc_address(&GetActiveSubroutineName,        "glGetActiveSubroutineName");
+    set_proc_address(&UniformSubroutinesuiv,          "glUniformSubroutinesuiv");
+    set_proc_address(&GetUniformSubroutineuiv,        "glGetUniformSubroutineuiv");
+    set_proc_address(&GetProgramStageiv,              "glGetProgramStageiv");
+    set_proc_address(&PatchParameteri,                "glPatchParameteri");
+    set_proc_address(&PatchParameterfv,               "glPatchParameterfv");
+    set_proc_address(&BindTransformFeedback,          "glBindTransformFeedback");
+    set_proc_address(&DeleteTransformFeedbacks,       "glDeleteTransformFeedbacks");
+    set_proc_address(&GenTransformFeedbacks,          "glGenTransformFeedbacks");
+    set_proc_address(&IsTransformFeedback,            "glIsTransformFeedback");
+    set_proc_address(&PauseTransformFeedback,         "glPauseTransformFeedback");
+    set_proc_address(&ResumeTransformFeedback,        "glResumeTransformFeedback");
+    set_proc_address(&DrawTransformFeedback,          "glDrawTransformFeedback");
+    set_proc_address(&DrawTransformFeedbackStream,    "glDrawTransformFeedbackStream");
+    set_proc_address(&BeginQueryIndexed,              "glBeginQueryIndexed");
+    set_proc_address(&EndQueryIndexed,                "glEndQueryIndexed");
+    set_proc_address(&GetQueryIndexediv,              "glGetQueryIndexediv");
 }
 
 
@@ -1071,95 +1073,95 @@ DepthRangeIndexed:         proc "c" (index: u32, n: f64, f: f64);
 GetFloati_v:               proc "c" (target: u32, index: u32, data: ^f32);
 GetDoublei_v:              proc "c" (target: u32, index: u32, data: ^f64);
 
-load_4_1 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&ReleaseShaderCompiler,     "glReleaseShaderCompiler\x00");
-    set_proc_address(&ShaderBinary,              "glShaderBinary\x00");
-    set_proc_address(&GetShaderPrecisionFormat,  "glGetShaderPrecisionFormat\x00");
-    set_proc_address(&DepthRangef,               "glDepthRangef\x00");
-    set_proc_address(&ClearDepthf,               "glClearDepthf\x00");
-    set_proc_address(&GetProgramBinary,          "glGetProgramBinary\x00");
-    set_proc_address(&ProgramBinary,             "glProgramBinary\x00");
-    set_proc_address(&ProgramParameteri,         "glProgramParameteri\x00");
-    set_proc_address(&UseProgramStages,          "glUseProgramStages\x00");
-    set_proc_address(&ActiveShaderProgram,       "glActiveShaderProgram\x00");
-    set_proc_address(&CreateShaderProgramv,      "glCreateShaderProgramv\x00");
-    set_proc_address(&BindProgramPipeline,       "glBindProgramPipeline\x00");
-    set_proc_address(&DeleteProgramPipelines,    "glDeleteProgramPipelines\x00");
-    set_proc_address(&GenProgramPipelines,       "glGenProgramPipelines\x00");
-    set_proc_address(&IsProgramPipeline,         "glIsProgramPipeline\x00");
-    set_proc_address(&GetProgramPipelineiv,      "glGetProgramPipelineiv\x00");
-    set_proc_address(&ProgramUniform1i,          "glProgramUniform1i\x00");
-    set_proc_address(&ProgramUniform1iv,         "glProgramUniform1iv\x00");
-    set_proc_address(&ProgramUniform1f,          "glProgramUniform1f\x00");
-    set_proc_address(&ProgramUniform1fv,         "glProgramUniform1fv\x00");
-    set_proc_address(&ProgramUniform1d,          "glProgramUniform1d\x00");
-    set_proc_address(&ProgramUniform1dv,         "glProgramUniform1dv\x00");
-    set_proc_address(&ProgramUniform1ui,         "glProgramUniform1ui\x00");
-    set_proc_address(&ProgramUniform1uiv,        "glProgramUniform1uiv\x00");
-    set_proc_address(&ProgramUniform2i,          "glProgramUniform2i\x00");
-    set_proc_address(&ProgramUniform2iv,         "glProgramUniform2iv\x00");
-    set_proc_address(&ProgramUniform2f,          "glProgramUniform2f\x00");
-    set_proc_address(&ProgramUniform2fv,         "glProgramUniform2fv\x00");
-    set_proc_address(&ProgramUniform2d,          "glProgramUniform2d\x00");
-    set_proc_address(&ProgramUniform2dv,         "glProgramUniform2dv\x00");
-    set_proc_address(&ProgramUniform2ui,         "glProgramUniform2ui\x00");
-    set_proc_address(&ProgramUniform2uiv,        "glProgramUniform2uiv\x00");
-    set_proc_address(&ProgramUniform3i,          "glProgramUniform3i\x00");
-    set_proc_address(&ProgramUniform3iv,         "glProgramUniform3iv\x00");
-    set_proc_address(&ProgramUniform3f,          "glProgramUniform3f\x00");
-    set_proc_address(&ProgramUniform3fv,         "glProgramUniform3fv\x00");
-    set_proc_address(&ProgramUniform3d,          "glProgramUniform3d\x00");
-    set_proc_address(&ProgramUniform3dv,         "glProgramUniform3dv\x00");
-    set_proc_address(&ProgramUniform3ui,         "glProgramUniform3ui\x00");
-    set_proc_address(&ProgramUniform3uiv,        "glProgramUniform3uiv\x00");
-    set_proc_address(&ProgramUniform4i,          "glProgramUniform4i\x00");
-    set_proc_address(&ProgramUniform4iv,         "glProgramUniform4iv\x00");
-    set_proc_address(&ProgramUniform4f,          "glProgramUniform4f\x00");
-    set_proc_address(&ProgramUniform4fv,         "glProgramUniform4fv\x00");
-    set_proc_address(&ProgramUniform4d,          "glProgramUniform4d\x00");
-    set_proc_address(&ProgramUniform4dv,         "glProgramUniform4dv\x00");
-    set_proc_address(&ProgramUniform4ui,         "glProgramUniform4ui\x00");
-    set_proc_address(&ProgramUniform4uiv,        "glProgramUniform4uiv\x00");
-    set_proc_address(&ProgramUniformMatrix2fv,   "glProgramUniformMatrix2fv\x00");
-    set_proc_address(&ProgramUniformMatrix3fv,   "glProgramUniformMatrix3fv\x00");
-    set_proc_address(&ProgramUniformMatrix4fv,   "glProgramUniformMatrix4fv\x00");
-    set_proc_address(&ProgramUniformMatrix2dv,   "glProgramUniformMatrix2dv\x00");
-    set_proc_address(&ProgramUniformMatrix3dv,   "glProgramUniformMatrix3dv\x00");
-    set_proc_address(&ProgramUniformMatrix4dv,   "glProgramUniformMatrix4dv\x00");
-    set_proc_address(&ProgramUniformMatrix2x3fv, "glProgramUniformMatrix2x3fv\x00");
-    set_proc_address(&ProgramUniformMatrix3x2fv, "glProgramUniformMatrix3x2fv\x00");
-    set_proc_address(&ProgramUniformMatrix2x4fv, "glProgramUniformMatrix2x4fv\x00");
-    set_proc_address(&ProgramUniformMatrix4x2fv, "glProgramUniformMatrix4x2fv\x00");
-    set_proc_address(&ProgramUniformMatrix3x4fv, "glProgramUniformMatrix3x4fv\x00");
-    set_proc_address(&ProgramUniformMatrix4x3fv, "glProgramUniformMatrix4x3fv\x00");
-    set_proc_address(&ProgramUniformMatrix2x3dv, "glProgramUniformMatrix2x3dv\x00");
-    set_proc_address(&ProgramUniformMatrix3x2dv, "glProgramUniformMatrix3x2dv\x00");
-    set_proc_address(&ProgramUniformMatrix2x4dv, "glProgramUniformMatrix2x4dv\x00");
-    set_proc_address(&ProgramUniformMatrix4x2dv, "glProgramUniformMatrix4x2dv\x00");
-    set_proc_address(&ProgramUniformMatrix3x4dv, "glProgramUniformMatrix3x4dv\x00");
-    set_proc_address(&ProgramUniformMatrix4x3dv, "glProgramUniformMatrix4x3dv\x00");
-    set_proc_address(&ValidateProgramPipeline,   "glValidateProgramPipeline\x00");
-    set_proc_address(&GetProgramPipelineInfoLog, "glGetProgramPipelineInfoLog\x00");
-    set_proc_address(&VertexAttribL1d,           "glVertexAttribL1d\x00");
-    set_proc_address(&VertexAttribL2d,           "glVertexAttribL2d\x00");
-    set_proc_address(&VertexAttribL3d,           "glVertexAttribL3d\x00");
-    set_proc_address(&VertexAttribL4d,           "glVertexAttribL4d\x00");
-    set_proc_address(&VertexAttribL1dv,          "glVertexAttribL1dv\x00");
-    set_proc_address(&VertexAttribL2dv,          "glVertexAttribL2dv\x00");
-    set_proc_address(&VertexAttribL3dv,          "glVertexAttribL3dv\x00");
-    set_proc_address(&VertexAttribL4dv,          "glVertexAttribL4dv\x00");
-    set_proc_address(&VertexAttribLPointer,      "glVertexAttribLPointer\x00");
-    set_proc_address(&GetVertexAttribLdv,        "glGetVertexAttribLdv\x00");
-    set_proc_address(&ViewportArrayv,            "glViewportArrayv\x00");
-    set_proc_address(&ViewportIndexedf,          "glViewportIndexedf\x00");
-    set_proc_address(&ViewportIndexedfv,         "glViewportIndexedfv\x00");
-    set_proc_address(&ScissorArrayv,             "glScissorArrayv\x00");
-    set_proc_address(&ScissorIndexed,            "glScissorIndexed\x00");
-    set_proc_address(&ScissorIndexedv,           "glScissorIndexedv\x00");
-    set_proc_address(&DepthRangeArrayv,          "glDepthRangeArrayv\x00");
-    set_proc_address(&DepthRangeIndexed,         "glDepthRangeIndexed\x00");
-    set_proc_address(&GetFloati_v,               "glGetFloati_v\x00");
-    set_proc_address(&GetDoublei_v,              "glGetDoublei_v\x00");
+load_4_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&ReleaseShaderCompiler,     "glReleaseShaderCompiler");
+    set_proc_address(&ShaderBinary,              "glShaderBinary");
+    set_proc_address(&GetShaderPrecisionFormat,  "glGetShaderPrecisionFormat");
+    set_proc_address(&DepthRangef,               "glDepthRangef");
+    set_proc_address(&ClearDepthf,               "glClearDepthf");
+    set_proc_address(&GetProgramBinary,          "glGetProgramBinary");
+    set_proc_address(&ProgramBinary,             "glProgramBinary");
+    set_proc_address(&ProgramParameteri,         "glProgramParameteri");
+    set_proc_address(&UseProgramStages,          "glUseProgramStages");
+    set_proc_address(&ActiveShaderProgram,       "glActiveShaderProgram");
+    set_proc_address(&CreateShaderProgramv,      "glCreateShaderProgramv");
+    set_proc_address(&BindProgramPipeline,       "glBindProgramPipeline");
+    set_proc_address(&DeleteProgramPipelines,    "glDeleteProgramPipelines");
+    set_proc_address(&GenProgramPipelines,       "glGenProgramPipelines");
+    set_proc_address(&IsProgramPipeline,         "glIsProgramPipeline");
+    set_proc_address(&GetProgramPipelineiv,      "glGetProgramPipelineiv");
+    set_proc_address(&ProgramUniform1i,          "glProgramUniform1i");
+    set_proc_address(&ProgramUniform1iv,         "glProgramUniform1iv");
+    set_proc_address(&ProgramUniform1f,          "glProgramUniform1f");
+    set_proc_address(&ProgramUniform1fv,         "glProgramUniform1fv");
+    set_proc_address(&ProgramUniform1d,          "glProgramUniform1d");
+    set_proc_address(&ProgramUniform1dv,         "glProgramUniform1dv");
+    set_proc_address(&ProgramUniform1ui,         "glProgramUniform1ui");
+    set_proc_address(&ProgramUniform1uiv,        "glProgramUniform1uiv");
+    set_proc_address(&ProgramUniform2i,          "glProgramUniform2i");
+    set_proc_address(&ProgramUniform2iv,         "glProgramUniform2iv");
+    set_proc_address(&ProgramUniform2f,          "glProgramUniform2f");
+    set_proc_address(&ProgramUniform2fv,         "glProgramUniform2fv");
+    set_proc_address(&ProgramUniform2d,          "glProgramUniform2d");
+    set_proc_address(&ProgramUniform2dv,         "glProgramUniform2dv");
+    set_proc_address(&ProgramUniform2ui,         "glProgramUniform2ui");
+    set_proc_address(&ProgramUniform2uiv,        "glProgramUniform2uiv");
+    set_proc_address(&ProgramUniform3i,          "glProgramUniform3i");
+    set_proc_address(&ProgramUniform3iv,         "glProgramUniform3iv");
+    set_proc_address(&ProgramUniform3f,          "glProgramUniform3f");
+    set_proc_address(&ProgramUniform3fv,         "glProgramUniform3fv");
+    set_proc_address(&ProgramUniform3d,          "glProgramUniform3d");
+    set_proc_address(&ProgramUniform3dv,         "glProgramUniform3dv");
+    set_proc_address(&ProgramUniform3ui,         "glProgramUniform3ui");
+    set_proc_address(&ProgramUniform3uiv,        "glProgramUniform3uiv");
+    set_proc_address(&ProgramUniform4i,          "glProgramUniform4i");
+    set_proc_address(&ProgramUniform4iv,         "glProgramUniform4iv");
+    set_proc_address(&ProgramUniform4f,          "glProgramUniform4f");
+    set_proc_address(&ProgramUniform4fv,         "glProgramUniform4fv");
+    set_proc_address(&ProgramUniform4d,          "glProgramUniform4d");
+    set_proc_address(&ProgramUniform4dv,         "glProgramUniform4dv");
+    set_proc_address(&ProgramUniform4ui,         "glProgramUniform4ui");
+    set_proc_address(&ProgramUniform4uiv,        "glProgramUniform4uiv");
+    set_proc_address(&ProgramUniformMatrix2fv,   "glProgramUniformMatrix2fv");
+    set_proc_address(&ProgramUniformMatrix3fv,   "glProgramUniformMatrix3fv");
+    set_proc_address(&ProgramUniformMatrix4fv,   "glProgramUniformMatrix4fv");
+    set_proc_address(&ProgramUniformMatrix2dv,   "glProgramUniformMatrix2dv");
+    set_proc_address(&ProgramUniformMatrix3dv,   "glProgramUniformMatrix3dv");
+    set_proc_address(&ProgramUniformMatrix4dv,   "glProgramUniformMatrix4dv");
+    set_proc_address(&ProgramUniformMatrix2x3fv, "glProgramUniformMatrix2x3fv");
+    set_proc_address(&ProgramUniformMatrix3x2fv, "glProgramUniformMatrix3x2fv");
+    set_proc_address(&ProgramUniformMatrix2x4fv, "glProgramUniformMatrix2x4fv");
+    set_proc_address(&ProgramUniformMatrix4x2fv, "glProgramUniformMatrix4x2fv");
+    set_proc_address(&ProgramUniformMatrix3x4fv, "glProgramUniformMatrix3x4fv");
+    set_proc_address(&ProgramUniformMatrix4x3fv, "glProgramUniformMatrix4x3fv");
+    set_proc_address(&ProgramUniformMatrix2x3dv, "glProgramUniformMatrix2x3dv");
+    set_proc_address(&ProgramUniformMatrix3x2dv, "glProgramUniformMatrix3x2dv");
+    set_proc_address(&ProgramUniformMatrix2x4dv, "glProgramUniformMatrix2x4dv");
+    set_proc_address(&ProgramUniformMatrix4x2dv, "glProgramUniformMatrix4x2dv");
+    set_proc_address(&ProgramUniformMatrix3x4dv, "glProgramUniformMatrix3x4dv");
+    set_proc_address(&ProgramUniformMatrix4x3dv, "glProgramUniformMatrix4x3dv");
+    set_proc_address(&ValidateProgramPipeline,   "glValidateProgramPipeline");
+    set_proc_address(&GetProgramPipelineInfoLog, "glGetProgramPipelineInfoLog");
+    set_proc_address(&VertexAttribL1d,           "glVertexAttribL1d");
+    set_proc_address(&VertexAttribL2d,           "glVertexAttribL2d");
+    set_proc_address(&VertexAttribL3d,           "glVertexAttribL3d");
+    set_proc_address(&VertexAttribL4d,           "glVertexAttribL4d");
+    set_proc_address(&VertexAttribL1dv,          "glVertexAttribL1dv");
+    set_proc_address(&VertexAttribL2dv,          "glVertexAttribL2dv");
+    set_proc_address(&VertexAttribL3dv,          "glVertexAttribL3dv");
+    set_proc_address(&VertexAttribL4dv,          "glVertexAttribL4dv");
+    set_proc_address(&VertexAttribLPointer,      "glVertexAttribLPointer");
+    set_proc_address(&GetVertexAttribLdv,        "glGetVertexAttribLdv");
+    set_proc_address(&ViewportArrayv,            "glViewportArrayv");
+    set_proc_address(&ViewportIndexedf,          "glViewportIndexedf");
+    set_proc_address(&ViewportIndexedfv,         "glViewportIndexedfv");
+    set_proc_address(&ScissorArrayv,             "glScissorArrayv");
+    set_proc_address(&ScissorIndexed,            "glScissorIndexed");
+    set_proc_address(&ScissorIndexedv,           "glScissorIndexedv");
+    set_proc_address(&DepthRangeArrayv,          "glDepthRangeArrayv");
+    set_proc_address(&DepthRangeIndexed,         "glDepthRangeIndexed");
+    set_proc_address(&GetFloati_v,               "glGetFloati_v");
+    set_proc_address(&GetDoublei_v,              "glGetDoublei_v");
 }
 
 
@@ -1177,19 +1179,19 @@ TexStorage3D:                                proc "c" (target: u32, levels: i32,
 DrawTransformFeedbackInstanced:              proc "c" (mode: u32, id: u32, instancecount: i32);
 DrawTransformFeedbackStreamInstanced:        proc "c" (mode: u32, id: u32, stream: u32, instancecount: i32);
 
-load_4_2 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance\x00");
-    set_proc_address(&DrawElementsInstancedBaseInstance,           "glDrawElementsInstancedBaseInstance\x00");
-    set_proc_address(&DrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance\x00");
-    set_proc_address(&GetInternalformativ,                         "glGetInternalformativ\x00");
-    set_proc_address(&GetActiveAtomicCounterBufferiv,              "glGetActiveAtomicCounterBufferiv\x00");
-    set_proc_address(&BindImageTexture,                            "glBindImageTexture\x00");
-    set_proc_address(&MemoryBarrier,                               "glMemoryBarrier\x00");
-    set_proc_address(&TexStorage1D,                                "glTexStorage1D\x00");
-    set_proc_address(&TexStorage2D,                                "glTexStorage2D\x00");
-    set_proc_address(&TexStorage3D,                                "glTexStorage3D\x00");
-    set_proc_address(&DrawTransformFeedbackInstanced,              "glDrawTransformFeedbackInstanced\x00");
-    set_proc_address(&DrawTransformFeedbackStreamInstanced,        "glDrawTransformFeedbackStreamInstanced\x00");
+load_4_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance");
+    set_proc_address(&DrawElementsInstancedBaseInstance,           "glDrawElementsInstancedBaseInstance");
+    set_proc_address(&DrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance");
+    set_proc_address(&GetInternalformativ,                         "glGetInternalformativ");
+    set_proc_address(&GetActiveAtomicCounterBufferiv,              "glGetActiveAtomicCounterBufferiv");
+    set_proc_address(&BindImageTexture,                            "glBindImageTexture");
+    set_proc_address(&MemoryBarrier,                               "glMemoryBarrier");
+    set_proc_address(&TexStorage1D,                                "glTexStorage1D");
+    set_proc_address(&TexStorage2D,                                "glTexStorage2D");
+    set_proc_address(&TexStorage3D,                                "glTexStorage3D");
+    set_proc_address(&DrawTransformFeedbackInstanced,              "glDrawTransformFeedbackInstanced");
+    set_proc_address(&DrawTransformFeedbackStreamInstanced,        "glDrawTransformFeedbackStreamInstanced");
 }
 
 // VERSION_4_3
@@ -1237,50 +1239,50 @@ GetObjectLabel:                  proc "c" (identifier: u32, name: u32, bufSize: 
 ObjectPtrLabel:                  proc "c" (ptr: rawptr, length: i32, label: ^u8);
 GetObjectPtrLabel:               proc "c" (ptr: rawptr, bufSize: i32, length: ^i32, label: ^u8);
 
-load_4_3 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&ClearBufferData,                 "glClearBufferData\x00");
-    set_proc_address(&ClearBufferSubData,              "glClearBufferSubData\x00");
-    set_proc_address(&DispatchCompute,                 "glDispatchCompute\x00");
-    set_proc_address(&DispatchComputeIndirect,         "glDispatchComputeIndirect\x00");
-    set_proc_address(&CopyImageSubData,                "glCopyImageSubData\x00");
-    set_proc_address(&FramebufferParameteri,           "glFramebufferParameteri\x00");
-    set_proc_address(&GetFramebufferParameteriv,       "glGetFramebufferParameteriv\x00");
-    set_proc_address(&GetInternalformati64v,           "glGetInternalformati64v\x00");
-    set_proc_address(&InvalidateTexSubImage,           "glInvalidateTexSubImage\x00");
-    set_proc_address(&InvalidateTexImage,              "glInvalidateTexImage\x00");
-    set_proc_address(&InvalidateBufferSubData,         "glInvalidateBufferSubData\x00");
-    set_proc_address(&InvalidateBufferData,            "glInvalidateBufferData\x00");
-    set_proc_address(&InvalidateFramebuffer,           "glInvalidateFramebuffer\x00");
-    set_proc_address(&InvalidateSubFramebuffer,        "glInvalidateSubFramebuffer\x00");
-    set_proc_address(&MultiDrawArraysIndirect,         "glMultiDrawArraysIndirect\x00");
-    set_proc_address(&MultiDrawElementsIndirect,       "glMultiDrawElementsIndirect\x00");
-    set_proc_address(&GetProgramInterfaceiv,           "glGetProgramInterfaceiv\x00");
-    set_proc_address(&GetProgramResourceIndex,         "glGetProgramResourceIndex\x00");
-    set_proc_address(&GetProgramResourceName,          "glGetProgramResourceName\x00");
-    set_proc_address(&GetProgramResourceiv,            "glGetProgramResourceiv\x00");
-    set_proc_address(&GetProgramResourceLocation,      "glGetProgramResourceLocation\x00");
-    set_proc_address(&GetProgramResourceLocationIndex, "glGetProgramResourceLocationIndex\x00");
-    set_proc_address(&ShaderStorageBlockBinding,       "glShaderStorageBlockBinding\x00");
-    set_proc_address(&TexBufferRange,                  "glTexBufferRange\x00");
-    set_proc_address(&TexStorage2DMultisample,         "glTexStorage2DMultisample\x00");
-    set_proc_address(&TexStorage3DMultisample,         "glTexStorage3DMultisample\x00");
-    set_proc_address(&TextureView,                     "glTextureView\x00");
-    set_proc_address(&BindVertexBuffer,                "glBindVertexBuffer\x00");
-    set_proc_address(&VertexAttribFormat,              "glVertexAttribFormat\x00");
-    set_proc_address(&VertexAttribIFormat,             "glVertexAttribIFormat\x00");
-    set_proc_address(&VertexAttribLFormat,             "glVertexAttribLFormat\x00");
-    set_proc_address(&VertexAttribBinding,             "glVertexAttribBinding\x00");
-    set_proc_address(&VertexBindingDivisor,            "glVertexBindingDivisor\x00");
-    set_proc_address(&DebugMessageControl,             "glDebugMessageControl\x00");
-    set_proc_address(&DebugMessageInsert,              "glDebugMessageInsert\x00");
-    set_proc_address(&DebugMessageCallback,            "glDebugMessageCallback\x00");
-    set_proc_address(&GetDebugMessageLog,              "glGetDebugMessageLog\x00");
-    set_proc_address(&PushDebugGroup,                  "glPushDebugGroup\x00");
-    set_proc_address(&PopDebugGroup,                   "glPopDebugGroup\x00");
-    set_proc_address(&ObjectLabel,                     "glObjectLabel\x00");
-    set_proc_address(&GetObjectLabel,                  "glGetObjectLabel\x00");
-    set_proc_address(&ObjectPtrLabel,                  "glObjectPtrLabel\x00");
-    set_proc_address(&GetObjectPtrLabel,               "glGetObjectPtrLabel\x00");
+load_4_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&ClearBufferData,                 "glClearBufferData");
+    set_proc_address(&ClearBufferSubData,              "glClearBufferSubData");
+    set_proc_address(&DispatchCompute,                 "glDispatchCompute");
+    set_proc_address(&DispatchComputeIndirect,         "glDispatchComputeIndirect");
+    set_proc_address(&CopyImageSubData,                "glCopyImageSubData");
+    set_proc_address(&FramebufferParameteri,           "glFramebufferParameteri");
+    set_proc_address(&GetFramebufferParameteriv,       "glGetFramebufferParameteriv");
+    set_proc_address(&GetInternalformati64v,           "glGetInternalformati64v");
+    set_proc_address(&InvalidateTexSubImage,           "glInvalidateTexSubImage");
+    set_proc_address(&InvalidateTexImage,              "glInvalidateTexImage");
+    set_proc_address(&InvalidateBufferSubData,         "glInvalidateBufferSubData");
+    set_proc_address(&InvalidateBufferData,            "glInvalidateBufferData");
+    set_proc_address(&InvalidateFramebuffer,           "glInvalidateFramebuffer");
+    set_proc_address(&InvalidateSubFramebuffer,        "glInvalidateSubFramebuffer");
+    set_proc_address(&MultiDrawArraysIndirect,         "glMultiDrawArraysIndirect");
+    set_proc_address(&MultiDrawElementsIndirect,       "glMultiDrawElementsIndirect");
+    set_proc_address(&GetProgramInterfaceiv,           "glGetProgramInterfaceiv");
+    set_proc_address(&GetProgramResourceIndex,         "glGetProgramResourceIndex");
+    set_proc_address(&GetProgramResourceName,          "glGetProgramResourceName");
+    set_proc_address(&GetProgramResourceiv,            "glGetProgramResourceiv");
+    set_proc_address(&GetProgramResourceLocation,      "glGetProgramResourceLocation");
+    set_proc_address(&GetProgramResourceLocationIndex, "glGetProgramResourceLocationIndex");
+    set_proc_address(&ShaderStorageBlockBinding,       "glShaderStorageBlockBinding");
+    set_proc_address(&TexBufferRange,                  "glTexBufferRange");
+    set_proc_address(&TexStorage2DMultisample,         "glTexStorage2DMultisample");
+    set_proc_address(&TexStorage3DMultisample,         "glTexStorage3DMultisample");
+    set_proc_address(&TextureView,                     "glTextureView");
+    set_proc_address(&BindVertexBuffer,                "glBindVertexBuffer");
+    set_proc_address(&VertexAttribFormat,              "glVertexAttribFormat");
+    set_proc_address(&VertexAttribIFormat,             "glVertexAttribIFormat");
+    set_proc_address(&VertexAttribLFormat,             "glVertexAttribLFormat");
+    set_proc_address(&VertexAttribBinding,             "glVertexAttribBinding");
+    set_proc_address(&VertexBindingDivisor,            "glVertexBindingDivisor");
+    set_proc_address(&DebugMessageControl,             "glDebugMessageControl");
+    set_proc_address(&DebugMessageInsert,              "glDebugMessageInsert");
+    set_proc_address(&DebugMessageCallback,            "glDebugMessageCallback");
+    set_proc_address(&GetDebugMessageLog,              "glGetDebugMessageLog");
+    set_proc_address(&PushDebugGroup,                  "glPushDebugGroup");
+    set_proc_address(&PopDebugGroup,                   "glPopDebugGroup");
+    set_proc_address(&ObjectLabel,                     "glObjectLabel");
+    set_proc_address(&GetObjectLabel,                  "glGetObjectLabel");
+    set_proc_address(&ObjectPtrLabel,                  "glObjectPtrLabel");
+    set_proc_address(&GetObjectPtrLabel,               "glGetObjectPtrLabel");
 }
 
 // VERSION_4_4
@@ -1294,16 +1296,16 @@ BindSamplers:      proc "c" (first: u32, count: i32, samplers: ^u32);
 BindImageTextures: proc "c" (first: u32, count: i32, textures: ^u32);
 BindVertexBuffers: proc "c" (first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32);
 
-load_4_4 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&BufferStorage,     "glBufferStorage\x00");
-    set_proc_address(&ClearTexImage,     "glClearTexImage\x00");
-    set_proc_address(&ClearTexSubImage,  "glClearTexSubImage\x00");
-    set_proc_address(&BindBuffersBase,   "glBindBuffersBase\x00");
-    set_proc_address(&BindBuffersRange,  "glBindBuffersRange\x00");
-    set_proc_address(&BindTextures,      "glBindTextures\x00");
-    set_proc_address(&BindSamplers,      "glBindSamplers\x00");
-    set_proc_address(&BindImageTextures, "glBindImageTextures\x00");
-    set_proc_address(&BindVertexBuffers, "glBindVertexBuffers\x00");
+load_4_4 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&BufferStorage,     "glBufferStorage");
+    set_proc_address(&ClearTexImage,     "glClearTexImage");
+    set_proc_address(&ClearTexSubImage,  "glClearTexSubImage");
+    set_proc_address(&BindBuffersBase,   "glBindBuffersBase");
+    set_proc_address(&BindBuffersRange,  "glBindBuffersRange");
+    set_proc_address(&BindTextures,      "glBindTextures");
+    set_proc_address(&BindSamplers,      "glBindSamplers");
+    set_proc_address(&BindImageTextures, "glBindImageTextures");
+    set_proc_address(&BindVertexBuffers, "glBindVertexBuffers");
 }
 
 // VERSION_4_5
@@ -1430,129 +1432,129 @@ GetnHistogram:                            proc "c" (target: u32, reset: u8, form
 GetnMinmax:                               proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
 TextureBarrier:                           proc "c" ();
 
-load_4_5 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&ClipControl,                              "glClipControl\x00");
-    set_proc_address(&CreateTransformFeedbacks,                 "glCreateTransformFeedbacks\x00");
-    set_proc_address(&TransformFeedbackBufferBase,              "glTransformFeedbackBufferBase\x00");
-    set_proc_address(&TransformFeedbackBufferRange,             "glTransformFeedbackBufferRange\x00");
-    set_proc_address(&GetTransformFeedbackiv,                   "glGetTransformFeedbackiv\x00");
-    set_proc_address(&GetTransformFeedbacki_v,                  "glGetTransformFeedbacki_v\x00");
-    set_proc_address(&GetTransformFeedbacki64_v,                "glGetTransformFeedbacki64_v\x00");
-    set_proc_address(&CreateBuffers,                            "glCreateBuffers\x00");
-    set_proc_address(&NamedBufferStorage,                       "glNamedBufferStorage\x00");
-    set_proc_address(&NamedBufferData,                          "glNamedBufferData\x00");
-    set_proc_address(&NamedBufferSubData,                       "glNamedBufferSubData\x00");
-    set_proc_address(&CopyNamedBufferSubData,                   "glCopyNamedBufferSubData\x00");
-    set_proc_address(&ClearNamedBufferData,                     "glClearNamedBufferData\x00");
-    set_proc_address(&ClearNamedBufferSubData,                  "glClearNamedBufferSubData\x00");
-    set_proc_address(&MapNamedBuffer,                           "glMapNamedBuffer\x00");
-    set_proc_address(&MapNamedBufferRange,                      "glMapNamedBufferRange\x00");
-    set_proc_address(&UnmapNamedBuffer,                         "glUnmapNamedBuffer\x00");
-    set_proc_address(&FlushMappedNamedBufferRange,              "glFlushMappedNamedBufferRange\x00");
-    set_proc_address(&GetNamedBufferParameteriv,                "glGetNamedBufferParameteriv\x00");
-    set_proc_address(&GetNamedBufferParameteri64v,              "glGetNamedBufferParameteri64v\x00");
-    set_proc_address(&GetNamedBufferPointerv,                   "glGetNamedBufferPointerv\x00");
-    set_proc_address(&GetNamedBufferSubData,                    "glGetNamedBufferSubData\x00");
-    set_proc_address(&CreateFramebuffers,                       "glCreateFramebuffers\x00");
-    set_proc_address(&NamedFramebufferRenderbuffer,             "glNamedFramebufferRenderbuffer\x00");
-    set_proc_address(&NamedFramebufferParameteri,               "glNamedFramebufferParameteri\x00");
-    set_proc_address(&NamedFramebufferTexture,                  "glNamedFramebufferTexture\x00");
-    set_proc_address(&NamedFramebufferTextureLayer,             "glNamedFramebufferTextureLayer\x00");
-    set_proc_address(&NamedFramebufferDrawBuffer,               "glNamedFramebufferDrawBuffer\x00");
-    set_proc_address(&NamedFramebufferDrawBuffers,              "glNamedFramebufferDrawBuffers\x00");
-    set_proc_address(&NamedFramebufferReadBuffer,               "glNamedFramebufferReadBuffer\x00");
-    set_proc_address(&InvalidateNamedFramebufferData,           "glInvalidateNamedFramebufferData\x00");
-    set_proc_address(&InvalidateNamedFramebufferSubData,        "glInvalidateNamedFramebufferSubData\x00");
-    set_proc_address(&ClearNamedFramebufferiv,                  "glClearNamedFramebufferiv\x00");
-    set_proc_address(&ClearNamedFramebufferuiv,                 "glClearNamedFramebufferuiv\x00");
-    set_proc_address(&ClearNamedFramebufferfv,                  "glClearNamedFramebufferfv\x00");
-    set_proc_address(&ClearNamedFramebufferfi,                  "glClearNamedFramebufferfi\x00");
-    set_proc_address(&BlitNamedFramebuffer,                     "glBlitNamedFramebuffer\x00");
-    set_proc_address(&CheckNamedFramebufferStatus,              "glCheckNamedFramebufferStatus\x00");
-    set_proc_address(&GetNamedFramebufferParameteriv,           "glGetNamedFramebufferParameteriv\x00");
-    set_proc_address(&GetNamedFramebufferAttachmentParameteriv, "glGetNamedFramebufferAttachmentParameteriv\x00");
-    set_proc_address(&CreateRenderbuffers,                      "glCreateRenderbuffers\x00");
-    set_proc_address(&NamedRenderbufferStorage,                 "glNamedRenderbufferStorage\x00");
-    set_proc_address(&NamedRenderbufferStorageMultisample,      "glNamedRenderbufferStorageMultisample\x00");
-    set_proc_address(&GetNamedRenderbufferParameteriv,          "glGetNamedRenderbufferParameteriv\x00");
-    set_proc_address(&CreateTextures,                           "glCreateTextures\x00");
-    set_proc_address(&TextureBuffer,                            "glTextureBuffer\x00");
-    set_proc_address(&TextureBufferRange,                       "glTextureBufferRange\x00");
-    set_proc_address(&TextureStorage1D,                         "glTextureStorage1D\x00");
-    set_proc_address(&TextureStorage2D,                         "glTextureStorage2D\x00");
-    set_proc_address(&TextureStorage3D,                         "glTextureStorage3D\x00");
-    set_proc_address(&TextureStorage2DMultisample,              "glTextureStorage2DMultisample\x00");
-    set_proc_address(&TextureStorage3DMultisample,              "glTextureStorage3DMultisample\x00");
-    set_proc_address(&TextureSubImage1D,                        "glTextureSubImage1D\x00");
-    set_proc_address(&TextureSubImage2D,                        "glTextureSubImage2D\x00");
-    set_proc_address(&TextureSubImage3D,                        "glTextureSubImage3D\x00");
-    set_proc_address(&CompressedTextureSubImage1D,              "glCompressedTextureSubImage1D\x00");
-    set_proc_address(&CompressedTextureSubImage2D,              "glCompressedTextureSubImage2D\x00");
-    set_proc_address(&CompressedTextureSubImage3D,              "glCompressedTextureSubImage3D\x00");
-    set_proc_address(&CopyTextureSubImage1D,                    "glCopyTextureSubImage1D\x00");
-    set_proc_address(&CopyTextureSubImage2D,                    "glCopyTextureSubImage2D\x00");
-    set_proc_address(&CopyTextureSubImage3D,                    "glCopyTextureSubImage3D\x00");
-    set_proc_address(&TextureParameterf,                        "glTextureParameterf\x00");
-    set_proc_address(&TextureParameterfv,                       "glTextureParameterfv\x00");
-    set_proc_address(&TextureParameteri,                        "glTextureParameteri\x00");
-    set_proc_address(&TextureParameterIiv,                      "glTextureParameterIiv\x00");
-    set_proc_address(&TextureParameterIuiv,                     "glTextureParameterIuiv\x00");
-    set_proc_address(&TextureParameteriv,                       "glTextureParameteriv\x00");
-    set_proc_address(&GenerateTextureMipmap,                    "glGenerateTextureMipmap\x00");
-    set_proc_address(&BindTextureUnit,                          "glBindTextureUnit\x00");
-    set_proc_address(&GetTextureImage,                          "glGetTextureImage\x00");
-    set_proc_address(&GetCompressedTextureImage,                "glGetCompressedTextureImage\x00");
-    set_proc_address(&GetTextureLevelParameterfv,               "glGetTextureLevelParameterfv\x00");
-    set_proc_address(&GetTextureLevelParameteriv,               "glGetTextureLevelParameteriv\x00");
-    set_proc_address(&GetTextureParameterfv,                    "glGetTextureParameterfv\x00");
-    set_proc_address(&GetTextureParameterIiv,                   "glGetTextureParameterIiv\x00");
-    set_proc_address(&GetTextureParameterIuiv,                  "glGetTextureParameterIuiv\x00");
-    set_proc_address(&GetTextureParameteriv,                    "glGetTextureParameteriv\x00");
-    set_proc_address(&CreateVertexArrays,                       "glCreateVertexArrays\x00");
-    set_proc_address(&DisableVertexArrayAttrib,                 "glDisableVertexArrayAttrib\x00");
-    set_proc_address(&EnableVertexArrayAttrib,                  "glEnableVertexArrayAttrib\x00");
-    set_proc_address(&VertexArrayElementBuffer,                 "glVertexArrayElementBuffer\x00");
-    set_proc_address(&VertexArrayVertexBuffer,                  "glVertexArrayVertexBuffer\x00");
-    set_proc_address(&VertexArrayVertexBuffers,                 "glVertexArrayVertexBuffers\x00");
-    set_proc_address(&VertexArrayAttribBinding,                 "glVertexArrayAttribBinding\x00");
-    set_proc_address(&VertexArrayAttribFormat,                  "glVertexArrayAttribFormat\x00");
-    set_proc_address(&VertexArrayAttribIFormat,                 "glVertexArrayAttribIFormat\x00");
-    set_proc_address(&VertexArrayAttribLFormat,                 "glVertexArrayAttribLFormat\x00");
-    set_proc_address(&VertexArrayBindingDivisor,                "glVertexArrayBindingDivisor\x00");
-    set_proc_address(&GetVertexArrayiv,                         "glGetVertexArrayiv\x00");
-    set_proc_address(&GetVertexArrayIndexediv,                  "glGetVertexArrayIndexediv\x00");
-    set_proc_address(&GetVertexArrayIndexed64iv,                "glGetVertexArrayIndexed64iv\x00");
-    set_proc_address(&CreateSamplers,                           "glCreateSamplers\x00");
-    set_proc_address(&CreateProgramPipelines,                   "glCreateProgramPipelines\x00");
-    set_proc_address(&CreateQueries,                            "glCreateQueries\x00");
-    set_proc_address(&GetQueryBufferObjecti64v,                 "glGetQueryBufferObjecti64v\x00");
-    set_proc_address(&GetQueryBufferObjectiv,                   "glGetQueryBufferObjectiv\x00");
-    set_proc_address(&GetQueryBufferObjectui64v,                "glGetQueryBufferObjectui64v\x00");
-    set_proc_address(&GetQueryBufferObjectuiv,                  "glGetQueryBufferObjectuiv\x00");
-    set_proc_address(&MemoryBarrierByRegion,                    "glMemoryBarrierByRegion\x00");
-    set_proc_address(&GetTextureSubImage,                       "glGetTextureSubImage\x00");
-    set_proc_address(&GetCompressedTextureSubImage,             "glGetCompressedTextureSubImage\x00");
-    set_proc_address(&GetGraphicsResetStatus,                   "glGetGraphicsResetStatus\x00");
-    set_proc_address(&GetnCompressedTexImage,                   "glGetnCompressedTexImage\x00");
-    set_proc_address(&GetnTexImage,                             "glGetnTexImage\x00");
-    set_proc_address(&GetnUniformdv,                            "glGetnUniformdv\x00");
-    set_proc_address(&GetnUniformfv,                            "glGetnUniformfv\x00");
-    set_proc_address(&GetnUniformiv,                            "glGetnUniformiv\x00");
-    set_proc_address(&GetnUniformuiv,                           "glGetnUniformuiv\x00");
-    set_proc_address(&ReadnPixels,                              "glReadnPixels\x00");
-    set_proc_address(&GetnMapdv,                                "glGetnMapdv\x00");
-    set_proc_address(&GetnMapfv,                                "glGetnMapfv\x00");
-    set_proc_address(&GetnMapiv,                                "glGetnMapiv\x00");
-    set_proc_address(&GetnPixelMapfv,                           "glGetnPixelMapfv\x00");
-    set_proc_address(&GetnPixelMapuiv,                          "glGetnPixelMapuiv\x00");
-    set_proc_address(&GetnPixelMapusv,                          "glGetnPixelMapusv\x00");
-    set_proc_address(&GetnPolygonStipple,                       "glGetnPolygonStipple\x00");
-    set_proc_address(&GetnColorTable,                           "glGetnColorTable\x00");
-    set_proc_address(&GetnConvolutionFilter,                    "glGetnConvolutionFilter\x00");
-    set_proc_address(&GetnSeparableFilter,                      "glGetnSeparableFilter\x00");
-    set_proc_address(&GetnHistogram,                            "glGetnHistogram\x00");
-    set_proc_address(&GetnMinmax,                               "glGetnMinmax\x00");
-    set_proc_address(&TextureBarrier,                           "glTextureBarrier\x00");
+load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&ClipControl,                              "glClipControl");
+    set_proc_address(&CreateTransformFeedbacks,                 "glCreateTransformFeedbacks");
+    set_proc_address(&TransformFeedbackBufferBase,              "glTransformFeedbackBufferBase");
+    set_proc_address(&TransformFeedbackBufferRange,             "glTransformFeedbackBufferRange");
+    set_proc_address(&GetTransformFeedbackiv,                   "glGetTransformFeedbackiv");
+    set_proc_address(&GetTransformFeedbacki_v,                  "glGetTransformFeedbacki_v");
+    set_proc_address(&GetTransformFeedbacki64_v,                "glGetTransformFeedbacki64_v");
+    set_proc_address(&CreateBuffers,                            "glCreateBuffers");
+    set_proc_address(&NamedBufferStorage,                       "glNamedBufferStorage");
+    set_proc_address(&NamedBufferData,                          "glNamedBufferData");
+    set_proc_address(&NamedBufferSubData,                       "glNamedBufferSubData");
+    set_proc_address(&CopyNamedBufferSubData,                   "glCopyNamedBufferSubData");
+    set_proc_address(&ClearNamedBufferData,                     "glClearNamedBufferData");
+    set_proc_address(&ClearNamedBufferSubData,                  "glClearNamedBufferSubData");
+    set_proc_address(&MapNamedBuffer,                           "glMapNamedBuffer");
+    set_proc_address(&MapNamedBufferRange,                      "glMapNamedBufferRange");
+    set_proc_address(&UnmapNamedBuffer,                         "glUnmapNamedBuffer");
+    set_proc_address(&FlushMappedNamedBufferRange,              "glFlushMappedNamedBufferRange");
+    set_proc_address(&GetNamedBufferParameteriv,                "glGetNamedBufferParameteriv");
+    set_proc_address(&GetNamedBufferParameteri64v,              "glGetNamedBufferParameteri64v");
+    set_proc_address(&GetNamedBufferPointerv,                   "glGetNamedBufferPointerv");
+    set_proc_address(&GetNamedBufferSubData,                    "glGetNamedBufferSubData");
+    set_proc_address(&CreateFramebuffers,                       "glCreateFramebuffers");
+    set_proc_address(&NamedFramebufferRenderbuffer,             "glNamedFramebufferRenderbuffer");
+    set_proc_address(&NamedFramebufferParameteri,               "glNamedFramebufferParameteri");
+    set_proc_address(&NamedFramebufferTexture,                  "glNamedFramebufferTexture");
+    set_proc_address(&NamedFramebufferTextureLayer,             "glNamedFramebufferTextureLayer");
+    set_proc_address(&NamedFramebufferDrawBuffer,               "glNamedFramebufferDrawBuffer");
+    set_proc_address(&NamedFramebufferDrawBuffers,              "glNamedFramebufferDrawBuffers");
+    set_proc_address(&NamedFramebufferReadBuffer,               "glNamedFramebufferReadBuffer");
+    set_proc_address(&InvalidateNamedFramebufferData,           "glInvalidateNamedFramebufferData");
+    set_proc_address(&InvalidateNamedFramebufferSubData,        "glInvalidateNamedFramebufferSubData");
+    set_proc_address(&ClearNamedFramebufferiv,                  "glClearNamedFramebufferiv");
+    set_proc_address(&ClearNamedFramebufferuiv,                 "glClearNamedFramebufferuiv");
+    set_proc_address(&ClearNamedFramebufferfv,                  "glClearNamedFramebufferfv");
+    set_proc_address(&ClearNamedFramebufferfi,                  "glClearNamedFramebufferfi");
+    set_proc_address(&BlitNamedFramebuffer,                     "glBlitNamedFramebuffer");
+    set_proc_address(&CheckNamedFramebufferStatus,              "glCheckNamedFramebufferStatus");
+    set_proc_address(&GetNamedFramebufferParameteriv,           "glGetNamedFramebufferParameteriv");
+    set_proc_address(&GetNamedFramebufferAttachmentParameteriv, "glGetNamedFramebufferAttachmentParameteriv");
+    set_proc_address(&CreateRenderbuffers,                      "glCreateRenderbuffers");
+    set_proc_address(&NamedRenderbufferStorage,                 "glNamedRenderbufferStorage");
+    set_proc_address(&NamedRenderbufferStorageMultisample,      "glNamedRenderbufferStorageMultisample");
+    set_proc_address(&GetNamedRenderbufferParameteriv,          "glGetNamedRenderbufferParameteriv");
+    set_proc_address(&CreateTextures,                           "glCreateTextures");
+    set_proc_address(&TextureBuffer,                            "glTextureBuffer");
+    set_proc_address(&TextureBufferRange,                       "glTextureBufferRange");
+    set_proc_address(&TextureStorage1D,                         "glTextureStorage1D");
+    set_proc_address(&TextureStorage2D,                         "glTextureStorage2D");
+    set_proc_address(&TextureStorage3D,                         "glTextureStorage3D");
+    set_proc_address(&TextureStorage2DMultisample,              "glTextureStorage2DMultisample");
+    set_proc_address(&TextureStorage3DMultisample,              "glTextureStorage3DMultisample");
+    set_proc_address(&TextureSubImage1D,                        "glTextureSubImage1D");
+    set_proc_address(&TextureSubImage2D,                        "glTextureSubImage2D");
+    set_proc_address(&TextureSubImage3D,                        "glTextureSubImage3D");
+    set_proc_address(&CompressedTextureSubImage1D,              "glCompressedTextureSubImage1D");
+    set_proc_address(&CompressedTextureSubImage2D,              "glCompressedTextureSubImage2D");
+    set_proc_address(&CompressedTextureSubImage3D,              "glCompressedTextureSubImage3D");
+    set_proc_address(&CopyTextureSubImage1D,                    "glCopyTextureSubImage1D");
+    set_proc_address(&CopyTextureSubImage2D,                    "glCopyTextureSubImage2D");
+    set_proc_address(&CopyTextureSubImage3D,                    "glCopyTextureSubImage3D");
+    set_proc_address(&TextureParameterf,                        "glTextureParameterf");
+    set_proc_address(&TextureParameterfv,                       "glTextureParameterfv");
+    set_proc_address(&TextureParameteri,                        "glTextureParameteri");
+    set_proc_address(&TextureParameterIiv,                      "glTextureParameterIiv");
+    set_proc_address(&TextureParameterIuiv,                     "glTextureParameterIuiv");
+    set_proc_address(&TextureParameteriv,                       "glTextureParameteriv");
+    set_proc_address(&GenerateTextureMipmap,                    "glGenerateTextureMipmap");
+    set_proc_address(&BindTextureUnit,                          "glBindTextureUnit");
+    set_proc_address(&GetTextureImage,                          "glGetTextureImage");
+    set_proc_address(&GetCompressedTextureImage,                "glGetCompressedTextureImage");
+    set_proc_address(&GetTextureLevelParameterfv,               "glGetTextureLevelParameterfv");
+    set_proc_address(&GetTextureLevelParameteriv,               "glGetTextureLevelParameteriv");
+    set_proc_address(&GetTextureParameterfv,                    "glGetTextureParameterfv");
+    set_proc_address(&GetTextureParameterIiv,                   "glGetTextureParameterIiv");
+    set_proc_address(&GetTextureParameterIuiv,                  "glGetTextureParameterIuiv");
+    set_proc_address(&GetTextureParameteriv,                    "glGetTextureParameteriv");
+    set_proc_address(&CreateVertexArrays,                       "glCreateVertexArrays");
+    set_proc_address(&DisableVertexArrayAttrib,                 "glDisableVertexArrayAttrib");
+    set_proc_address(&EnableVertexArrayAttrib,                  "glEnableVertexArrayAttrib");
+    set_proc_address(&VertexArrayElementBuffer,                 "glVertexArrayElementBuffer");
+    set_proc_address(&VertexArrayVertexBuffer,                  "glVertexArrayVertexBuffer");
+    set_proc_address(&VertexArrayVertexBuffers,                 "glVertexArrayVertexBuffers");
+    set_proc_address(&VertexArrayAttribBinding,                 "glVertexArrayAttribBinding");
+    set_proc_address(&VertexArrayAttribFormat,                  "glVertexArrayAttribFormat");
+    set_proc_address(&VertexArrayAttribIFormat,                 "glVertexArrayAttribIFormat");
+    set_proc_address(&VertexArrayAttribLFormat,                 "glVertexArrayAttribLFormat");
+    set_proc_address(&VertexArrayBindingDivisor,                "glVertexArrayBindingDivisor");
+    set_proc_address(&GetVertexArrayiv,                         "glGetVertexArrayiv");
+    set_proc_address(&GetVertexArrayIndexediv,                  "glGetVertexArrayIndexediv");
+    set_proc_address(&GetVertexArrayIndexed64iv,                "glGetVertexArrayIndexed64iv");
+    set_proc_address(&CreateSamplers,                           "glCreateSamplers");
+    set_proc_address(&CreateProgramPipelines,                   "glCreateProgramPipelines");
+    set_proc_address(&CreateQueries,                            "glCreateQueries");
+    set_proc_address(&GetQueryBufferObjecti64v,                 "glGetQueryBufferObjecti64v");
+    set_proc_address(&GetQueryBufferObjectiv,                   "glGetQueryBufferObjectiv");
+    set_proc_address(&GetQueryBufferObjectui64v,                "glGetQueryBufferObjectui64v");
+    set_proc_address(&GetQueryBufferObjectuiv,                  "glGetQueryBufferObjectuiv");
+    set_proc_address(&MemoryBarrierByRegion,                    "glMemoryBarrierByRegion");
+    set_proc_address(&GetTextureSubImage,                       "glGetTextureSubImage");
+    set_proc_address(&GetCompressedTextureSubImage,             "glGetCompressedTextureSubImage");
+    set_proc_address(&GetGraphicsResetStatus,                   "glGetGraphicsResetStatus");
+    set_proc_address(&GetnCompressedTexImage,                   "glGetnCompressedTexImage");
+    set_proc_address(&GetnTexImage,                             "glGetnTexImage");
+    set_proc_address(&GetnUniformdv,                            "glGetnUniformdv");
+    set_proc_address(&GetnUniformfv,                            "glGetnUniformfv");
+    set_proc_address(&GetnUniformiv,                            "glGetnUniformiv");
+    set_proc_address(&GetnUniformuiv,                           "glGetnUniformuiv");
+    set_proc_address(&ReadnPixels,                              "glReadnPixels");
+    set_proc_address(&GetnMapdv,                                "glGetnMapdv");
+    set_proc_address(&GetnMapfv,                                "glGetnMapfv");
+    set_proc_address(&GetnMapiv,                                "glGetnMapiv");
+    set_proc_address(&GetnPixelMapfv,                           "glGetnPixelMapfv");
+    set_proc_address(&GetnPixelMapuiv,                          "glGetnPixelMapuiv");
+    set_proc_address(&GetnPixelMapusv,                          "glGetnPixelMapusv");
+    set_proc_address(&GetnPolygonStipple,                       "glGetnPolygonStipple");
+    set_proc_address(&GetnColorTable,                           "glGetnColorTable");
+    set_proc_address(&GetnConvolutionFilter,                    "glGetnConvolutionFilter");
+    set_proc_address(&GetnSeparableFilter,                      "glGetnSeparableFilter");
+    set_proc_address(&GetnHistogram,                            "glGetnHistogram");
+    set_proc_address(&GetnMinmax,                               "glGetnMinmax");
+    set_proc_address(&TextureBarrier,                           "glTextureBarrier");
 }
 
 
@@ -1563,14 +1565,14 @@ MultiDrawArraysIndirectCount:   proc "c" (mode: i32, indirect: rawptr, drawcount
 MultiDrawElementsIndirectCount: proc "c" (mode: i32, type_: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32);
 PolygonOffsetClamp:             proc "c" (factor, units, clamp: f32);
 
-load_4_6 :: proc(set_proc_address: proc(p: rawptr, name: string)) {
-    set_proc_address(&SpecializeShader,               "glSpecializeShader\x00");
-    set_proc_address(&MultiDrawArraysIndirectCount,   "glMultiDrawArraysIndirectCount\x00");
-    set_proc_address(&MultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount\x00");
-    set_proc_address(&PolygonOffsetClamp,             "glPolygonOffsetClamp\x00");
+load_4_6 :: proc(set_proc_address: Set_Proc_Address_Type) {
+    set_proc_address(&SpecializeShader,               "glSpecializeShader");
+    set_proc_address(&MultiDrawArraysIndirectCount,   "glMultiDrawArraysIndirectCount");
+    set_proc_address(&MultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount");
+    set_proc_address(&PolygonOffsetClamp,             "glPolygonOffsetClamp");
 }
 
-init :: proc(set_proc_address: proc(p: rawptr, name: string)) {
+init :: proc(set_proc_address: Set_Proc_Address_Type) {
     // Placeholder for loading maximum supported version
 }
 
@@ -1679,22 +1681,24 @@ load_shaders :: load_shaders_file;
 
 
 when ODIN_OS == "windows" {
-    update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time) {
+    update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
         current_vertex_time := os.last_write_time_by_name(vertex_name);
         current_fragment_time := os.last_write_time_by_name(fragment_name);
 
+        updated := false;
         if current_vertex_time != last_vertex_time || current_fragment_time != last_fragment_time {
             new_program, success := load_shaders(vertex_name, fragment_name);
             if success {
                 DeleteProgram(program);
                 program = new_program;
                 fmt.println("Updated shaders");
+                updated = true;
             } else {
                 fmt.println("Failed to update shaders");
             }
         }
 
-        return program, current_vertex_time, current_fragment_time;
+        return program, current_vertex_time, current_fragment_time, updated;
     }
 }
 
@@ -1827,17 +1831,27 @@ Uniform_Type :: enum i32 {
 }
 
 Uniform_Info :: struct {
-    location: i32,
+    location: i32 = -1,
     size:     i32,
     kind:     Uniform_Type,
     name:     string, // NOTE: This will need to be freed
 }
 
+Uniforms :: map[string]Uniform_Info;
 
-get_uniforms_from_program :: proc(program: u32) -> (uniforms: map[string]Uniform_Info) {
+destroy_uniforms :: proc(u: Uniforms) {
+    for _, v in u {
+        free(v.name);
+    }
+    free(u);
+}
+
+get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
     uniform_count: i32;
     GetProgramiv(program, ACTIVE_UNIFORMS, &uniform_count);
 
+    if uniform_count > 0 do reserve(&uniforms, int(uniform_count));
+    
     for i in 0..uniform_count {
         using uniform_info: Uniform_Info;
 
