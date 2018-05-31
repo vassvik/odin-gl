@@ -1592,6 +1592,79 @@ Shader_Type :: enum i32 {
     SHADER_LINK            = 0x0000, // @Note: Not an OpenGL constant, but used for error checking.
 }
 
+
+// Shader checking and linking checking are identical
+// except for calling differently named GL functions
+// it's a bit ugly looking, but meh
+check_error :: proc(id: u32, type_: Shader_Type, status: u32,
+                    iv_func: proc "c" (u32, u32, ^i32),
+                    log_func: proc "c" (u32, i32, ^i32, ^u8)) -> bool {
+    result, info_log_length: i32;
+    iv_func(id, status, &result);
+    iv_func(id, INFO_LOG_LENGTH, &info_log_length);
+
+    if result == 0 {
+        error_message := make([]u8, info_log_length);
+        defer free(error_message);
+
+        log_func(id, i32(info_log_length), nil, &error_message[0]);
+        fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0..len(error_message)-1]));
+
+        return true;
+    }
+
+    return false;
+}
+
+// Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
+compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
+    shader_id := CreateShader(cast(u32)shader_type);
+    length := i32(len(shader_data));
+    ShaderSource(shader_id, 1, (^^u8)(&shader_data), &length);
+    CompileShader(shader_id);
+
+    if check_error(shader_id, shader_type, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog) {
+        return 0, false;
+    }
+
+    return shader_id, true;
+}
+
+// only used once, but I'd just make a subprocedure(?) for consistency
+create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
+    program_id := CreateProgram();
+    for id in shader_ids {
+        AttachShader(program_id, id);
+    }
+    LinkProgram(program_id);
+
+    if check_error(program_id, Shader_Type.SHADER_LINK, LINK_STATUS, GetProgramiv, GetProgramInfoLog) {
+        return 0, false;
+    }
+
+    return program_id, true;
+}
+
+load_compute_file :: proc(filename: string) -> (u32, bool) {
+    cs_data, success_cs := os.read_entire_file(filename);
+    if !success_cs do return 0, false;
+    defer free(cs_data);
+
+    // Create the shaders
+    compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), COMPUTE_SHADER);
+
+    if !ok1 {
+        return 0, false;
+    }
+
+    program_id, ok2 := create_and_link_program([]u32{compute_shader_id});
+    if !ok2 {
+        return 0, false;
+    }
+
+    return program_id, true;
+}
+
 load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
     vs_data, success_vs := os.read_entire_file(vs_filename);
     if !success_vs do return 0, false;
@@ -1606,57 +1679,7 @@ load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
 }
 
 load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
-    // Shader checking and linking checking are identical
-    // except for calling differently named GL functions
-    // it's a bit ugly looking, but meh
-    check_error :: proc(id: u32, type_: Shader_Type, status: u32,
-                        iv_func: proc "c" (u32, u32, ^i32),
-                        log_func: proc "c" (u32, i32, ^i32, ^u8)) -> bool {
-        result, info_log_length: i32;
-        iv_func(id, status, &result);
-        iv_func(id, INFO_LOG_LENGTH, &info_log_length);
 
-        if result == 0 {
-            error_message := make([]u8, info_log_length);
-            defer free(error_message);
-
-            log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0..len(error_message)-1]));
-
-            return true;
-        }
-
-        return false;
-    }
-
-    // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
-    compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
-        shader_id := CreateShader(cast(u32)shader_type);
-        length := i32(len(shader_data));
-        ShaderSource(shader_id, 1, (^^u8)(&shader_data), &length);
-        CompileShader(shader_id);
-
-        if check_error(shader_id, shader_type, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog) {
-            return 0, false;
-        }
-
-        return shader_id, true;
-    }
-
-    // only used once, but I'd just make a subprocedure(?) for consistency
-    create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
-        program_id := CreateProgram();
-        for id in shader_ids {
-            AttachShader(program_id, id);
-        }
-        LinkProgram(program_id);
-
-        if check_error(program_id, Shader_Type.SHADER_LINK, LINK_STATUS, GetProgramiv, GetProgramInfoLog) {
-            return 0, false;
-        }
-
-        return program_id, true;
-    }
 
     // actual function from here
     vertex_shader_id, ok1 := compile_shader_from_source(vs_source, Shader_Type.VERTEX_SHADER);
@@ -1831,7 +1854,7 @@ Uniform_Type :: enum i32 {
 }
 
 Uniform_Info :: struct {
-    location: i32 = -1,
+    location: i32,
     size:     i32,
     kind:     Uniform_Type,
     name:     string, // NOTE: This will need to be freed
