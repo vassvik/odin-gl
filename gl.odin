@@ -1,4 +1,4 @@
-export "core:opengl_constants.odin"
+package gl
 
 loaded_up_to: string;
 loaded_up_to_major := 0;
@@ -1579,8 +1579,8 @@ init :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 // Helper for loading shaders into a program
 
-import "core:os.odin";
-import "core:fmt.odin";
+import "core:os";
+import "core:fmt";
 
 Shader_Type :: enum i32 {
     FRAGMENT_SHADER        = 0x8B30,
@@ -1703,7 +1703,7 @@ load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
 load_shaders :: load_shaders_file;
 
 
-when ODIN_OS == "windows" {
+when os.OS == "windows" {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
         current_vertex_time := os.last_write_time_by_name(vertex_name);
         current_fragment_time := os.last_write_time_by_name(fragment_name);
@@ -1726,7 +1726,7 @@ when ODIN_OS == "windows" {
 }
 
 
-import "core:strings.odin"
+import "core:strings"
 
 
 Uniform_Type :: enum i32 {
