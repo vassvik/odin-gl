@@ -1605,7 +1605,7 @@ check_error :: proc(id: u32, type_: Shader_Type, status: u32,
 
     if result == 0 {
         error_message := make([]u8, info_log_length);
-        defer free(error_message);
+        defer delete(error_message);
 
         log_func(id, i32(info_log_length), nil, &error_message[0]);
         fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0..len(error_message)-1]));
@@ -1648,7 +1648,7 @@ create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
 load_compute_file :: proc(filename: string) -> (u32, bool) {
     cs_data, success_cs := os.read_entire_file(filename);
     if !success_cs do return 0, false;
-    defer free(cs_data);
+    defer delete(cs_data);
 
     // Create the shaders
     compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), COMPUTE_SHADER);
@@ -1668,10 +1668,10 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
 load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
     vs_data, success_vs := os.read_entire_file(vs_filename);
     if !success_vs do return 0, false;
-    defer free(vs_data);
+    defer delete(vs_data);
     fs_data, success_fs := os.read_entire_file(fs_filename);
     if !success_fs do return 0, false;
-    defer free(fs_data);
+    defer delete(fs_data);
 
 
     return load_shaders_source(string(vs_data), string(fs_data));
@@ -1864,9 +1864,9 @@ Uniforms :: map[string]Uniform_Info;
 
 destroy_uniforms :: proc(u: Uniforms) {
     for _, v in u {
-        free(v.name);
+        delete(v.name);
     }
-    free(u);
+    delete(u);
 }
 
 get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
