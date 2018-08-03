@@ -1608,7 +1608,7 @@ check_error :: proc(id: u32, type_: Shader_Type, status: u32,
         defer delete(error_message);
 
         log_func(id, i32(info_log_length), nil, &error_message[0]);
-        fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0..len(error_message)-1]));
+        fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
 
         return true;
     }
@@ -1875,7 +1875,7 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
 
     if uniform_count > 0 do reserve(&uniforms, int(uniform_count));
     
-    for i in 0..uniform_count {
+    for i in 0..uniform_count-1 {
         using uniform_info: Uniform_Info;
 
         length: i32;
@@ -1883,7 +1883,7 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
         GetActiveUniform(program, u32(i), 256, &length, &size, cast(^u32)&kind, &cname[0]);
 
         location = GetUniformLocation(program, &cname[0]);
-        name = strings.new_string(string(cname[..length])); // @NOTE: These need to be freed
+        name = strings.new_string(string(cname[:length])); // @NOTE: These need to be freed
         uniforms[name] = uniform_info;
     }
 
