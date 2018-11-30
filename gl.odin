@@ -1651,7 +1651,7 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
     defer delete(cs_data);
 
     // Create the shaders
-    compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), COMPUTE_SHADER);
+    compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), Shader_Type(COMPUTE_SHADER));
 
     if !ok1 {
         return 0, false;
@@ -1700,7 +1700,7 @@ load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
     return program_id, true;
 }
 
-load_shaders :: load_shaders_file;
+load_shaders :: proc[load_shaders_file];
 
 
 when os.OS == "windows" {
@@ -1892,4 +1892,8 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
 
 get_uniform_location :: proc(program: u32, name: string) -> i32 {
     return GetUniformLocation(program, &name[0]);
+}
+
+get_attribute_location :: proc(program: u32, name: string) -> i32 {
+    return GetAttribLocation(program, &name[0]);
 }
