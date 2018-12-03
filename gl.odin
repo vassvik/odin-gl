@@ -324,13 +324,13 @@ EnableVertexAttribArray:  proc "c" (index: u32);
 GetActiveAttrib:          proc "c" (program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8);
 GetActiveUniform:         proc "c" (program: u32, index: u32, bufSize: i32, length: ^i32, size: ^i32, type_: ^u32, name: ^u8);
 GetAttachedShaders:       proc "c" (program: u32, maxCount: i32, count: ^i32, shaders: ^u32);
-GetAttribLocation:        proc "c" (program: u32, name: ^u8) -> i32;
+GetAttribLocation:        proc "c" (program: u32, name: cstring) -> i32;
 GetProgramiv:             proc "c" (program: u32, pname: u32, params: ^i32);
 GetProgramInfoLog:        proc "c" (program: u32, bufSize: i32, length: ^i32, infoLog: ^u8);
 GetShaderiv:              proc "c" (shader: u32, pname: u32, params: ^i32);
 GetShaderInfoLog:         proc "c" (shader: u32, bufSize: i32, length: ^i32, infoLog: ^u8);
 GetShaderSource:          proc "c" (shader: u32, bufSize: i32, length: ^i32, source: ^u8);
-GetUniformLocation:       proc "c" (program: u32, name: ^u8) -> i32;
+GetUniformLocation:       proc "c" (program: u32, name: cstring) -> i32;
 GetUniformfv:             proc "c" (program: u32, location: i32, params: ^f32);
 GetUniformiv:             proc "c" (program: u32, location: i32, params: ^i32);
 GetVertexAttribdv:        proc "c" (index: u32, pname: u32, params: ^f64);
@@ -1651,7 +1651,7 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
     defer delete(cs_data);
 
     // Create the shaders
-    compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), COMPUTE_SHADER);
+    compute_shader_id, ok1 := compile_shader_from_source(string(cs_data), Shader_Type(COMPUTE_SHADER));
 
     if !ok1 {
         return 0, false;
@@ -1700,7 +1700,7 @@ load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
     return program_id, true;
 }
 
-load_shaders :: load_shaders_file;
+load_shaders :: proc[load_shaders_file];
 
 
 when os.OS == "windows" {
@@ -1882,7 +1882,7 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
         cname: [256]u8;
         GetActiveUniform(program, u32(i), 256, &length, &size, cast(^u32)&kind, &cname[0]);
 
-        location = GetUniformLocation(program, &cname[0]);
+        location = GetUniformLocation(program, cstring(&cname[0]));
         name = strings.new_string(string(cname[:length])); // @NOTE: These need to be freed
         uniforms[name] = uniform_info;
     }
@@ -1891,5 +1891,5 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
 }
 
 get_uniform_location :: proc(program: u32, name: string) -> i32 {
-    return GetUniformLocation(program, &name[0]);
+    return GetUniformLocation(program, cstring(&name[0]));
 }
