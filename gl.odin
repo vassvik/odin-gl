@@ -1890,6 +1890,10 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
     return uniforms;
 }
 
-get_uniform_location :: proc(program: u32, name: string) -> i32 {
-    return GetUniformLocation(program, cstring(&name[0]));
+get_uniform_location :: proc(program: u32, name: cstring) -> i32 {
+    return GetUniformLocation(program, name);
+}
+
+get_attribute_location :: proc(program: u32, name: cstring) -> i32 {
+    return GetAttribLocation(program, name);
 }
