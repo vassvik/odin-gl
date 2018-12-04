@@ -1700,7 +1700,7 @@ load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
     return program_id, true;
 }
 
-load_shaders :: proc[load_shaders_file];
+load_shaders :: proc{load_shaders_file};
 
 
 when os.OS == "windows" {
