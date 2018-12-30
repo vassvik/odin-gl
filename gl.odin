@@ -1705,8 +1705,17 @@ load_shaders :: proc{load_shaders_file};
 
 when os.OS == "windows" {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
-        current_vertex_time := os.last_write_time_by_name(vertex_name);
-        current_fragment_time := os.last_write_time_by_name(fragment_name);
+        current_vertex_time, err1 := os.last_write_time_by_name(vertex_name);
+        if err1 != os.ERROR_NONE {
+            fmt.println("error reading file write time for ", vertex_name);
+            current_vertex_time = last_vertex_time;
+        }
+
+        current_fragment_time, err2 := os.last_write_time_by_name(fragment_name);
+        if err2 != os.ERROR_NONE {
+            fmt.println("error reading file write time for ", fragment_name);
+            current_fragment_time = last_fragment_time;
+        }
 
         updated := false;
         if current_vertex_time != last_vertex_time || current_fragment_time != last_fragment_time {
