@@ -1705,8 +1705,8 @@ load_shaders :: proc{load_shaders_file};
 
 when os.OS == "windows" {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
-        current_vertex_time := os.last_write_time_by_name(vertex_name);
-        current_fragment_time := os.last_write_time_by_name(fragment_name);
+        current_vertex_time, _ := os.last_write_time_by_name(vertex_name);
+        current_fragment_time, _ := os.last_write_time_by_name(fragment_name);
 
         updated := false;
         if current_vertex_time != last_vertex_time || current_fragment_time != last_fragment_time {
@@ -1722,6 +1722,25 @@ when os.OS == "windows" {
         }
 
         return program, current_vertex_time, current_fragment_time, updated;
+    }
+
+    update_shader_if_changed_compute :: proc(compute_name: string, program: u32, last_compute_time: os.File_Time) -> (u32, os.File_Time, bool) {
+        current_compute_time, _ := os.last_write_time_by_name(compute_name);
+
+        updated := false;
+        if current_compute_time != last_compute_time {
+            new_program, success := load_compute_file(compute_name);
+            if success {
+                DeleteProgram(program);
+                program = new_program;
+                fmt.println("Updated shaders");
+                updated = true;
+            } else {
+                fmt.println("Failed to update shaders");
+            }
+        }
+
+        return program, current_compute_time, updated;
     }
 }
 
