@@ -1665,6 +1665,22 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
     return program_id, true;
 }
 
+load_compute_source :: proc(cs_data: string) -> (u32, bool) {
+    // Create the shaders
+    compute_shader_id, ok1 := compile_shader_from_source(cs_data, Shader_Type(COMPUTE_SHADER));
+
+    if !ok1 {
+        return 0, false;
+    }
+
+    program_id, ok2 := create_and_link_program([]u32{compute_shader_id});
+    if !ok2 {
+        return 0, false;
+    }
+
+    return program_id, true;
+}
+
 load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
     vs_data, success_vs := os.read_entire_file(vs_filename);
     if !success_vs do return 0, false;
@@ -1902,7 +1918,7 @@ get_uniforms_from_program :: proc(program: u32) -> (uniforms: Uniforms) {
         GetActiveUniform(program, u32(i), 256, &length, &size, cast(^u32)&kind, &cname[0]);
 
         location = GetUniformLocation(program, cstring(&cname[0]));
-        name = strings.new_string(string(cname[:length])); // @NOTE: These need to be freed
+        name = strings.clone(string(cname[:length])); // @NOTE: These need to be freed
         uniforms[name] = uniform_info;
     }
 
