@@ -262,46 +262,46 @@ load_1_4 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_1_5
-GenQueries:           proc "c" (n: i32, ids: ^u32);
-DeleteQueries:        proc "c" (n: i32, ids: ^u32);
-IsQuery:              proc "c" (id: u32) -> u8;
-BeginQuery:           proc "c" (target: u32, id: u32);
-EndQuery:             proc "c" (target: u32);
-GetQueryiv:           proc "c" (target: u32, pname: u32, params: ^i32);
-GetQueryObjectiv:     proc "c" (id: u32, pname: u32, params: ^i32);
-GetQueryObjectuiv:    proc "c" (id: u32, pname: u32, params: ^u32);
-BindBuffer:           proc "c" (target: u32, buffer: u32);
-DeleteBuffers:        proc "c" (n: i32, buffers: ^u32);
-GenBuffers:           proc "c" (n: i32, buffers: ^u32);
-IsBuffer:             proc "c" (buffer: u32) -> u8;
-BufferData:           proc "c" (target: u32, size: int, data: rawptr, usage: u32);
-BufferSubData:        proc "c" (target: u32, offset: int, size: int, data: rawptr);
-GetBufferSubData:     proc "c" (target: u32, offset: int, size: int, data: rawptr);
-MapBuffer:            proc "c" (target: u32, access: u32) -> rawptr;
-UnmapBuffer:          proc "c" (target: u32) -> u8;
-GetBufferParameteriv: proc "c" (target: u32, pname: u32, params: ^i32);
-GetBufferPointerv:    proc "c" (target: u32, pname: u32, params: ^rawptr);
+impl_GenQueries:           proc "c" (n: i32, ids: ^u32);
+impl_DeleteQueries:        proc "c" (n: i32, ids: ^u32);
+impl_IsQuery:              proc "c" (id: u32) -> u8;
+impl_BeginQuery:           proc "c" (target: u32, id: u32);
+impl_EndQuery:             proc "c" (target: u32);
+impl_GetQueryiv:           proc "c" (target: u32, pname: u32, params: ^i32);
+impl_GetQueryObjectiv:     proc "c" (id: u32, pname: u32, params: ^i32);
+impl_GetQueryObjectuiv:    proc "c" (id: u32, pname: u32, params: ^u32);
+impl_BindBuffer:           proc "c" (target: u32, buffer: u32);
+impl_DeleteBuffers:        proc "c" (n: i32, buffers: ^u32);
+impl_GenBuffers:           proc "c" (n: i32, buffers: ^u32);
+impl_IsBuffer:             proc "c" (buffer: u32) -> u8;
+impl_BufferData:           proc "c" (target: u32, size: int, data: rawptr, usage: u32);
+impl_BufferSubData:        proc "c" (target: u32, offset: int, size: int, data: rawptr);
+impl_GetBufferSubData:     proc "c" (target: u32, offset: int, size: int, data: rawptr);
+impl_MapBuffer:            proc "c" (target: u32, access: u32) -> rawptr;
+impl_UnmapBuffer:          proc "c" (target: u32) -> u8;
+impl_GetBufferParameteriv: proc "c" (target: u32, pname: u32, params: ^i32);
+impl_GetBufferPointerv:    proc "c" (target: u32, pname: u32, params: ^rawptr);
 
 load_1_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&GenQueries,           "glGenQueries");
-    set_proc_address(&DeleteQueries,        "glDeleteQueries");
-    set_proc_address(&IsQuery,              "glIsQuery");
-    set_proc_address(&BeginQuery,           "glBeginQuery");
-    set_proc_address(&EndQuery,             "glEndQuery");
-    set_proc_address(&GetQueryiv,           "glGetQueryiv");
-    set_proc_address(&GetQueryObjectiv,     "glGetQueryObjectiv");
-    set_proc_address(&GetQueryObjectuiv,    "glGetQueryObjectuiv");
-    set_proc_address(&BindBuffer,           "glBindBuffer");
-    set_proc_address(&DeleteBuffers,        "glDeleteBuffers");
-    set_proc_address(&GenBuffers,           "glGenBuffers");
-    set_proc_address(&IsBuffer,             "glIsBuffer");
-    set_proc_address(&BufferData,           "glBufferData");
-    set_proc_address(&BufferSubData,        "glBufferSubData");
-    set_proc_address(&GetBufferSubData,     "glGetBufferSubData");
-    set_proc_address(&MapBuffer,            "glMapBuffer");
-    set_proc_address(&UnmapBuffer,          "glUnmapBuffer");
-    set_proc_address(&GetBufferParameteriv, "glGetBufferParameteriv");
-    set_proc_address(&GetBufferPointerv,    "glGetBufferPointerv");
+    set_proc_address(&impl_GenQueries,           "glGenQueries");
+    set_proc_address(&impl_DeleteQueries,        "glDeleteQueries");
+    set_proc_address(&impl_IsQuery,              "glIsQuery");
+    set_proc_address(&impl_BeginQuery,           "glBeginQuery");
+    set_proc_address(&impl_EndQuery,             "glEndQuery");
+    set_proc_address(&impl_GetQueryiv,           "glGetQueryiv");
+    set_proc_address(&impl_GetQueryObjectiv,     "glGetQueryObjectiv");
+    set_proc_address(&impl_GetQueryObjectuiv,    "glGetQueryObjectuiv");
+    set_proc_address(&impl_BindBuffer,           "glBindBuffer");
+    set_proc_address(&impl_DeleteBuffers,        "glDeleteBuffers");
+    set_proc_address(&impl_GenBuffers,           "glGenBuffers");
+    set_proc_address(&impl_IsBuffer,             "glIsBuffer");
+    set_proc_address(&impl_BufferData,           "glBufferData");
+    set_proc_address(&impl_BufferSubData,        "glBufferSubData");
+    set_proc_address(&impl_GetBufferSubData,     "glGetBufferSubData");
+    set_proc_address(&impl_MapBuffer,            "glMapBuffer");
+    set_proc_address(&impl_UnmapBuffer,          "glUnmapBuffer");
+    set_proc_address(&impl_GetBufferParameteriv, "glGetBufferParameteriv");
+    set_proc_address(&impl_GetBufferPointerv,    "glGetBufferPointerv");
 }
 
 

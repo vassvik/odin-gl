@@ -153,6 +153,27 @@ when ODIN_DEBUG {
     PointParameteriv  :: inline proc "c" (pname: u32, params: ^i32, loc := #caller_location)                                               { impl_PointParameteriv(pname, params);                                       debug_helper(loc, 0, pname, params);                                      }
     BlendColor        :: inline proc "c" (red: f32, green: f32, blue: f32, alpha: f32, loc := #caller_location)                            { impl_BlendColor(red, green, blue, alpha);                                   debug_helper(loc, 0, red, green, blue, alpha);                            }
     BlendEquation     :: inline proc "c" (mode: u32, loc := #caller_location)                                                              { impl_BlendEquation(mode);                                                   debug_helper(loc, 0, mode);                                               }
+
+    // VERSION_1_5
+	GenQueries           :: inline proc "c" (n: i32, ids: ^u32, loc := #caller_location)                                 {        impl_GenQueries(n, ids);                           debug_helper(loc, 0, n, ids);                                 }
+	DeleteQueries        :: inline proc "c" (n: i32, ids: ^u32, loc := #caller_location)                                 {        impl_DeleteQueries(n, ids);                        debug_helper(loc, 0, n, ids);                                 }
+	IsQuery              :: inline proc "c" (id: u32, loc := #caller_location) -> u8                                     { ret := impl_IsQuery(id);                                  debug_helper(loc, 1, ret, id);                    return ret; }
+	BeginQuery           :: inline proc "c" (target: u32, id: u32, loc := #caller_location)                              {        impl_BeginQuery(target, id);                       debug_helper(loc, 0, target, id);                             }
+	EndQuery             :: inline proc "c" (target: u32, loc := #caller_location)                                       {        impl_EndQuery(target);                             debug_helper(loc, 0, target);                                 }
+	GetQueryiv           :: inline proc "c" (target: u32, pname: u32, params: ^i32, loc := #caller_location)             {        impl_GetQueryiv(target, pname, params);            debug_helper(loc, 0, target, pname, params);                  }
+	GetQueryObjectiv     :: inline proc "c" (id: u32, pname: u32, params: ^i32, loc := #caller_location)                 {        impl_GetQueryObjectiv(id, pname, params);          debug_helper(loc, 0, id, pname, params);                      }
+	GetQueryObjectuiv    :: inline proc "c" (id: u32, pname: u32, params: ^u32, loc := #caller_location)                 {        impl_GetQueryObjectuiv(id, pname, params);         debug_helper(loc, 0, id, pname, params);                      }
+	BindBuffer           :: inline proc "c" (target: u32, buffer: u32, loc := #caller_location)                          {        impl_BindBuffer(target, buffer);                   debug_helper(loc, 0, target, buffer);                         }
+	DeleteBuffers        :: inline proc "c" (n: i32, buffers: ^u32, loc := #caller_location)                             {        impl_DeleteBuffers(n, buffers);                    debug_helper(loc, 0, n, buffers);                             }
+	GenBuffers           :: inline proc "c" (n: i32, buffers: ^u32, loc := #caller_location)                             {        impl_GenBuffers(n, buffers);                       debug_helper(loc, 0, n, buffers);                             }
+	IsBuffer             :: inline proc "c" (buffer: u32, loc := #caller_location) -> u8                                 { ret := impl_IsBuffer(buffer);                             debug_helper(loc, 1, ret, buffer);                return ret; }
+	BufferData           :: inline proc "c" (target: u32, size: int, data: rawptr, usage: u32, loc := #caller_location)  {        impl_BufferData(target, size, data, usage);        debug_helper(loc, 0, target, size, data, usage);              }
+	BufferSubData        :: inline proc "c" (target: u32, offset: int, size: int, data: rawptr, loc := #caller_location) {        impl_BufferSubData(target, offset, size, data);    debug_helper(loc, 0, target, offset, size, data);             }
+	GetBufferSubData     :: inline proc "c" (target: u32, offset: int, size: int, data: rawptr, loc := #caller_location) {        impl_GetBufferSubData(target, offset, size, data); debug_helper(loc, 0, target, offset, size, data);             }
+	MapBuffer            :: inline proc "c" (target: u32, access: u32, loc := #caller_location) -> rawptr                { ret := impl_MapBuffer(target, access);                    debug_helper(loc, 1, ret, target, access);        return ret; }
+	UnmapBuffer          :: inline proc "c" (target: u32, loc := #caller_location) -> u8                                 { ret := impl_UnmapBuffer(target);                          debug_helper(loc, 1, ret, target);                return ret; }
+	GetBufferParameteriv :: inline proc "c" (target: u32, pname: u32, params: ^i32, loc := #caller_location)             {        impl_GetBufferParameteriv(target, pname, params);  debug_helper(loc, 0, target, pname, params);                  }
+	GetBufferPointerv    :: inline proc "c" (target: u32, pname: u32, params: ^rawptr, loc := #caller_location)          {        impl_GetBufferPointerv(target, pname, params);     debug_helper(loc, 0, target, pname, params);                  }
 } else {
 	// VERSION_1_0
 	CullFace               :: inline proc "c" (mode: u32)                                                                                         {        impl_CullFace(mode);                                                                         }
@@ -246,4 +267,25 @@ when ODIN_DEBUG {
     PointParameteriv  :: inline proc "c" (pname: u32, params: ^i32)                                               { impl_PointParameteriv(pname, params);                                       }
     BlendColor        :: inline proc "c" (red: f32, green: f32, blue: f32, alpha: f32)                            { impl_BlendColor(red, green, blue, alpha);                                   }
     BlendEquation     :: inline proc "c" (mode: u32)                                                              { impl_BlendEquation(mode);                                                   }
+
+    // VERSION_1_5
+	GenQueries           :: inline proc "c" (n: i32, ids: ^u32)                                 {        impl_GenQueries(n, ids);                                       }
+	DeleteQueries        :: inline proc "c" (n: i32, ids: ^u32)                                 {        impl_DeleteQueries(n, ids);                                    }
+	IsQuery              :: inline proc "c" (id: u32) -> u8                                     { ret := impl_IsQuery(id);                                  return ret; }
+	BeginQuery           :: inline proc "c" (target: u32, id: u32)                              {        impl_BeginQuery(target, id);                                   }
+	EndQuery             :: inline proc "c" (target: u32)                                       {        impl_EndQuery(target);                                         }
+	GetQueryiv           :: inline proc "c" (target: u32, pname: u32, params: ^i32)             {        impl_GetQueryiv(target, pname, params);                        }
+	GetQueryObjectiv     :: inline proc "c" (id: u32, pname: u32, params: ^i32)                 {        impl_GetQueryObjectiv(id, pname, params);                      }
+	GetQueryObjectuiv    :: inline proc "c" (id: u32, pname: u32, params: ^u32)                 {        impl_GetQueryObjectuiv(id, pname, params);                     }
+	BindBuffer           :: inline proc "c" (target: u32, buffer: u32)                          {        impl_BindBuffer(target, buffer);                               }
+	DeleteBuffers        :: inline proc "c" (n: i32, buffers: ^u32)                             {        impl_DeleteBuffers(n, buffers);                                }
+	GenBuffers           :: inline proc "c" (n: i32, buffers: ^u32)                             {        impl_GenBuffers(n, buffers);                                   }
+	IsBuffer             :: inline proc "c" (buffer: u32) -> u8                                 { ret := impl_IsBuffer(buffer);                             return ret; }
+	BufferData           :: inline proc "c" (target: u32, size: int, data: rawptr, usage: u32)  {        impl_BufferData(target, size, data, usage);                    }
+	BufferSubData        :: inline proc "c" (target: u32, offset: int, size: int, data: rawptr) {        impl_BufferSubData(target, offset, size, data);                }
+	GetBufferSubData     :: inline proc "c" (target: u32, offset: int, size: int, data: rawptr) {        impl_GetBufferSubData(target, offset, size, data);             }
+	MapBuffer            :: inline proc "c" (target: u32, access: u32) -> rawptr                { ret := impl_MapBuffer(target, access);                    return ret; }
+	UnmapBuffer          :: inline proc "c" (target: u32) -> u8                                 { ret := impl_UnmapBuffer(target);                          return ret; }
+	GetBufferParameteriv :: inline proc "c" (target: u32, pname: u32, params: ^i32)             {        impl_GetBufferParameteriv(target, pname, params);              }
+	GetBufferPointerv    :: inline proc "c" (target: u32, pname: u32, params: ^rawptr)          {        impl_GetBufferPointerv(target, pname, params);                 }
 }
