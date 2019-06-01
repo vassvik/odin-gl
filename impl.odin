@@ -198,17 +198,17 @@ load_1_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_1_2
-DrawRangeElements: proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr);
-TexImage3D:        proc "c" (target: u32, level: i32, internalformat: i32, width: i32, height: i32, depth: i32, border: i32, format: u32, type_: u32, pixels: rawptr);
-TexSubImage3D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr);
-CopyTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32);
+impl_DrawRangeElements: proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr);
+impl_TexImage3D:        proc "c" (target: u32, level: i32, internalformat: i32, width: i32, height: i32, depth: i32, border: i32, format: u32, type_: u32, pixels: rawptr);
+impl_TexSubImage3D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, pixels: rawptr);
+impl_CopyTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, x: i32, y: i32, width: i32, height: i32);
 
 load_1_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
-    set_proc_address(&DrawRangeElements, "glDrawRangeElements");
-    set_proc_address(&TexImage3D,        "glTexImage3D");
-    set_proc_address(&TexSubImage3D,     "glTexSubImage3D");
-    set_proc_address(&CopyTexSubImage3D, "glCopyTexSubImage3D");
+    set_proc_address(&impl_DrawRangeElements, "glDrawRangeElements");
+    set_proc_address(&impl_TexImage3D,        "glTexImage3D");
+    set_proc_address(&impl_TexSubImage3D,     "glTexSubImage3D");
+    set_proc_address(&impl_CopyTexSubImage3D, "glCopyTexSubImage3D");
 }
 
 
