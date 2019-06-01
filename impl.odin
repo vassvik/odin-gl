@@ -237,27 +237,27 @@ load_1_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_1_4
-BlendFuncSeparate: proc "c" (sfactorRGB: u32, dfactorRGB: u32, sfactorAlpha: u32, dfactorAlpha: u32);
-MultiDrawArrays:   proc "c" (mode: u32, first: ^i32, count: ^i32, drawcount: i32);
-MultiDrawElements: proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32);
-PointParameterf:   proc "c" (pname: u32, param: f32);
-PointParameterfv:  proc "c" (pname: u32, params: ^f32);
-PointParameteri:   proc "c" (pname: u32, param: i32);
-PointParameteriv:  proc "c" (pname: u32, params: ^i32);
-BlendColor:        proc "c" (red: f32, green: f32, blue: f32, alpha: f32);
-BlendEquation:     proc "c" (mode: u32);
+impl_BlendFuncSeparate: proc "c" (sfactorRGB: u32, dfactorRGB: u32, sfactorAlpha: u32, dfactorAlpha: u32);
+impl_MultiDrawArrays:   proc "c" (mode: u32, first: ^i32, count: ^i32, drawcount: i32);
+impl_MultiDrawElements: proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32);
+impl_PointParameterf:   proc "c" (pname: u32, param: f32);
+impl_PointParameterfv:  proc "c" (pname: u32, params: ^f32);
+impl_PointParameteri:   proc "c" (pname: u32, param: i32);
+impl_PointParameteriv:  proc "c" (pname: u32, params: ^i32);
+impl_BlendColor:        proc "c" (red: f32, green: f32, blue: f32, alpha: f32);
+impl_BlendEquation:     proc "c" (mode: u32);
 
 
 load_1_4 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&BlendFuncSeparate, "glBlendFuncSeparate");
-    set_proc_address(&MultiDrawArrays,   "glMultiDrawArrays");
-    set_proc_address(&MultiDrawElements, "glMultiDrawElements");
-    set_proc_address(&PointParameterf,   "glPointParameterf");
-    set_proc_address(&PointParameterfv,  "glPointParameterfv");
-    set_proc_address(&PointParameteri,   "glPointParameteri");
-    set_proc_address(&PointParameteriv,  "glPointParameteriv");
-    set_proc_address(&BlendColor,        "glBlendColor");
-    set_proc_address(&BlendEquation,     "glBlendEquation");
+    set_proc_address(&impl_BlendFuncSeparate, "glBlendFuncSeparate");
+    set_proc_address(&impl_MultiDrawArrays,   "glMultiDrawArrays");
+    set_proc_address(&impl_MultiDrawElements, "glMultiDrawElements");
+    set_proc_address(&impl_PointParameterf,   "glPointParameterf");
+    set_proc_address(&impl_PointParameterfv,  "glPointParameterfv");
+    set_proc_address(&impl_PointParameteri,   "glPointParameteri");
+    set_proc_address(&impl_PointParameteriv,  "glPointParameteriv");
+    set_proc_address(&impl_BlendColor,        "glBlendColor");
+    set_proc_address(&impl_BlendEquation,     "glBlendEquation");
 }
 
 
