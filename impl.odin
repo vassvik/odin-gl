@@ -498,20 +498,20 @@ load_2_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_2_1
-UniformMatrix2x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
-UniformMatrix3x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
-UniformMatrix2x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
-UniformMatrix4x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
-UniformMatrix3x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
-UniformMatrix4x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix2x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix3x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix2x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix4x2fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix3x4fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
+impl_UniformMatrix4x3fv: proc "c" (location: i32, count: i32, transpose: u8, value: ^f32);
 
 load_2_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&UniformMatrix2x3fv, "glUniformMatrix2x3fv");
-    set_proc_address(&UniformMatrix3x2fv, "glUniformMatrix3x2fv");
-    set_proc_address(&UniformMatrix2x4fv, "glUniformMatrix2x4fv");
-    set_proc_address(&UniformMatrix4x2fv, "glUniformMatrix4x2fv");
-    set_proc_address(&UniformMatrix3x4fv, "glUniformMatrix3x4fv");
-    set_proc_address(&UniformMatrix4x3fv, "glUniformMatrix4x3fv");
+    set_proc_address(&impl_UniformMatrix2x3fv, "glUniformMatrix2x3fv");
+    set_proc_address(&impl_UniformMatrix3x2fv, "glUniformMatrix3x2fv");
+    set_proc_address(&impl_UniformMatrix2x4fv, "glUniformMatrix2x4fv");
+    set_proc_address(&impl_UniformMatrix4x2fv, "glUniformMatrix4x2fv");
+    set_proc_address(&impl_UniformMatrix3x4fv, "glUniformMatrix3x4fv");
+    set_proc_address(&impl_UniformMatrix4x3fv, "glUniformMatrix4x3fv");
 }
 
 

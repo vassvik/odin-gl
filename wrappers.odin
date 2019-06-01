@@ -269,6 +269,14 @@ when ODIN_DEBUG {
 	VertexAttrib4uiv         :: inline proc "c" (index: u32, v: ^u32, loc := #caller_location)                                                                      {        impl_VertexAttrib4uiv(index, v);                                           debug_helper(loc, 0, index, v);                                                       }
 	VertexAttrib4usv         :: inline proc "c" (index: u32, v: ^u16, loc := #caller_location)                                                                      {        impl_VertexAttrib4usv(index, v);                                           debug_helper(loc, 0, index, v);                                                       }
 	VertexAttribPointer      :: inline proc "c" (index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr, loc := #caller_location)          {        impl_VertexAttribPointer(index, size, type_, normalized, stride, pointer); debug_helper(loc, 0, index, size, type_, normalized, stride, pointer);                }
+
+	// VERSION_2_1
+	UniformMatrix2x3fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix2x3fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
+	UniformMatrix3x2fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix3x2fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
+	UniformMatrix2x4fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix2x4fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
+	UniformMatrix4x2fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix4x2fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
+	UniformMatrix3x4fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix3x4fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
+	UniformMatrix4x3fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32, loc := #caller_location) { impl_UniformMatrix4x3fv(location, count, transpose, value); debug_helper(loc, 0, location, count, transpose, value); }
 } else {
 	// VERSION_1_0
 	CullFace               :: inline proc "c" (mode: u32)                                                                                         {        impl_CullFace(mode);                                                                         }
@@ -478,4 +486,12 @@ when ODIN_DEBUG {
 	VertexAttrib4uiv         :: inline proc "c" (index: u32, v: ^u32)                                                                      {        impl_VertexAttrib4uiv(index, v);                                                       }
 	VertexAttrib4usv         :: inline proc "c" (index: u32, v: ^u16)                                                                      {        impl_VertexAttrib4usv(index, v);                                                       }
 	VertexAttribPointer      :: inline proc "c" (index: u32, size: i32, type_: u32, normalized: u8, stride: i32, pointer: rawptr)          {        impl_VertexAttribPointer(index, size, type_, normalized, stride, pointer);             }
+
+	// VERSION_2_1
+	UniformMatrix2x3fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix2x3fv(location, count, transpose, value); }
+	UniformMatrix3x2fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix3x2fv(location, count, transpose, value); }
+	UniformMatrix2x4fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix2x4fv(location, count, transpose, value); }
+	UniformMatrix4x2fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix4x2fv(location, count, transpose, value); }
+	UniformMatrix3x4fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix3x4fv(location, count, transpose, value); }
+	UniformMatrix4x3fv :: inline proc "c" (location: i32, count: i32, transpose: u8, value: ^f32) { impl_UniformMatrix4x3fv(location, count, transpose, value); }
 }
