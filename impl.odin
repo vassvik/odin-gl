@@ -213,26 +213,26 @@ load_1_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_1_3
-ActiveTexture:           proc "c" (texture: u32);
-SampleCoverage:          proc "c" (value: f32, invert: u8);
-CompressedTexImage3D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, depth: i32, border: i32, imageSize: i32, data: rawptr);
-CompressedTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, border: i32, imageSize: i32, data: rawptr);
-CompressedTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, border: i32, imageSize: i32, data: rawptr);
-CompressedTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr);
-CompressedTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr);
-CompressedTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr);
-GetCompressedTexImage:   proc "c" (target: u32, level: i32, img: rawptr);
+impl_ActiveTexture:           proc "c" (texture: u32);
+impl_SampleCoverage:          proc "c" (value: f32, invert: u8);
+impl_CompressedTexImage3D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, depth: i32, border: i32, imageSize: i32, data: rawptr);
+impl_CompressedTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, height: i32, border: i32, imageSize: i32, data: rawptr);
+impl_CompressedTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, width: i32, border: i32, imageSize: i32, data: rawptr);
+impl_CompressedTexSubImage3D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, imageSize: i32, data: rawptr);
+impl_CompressedTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, imageSize: i32, data: rawptr);
+impl_CompressedTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, imageSize: i32, data: rawptr);
+impl_GetCompressedTexImage:   proc "c" (target: u32, level: i32, img: rawptr);
 
 load_1_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&ActiveTexture,           "glActiveTexture");
-    set_proc_address(&SampleCoverage,          "glSampleCoverage");
-    set_proc_address(&CompressedTexImage3D,    "glCompressedTexImage3D");
-    set_proc_address(&CompressedTexImage2D,    "glCompressedTexImage2D");
-    set_proc_address(&CompressedTexImage1D,    "glCompressedTexImage1D");
-    set_proc_address(&CompressedTexSubImage3D, "glCompressedTexSubImage3D");
-    set_proc_address(&CompressedTexSubImage2D, "glCompressedTexSubImage2D");
-    set_proc_address(&CompressedTexSubImage1D, "glCompressedTexSubImage1D");
-    set_proc_address(&GetCompressedTexImage,   "glGetCompressedTexImage");
+    set_proc_address(&impl_ActiveTexture,           "glActiveTexture");
+    set_proc_address(&impl_SampleCoverage,          "glSampleCoverage");
+    set_proc_address(&impl_CompressedTexImage3D,    "glCompressedTexImage3D");
+    set_proc_address(&impl_CompressedTexImage2D,    "glCompressedTexImage2D");
+    set_proc_address(&impl_CompressedTexImage1D,    "glCompressedTexImage1D");
+    set_proc_address(&impl_CompressedTexSubImage3D, "glCompressedTexSubImage3D");
+    set_proc_address(&impl_CompressedTexSubImage2D, "glCompressedTexSubImage2D");
+    set_proc_address(&impl_CompressedTexSubImage1D, "glCompressedTexSubImage1D");
+    set_proc_address(&impl_GetCompressedTexImage,   "glGetCompressedTexImage");
 }
 
 
