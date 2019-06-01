@@ -166,34 +166,34 @@ load_1_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_1_1
-DrawArrays:        proc "c" (mode: u32, first: i32, count: i32);
-DrawElements:      proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr);
-PolygonOffset:     proc "c" (factor: f32, units: f32);
-CopyTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, border: i32);
-CopyTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, height: i32, border: i32);
-CopyTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32);
-CopyTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32);
-TexSubImage1D:     proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr);
-TexSubImage2D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr);
-BindTexture:       proc "c" (target: u32, texture: u32);
-DeleteTextures:    proc "c" (n: i32, textures: ^u32);
-GenTextures:       proc "c" (n: i32, textures: ^u32);
-IsTexture:         proc "c" (texture: u32) -> u8;
+impl_DrawArrays:        proc "c" (mode: u32, first: i32, count: i32);
+impl_DrawElements:      proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr);
+impl_PolygonOffset:     proc "c" (factor: f32, units: f32);
+impl_CopyTexImage1D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, border: i32);
+impl_CopyTexImage2D:    proc "c" (target: u32, level: i32, internalformat: u32, x: i32, y: i32, width: i32, height: i32, border: i32);
+impl_CopyTexSubImage1D: proc "c" (target: u32, level: i32, xoffset: i32, x: i32, y: i32, width: i32);
+impl_CopyTexSubImage2D: proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, x: i32, y: i32, width: i32, height: i32);
+impl_TexSubImage1D:     proc "c" (target: u32, level: i32, xoffset: i32, width: i32, format: u32, type_: u32, pixels: rawptr);
+impl_TexSubImage2D:     proc "c" (target: u32, level: i32, xoffset: i32, yoffset: i32, width: i32, height: i32, format: u32, type_: u32, pixels: rawptr);
+impl_BindTexture:       proc "c" (target: u32, texture: u32);
+impl_DeleteTextures:    proc "c" (n: i32, textures: ^u32);
+impl_GenTextures:       proc "c" (n: i32, textures: ^u32);
+impl_IsTexture:         proc "c" (texture: u32) -> u8;
 
 load_1_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&DrawArrays,        "glDrawArrays");
-    set_proc_address(&DrawElements,      "glDrawElements");
-    set_proc_address(&PolygonOffset,     "glPolygonOffset");
-    set_proc_address(&CopyTexImage1D,    "glCopyTexImage1D");
-    set_proc_address(&CopyTexImage2D,    "glCopyTexImage2D");
-    set_proc_address(&CopyTexSubImage1D, "glCopyTexSubImage1D");
-    set_proc_address(&CopyTexSubImage2D, "glCopyTexSubImage2D");
-    set_proc_address(&TexSubImage1D,     "glTexSubImage1D");
-    set_proc_address(&TexSubImage2D,     "glTexSubImage2D");
-    set_proc_address(&BindTexture,       "glBindTexture");
-    set_proc_address(&DeleteTextures,    "glDeleteTextures");
-    set_proc_address(&GenTextures,       "glGenTextures");
-    set_proc_address(&IsTexture,         "glIsTexture");
+    set_proc_address(&impl_DrawArrays,        "glDrawArrays");
+    set_proc_address(&impl_DrawElements,      "glDrawElements");
+    set_proc_address(&impl_PolygonOffset,     "glPolygonOffset");
+    set_proc_address(&impl_CopyTexImage1D,    "glCopyTexImage1D");
+    set_proc_address(&impl_CopyTexImage2D,    "glCopyTexImage2D");
+    set_proc_address(&impl_CopyTexSubImage1D, "glCopyTexSubImage1D");
+    set_proc_address(&impl_CopyTexSubImage2D, "glCopyTexSubImage2D");
+    set_proc_address(&impl_TexSubImage1D,     "glTexSubImage1D");
+    set_proc_address(&impl_TexSubImage2D,     "glTexSubImage2D");
+    set_proc_address(&impl_BindTexture,       "glBindTexture");
+    set_proc_address(&impl_DeleteTextures,    "glDeleteTextures");
+    set_proc_address(&impl_GenTextures,       "glGenTextures");
+    set_proc_address(&impl_IsTexture,         "glIsTexture");
 }
 
 
