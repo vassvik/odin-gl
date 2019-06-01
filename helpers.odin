@@ -16,27 +16,51 @@ Shader_Type :: enum i32 {
 }
 
 
+import "core:runtime"
+
 // Shader checking and linking checking are identical
 // except for calling differently named GL functions
 // it's a bit ugly looking, but meh
-check_error :: proc(id: u32, type_: Shader_Type, status: u32,
-                    iv_func: proc "c" (u32, u32, ^i32),
-                    log_func: proc "c" (u32, i32, ^i32, ^u8)) -> bool {
-    result, info_log_length: i32;
-    iv_func(id, status, &result);
-    iv_func(id, INFO_LOG_LENGTH, &info_log_length);
+when ODIN_DEBUG {
+    check_error :: proc(id: u32, type_: Shader_Type, status: u32,
+                        iv_func: proc "c" (u32, u32, ^i32, runtime.Source_Code_Location),
+                        log_func: proc "c" (u32, i32, ^i32, ^u8, runtime.Source_Code_Location), loc := #caller_location) -> bool {
+        result, info_log_length: i32;
+        iv_func(id, status, &result, loc);
+        iv_func(id, INFO_LOG_LENGTH, &info_log_length, loc);
 
-    if result == 0 {
-        error_message := make([]u8, info_log_length);
-        defer delete(error_message);
+        if result == 0 {
+            error_message := make([]u8, info_log_length);
+            defer delete(error_message);
 
-        log_func(id, i32(info_log_length), nil, &error_message[0]);
-        fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
+            log_func(id, i32(info_log_length), nil, &error_message[0], loc);
+            fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
 
-        return true;
+            return true;
+        }
+
+        return false;
     }
+} else {
+    check_error :: proc(id: u32, type_: Shader_Type, status: u32,
+                        iv_func: proc "c" (u32, u32, ^i32),
+                        log_func: proc "c" (u32, i32, ^i32, ^u8)) -> bool {
+        result, info_log_length: i32;
+        iv_func(id, status, &result);
+        iv_func(id, INFO_LOG_LENGTH, &info_log_length);
 
-    return false;
+        if result == 0 {
+            error_message := make([]u8, info_log_length);
+            defer delete(error_message);
+
+            log_func(id, i32(info_log_length), nil, &error_message[0]);
+            fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
+
+            return true;
+        }
+
+        return false;
+    }
 }
 
 // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
