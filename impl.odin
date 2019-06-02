@@ -690,32 +690,32 @@ load_3_0 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_3_1
-DrawArraysInstanced:       proc "c" (mode: u32, first: i32, count: i32, instancecount: i32);
-DrawElementsInstanced:     proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32);
-TexBuffer:                 proc "c" (target: u32, internalformat: u32, buffer: u32);
-PrimitiveRestartIndex:     proc "c" (index: u32);
-CopyBufferSubData:         proc "c" (readTarget: u32, writeTarget: u32, readOffset: int, writeOffset: int, size: int);
-GetUniformIndices:         proc "c" (program: u32, uniformCount: i32, uniformNames: ^u8, uniformIndices: ^u32);
-GetActiveUniformsiv:       proc "c" (program: u32, uniformCount: i32, uniformIndices: ^u32, pname: u32, params: ^i32);
-GetActiveUniformName:      proc "c" (program: u32, uniformIndex: u32, bufSize: i32, length: ^i32, uniformName: ^u8);
-GetUniformBlockIndex:      proc "c" (program: u32, uniformBlockName: ^u8) -> u32;
-GetActiveUniformBlockiv:   proc "c" (program: u32, uniformBlockIndex: u32, pname: u32, params: ^i32);
-GetActiveUniformBlockName: proc "c" (program: u32, uniformBlockIndex: u32, bufSize: i32, length: ^i32, uniformBlockName: ^u8);
-UniformBlockBinding:       proc "c" (program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32);
+impl_DrawArraysInstanced:       proc "c" (mode: u32, first: i32, count: i32, instancecount: i32);
+impl_DrawElementsInstanced:     proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32);
+impl_TexBuffer:                 proc "c" (target: u32, internalformat: u32, buffer: u32);
+impl_PrimitiveRestartIndex:     proc "c" (index: u32);
+impl_CopyBufferSubData:         proc "c" (readTarget: u32, writeTarget: u32, readOffset: int, writeOffset: int, size: int);
+impl_GetUniformIndices:         proc "c" (program: u32, uniformCount: i32, uniformNames: ^u8, uniformIndices: ^u32);
+impl_GetActiveUniformsiv:       proc "c" (program: u32, uniformCount: i32, uniformIndices: ^u32, pname: u32, params: ^i32);
+impl_GetActiveUniformName:      proc "c" (program: u32, uniformIndex: u32, bufSize: i32, length: ^i32, uniformName: ^u8);
+impl_GetUniformBlockIndex:      proc "c" (program: u32, uniformBlockName: ^u8) -> u32;
+impl_GetActiveUniformBlockiv:   proc "c" (program: u32, uniformBlockIndex: u32, pname: u32, params: ^i32);
+impl_GetActiveUniformBlockName: proc "c" (program: u32, uniformBlockIndex: u32, bufSize: i32, length: ^i32, uniformBlockName: ^u8);
+impl_UniformBlockBinding:       proc "c" (program: u32, uniformBlockIndex: u32, uniformBlockBinding: u32);
 
 load_3_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&DrawArraysInstanced,       "glDrawArraysInstanced");
-    set_proc_address(&DrawElementsInstanced,     "glDrawElementsInstanced");
-    set_proc_address(&TexBuffer,                 "glTexBuffer");
-    set_proc_address(&PrimitiveRestartIndex,     "glPrimitiveRestartIndex");
-    set_proc_address(&CopyBufferSubData,         "glCopyBufferSubData");
-    set_proc_address(&GetUniformIndices,         "glGetUniformIndices");
-    set_proc_address(&GetActiveUniformsiv,       "glGetActiveUniformsiv");
-    set_proc_address(&GetActiveUniformName,      "glGetActiveUniformName");
-    set_proc_address(&GetUniformBlockIndex,      "glGetUniformBlockIndex");
-    set_proc_address(&GetActiveUniformBlockiv,   "glGetActiveUniformBlockiv");
-    set_proc_address(&GetActiveUniformBlockName, "glGetActiveUniformBlockName");
-    set_proc_address(&UniformBlockBinding,       "glUniformBlockBinding");
+    set_proc_address(&impl_DrawArraysInstanced,       "glDrawArraysInstanced");
+    set_proc_address(&impl_DrawElementsInstanced,     "glDrawElementsInstanced");
+    set_proc_address(&impl_TexBuffer,                 "glTexBuffer");
+    set_proc_address(&impl_PrimitiveRestartIndex,     "glPrimitiveRestartIndex");
+    set_proc_address(&impl_CopyBufferSubData,         "glCopyBufferSubData");
+    set_proc_address(&impl_GetUniformIndices,         "glGetUniformIndices");
+    set_proc_address(&impl_GetActiveUniformsiv,       "glGetActiveUniformsiv");
+    set_proc_address(&impl_GetActiveUniformName,      "glGetActiveUniformName");
+    set_proc_address(&impl_GetUniformBlockIndex,      "glGetUniformBlockIndex");
+    set_proc_address(&impl_GetActiveUniformBlockiv,   "glGetActiveUniformBlockiv");
+    set_proc_address(&impl_GetActiveUniformBlockName, "glGetActiveUniformBlockName");
+    set_proc_address(&impl_UniformBlockBinding,       "glUniformBlockBinding");
 }
 
 
