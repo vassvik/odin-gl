@@ -1559,17 +1559,16 @@ load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_4_6
-
-SpecializeShader:               proc "c" (shader: u32, pEntryPoint: ^u8, numSpecializationConstants: u32, pConstantIndex: ^u32, pConstantValue: ^u32);
-MultiDrawArraysIndirectCount:   proc "c" (mode: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32);
-MultiDrawElementsIndirectCount: proc "c" (mode: i32, type_: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32);
-PolygonOffsetClamp:             proc "c" (factor, units, clamp: f32);
+impl_SpecializeShader:               proc "c" (shader: u32, pEntryPoint: ^u8, numSpecializationConstants: u32, pConstantIndex: ^u32, pConstantValue: ^u32);
+impl_MultiDrawArraysIndirectCount:   proc "c" (mode: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32);
+impl_MultiDrawElementsIndirectCount: proc "c" (mode: i32, type_: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32);
+impl_PolygonOffsetClamp:             proc "c" (factor, units, clamp: f32);
 
 load_4_6 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&SpecializeShader,               "glSpecializeShader");
-    set_proc_address(&MultiDrawArraysIndirectCount,   "glMultiDrawArraysIndirectCount");
-    set_proc_address(&MultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount");
-    set_proc_address(&PolygonOffsetClamp,             "glPolygonOffsetClamp");
+    set_proc_address(&impl_SpecializeShader,               "glSpecializeShader");
+    set_proc_address(&impl_MultiDrawArraysIndirectCount,   "glMultiDrawArraysIndirectCount");
+    set_proc_address(&impl_MultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount");
+    set_proc_address(&impl_PolygonOffsetClamp,             "glPolygonOffsetClamp");
 }
 
 init :: proc(set_proc_address: Set_Proc_Address_Type) {
