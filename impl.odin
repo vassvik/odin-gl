@@ -1286,26 +1286,26 @@ load_4_3 :: proc(set_proc_address: Set_Proc_Address_Type) {
 }
 
 // VERSION_4_4
-BufferStorage:     proc "c" (target: u32, size: int, data: rawptr, flags: u32);
-ClearTexImage:     proc "c" (texture: u32, level: i32, format: u32, type_: u32, data: rawptr);
-ClearTexSubImage:  proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, data: rawptr);
-BindBuffersBase:   proc "c" (target: u32, first: u32, count: i32, buffers: ^u32);
-BindBuffersRange:  proc "c" (target: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, sizes: ^int);
-BindTextures:      proc "c" (first: u32, count: i32, textures: ^u32);
-BindSamplers:      proc "c" (first: u32, count: i32, samplers: ^u32);
-BindImageTextures: proc "c" (first: u32, count: i32, textures: ^u32);
-BindVertexBuffers: proc "c" (first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32);
+impl_BufferStorage:     proc "c" (target: u32, size: int, data: rawptr, flags: u32);
+impl_ClearTexImage:     proc "c" (texture: u32, level: i32, format: u32, type_: u32, data: rawptr);
+impl_ClearTexSubImage:  proc "c" (texture: u32, level: i32, xoffset: i32, yoffset: i32, zoffset: i32, width: i32, height: i32, depth: i32, format: u32, type_: u32, data: rawptr);
+impl_BindBuffersBase:   proc "c" (target: u32, first: u32, count: i32, buffers: ^u32);
+impl_BindBuffersRange:  proc "c" (target: u32, first: u32, count: i32, buffers: ^u32, offsets: ^int, sizes: ^int);
+impl_BindTextures:      proc "c" (first: u32, count: i32, textures: ^u32);
+impl_BindSamplers:      proc "c" (first: u32, count: i32, samplers: ^u32);
+impl_BindImageTextures: proc "c" (first: u32, count: i32, textures: ^u32);
+impl_BindVertexBuffers: proc "c" (first: u32, count: i32, buffers: ^u32, offsets: ^int, strides: ^i32);
 
 load_4_4 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&BufferStorage,     "glBufferStorage");
-    set_proc_address(&ClearTexImage,     "glClearTexImage");
-    set_proc_address(&ClearTexSubImage,  "glClearTexSubImage");
-    set_proc_address(&BindBuffersBase,   "glBindBuffersBase");
-    set_proc_address(&BindBuffersRange,  "glBindBuffersRange");
-    set_proc_address(&BindTextures,      "glBindTextures");
-    set_proc_address(&BindSamplers,      "glBindSamplers");
-    set_proc_address(&BindImageTextures, "glBindImageTextures");
-    set_proc_address(&BindVertexBuffers, "glBindVertexBuffers");
+    set_proc_address(&impl_BufferStorage,     "glBufferStorage");
+    set_proc_address(&impl_ClearTexImage,     "glClearTexImage");
+    set_proc_address(&impl_ClearTexSubImage,  "glClearTexSubImage");
+    set_proc_address(&impl_BindBuffersBase,   "glBindBuffersBase");
+    set_proc_address(&impl_BindBuffersRange,  "glBindBuffersRange");
+    set_proc_address(&impl_BindTextures,      "glBindTextures");
+    set_proc_address(&impl_BindSamplers,      "glBindSamplers");
+    set_proc_address(&impl_BindImageTextures, "glBindImageTextures");
+    set_proc_address(&impl_BindVertexBuffers, "glBindVertexBuffers");
 }
 
 // VERSION_4_5
