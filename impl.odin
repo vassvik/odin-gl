@@ -1166,32 +1166,32 @@ load_4_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_4_2
-DrawArraysInstancedBaseInstance:             proc "c" (mode: u32, first: i32, count: i32, instancecount: i32, baseinstance: u32);
-DrawElementsInstancedBaseInstance:           proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, baseinstance: u32);
-DrawElementsInstancedBaseVertexBaseInstance: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32, baseinstance: u32);
-GetInternalformativ:                         proc "c" (target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i32);
-GetActiveAtomicCounterBufferiv:              proc "c" (program: u32, bufferIndex: u32, pname: u32, params: ^i32);
-BindImageTexture:                            proc "c" (unit: u32, texture: u32, level: i32, layered: u8, layer: i32, access: u32, format: u32);
-MemoryBarrier:                               proc "c" (barriers: u32);
-TexStorage1D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32);
-TexStorage2D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32);
-TexStorage3D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32);
-DrawTransformFeedbackInstanced:              proc "c" (mode: u32, id: u32, instancecount: i32);
-DrawTransformFeedbackStreamInstanced:        proc "c" (mode: u32, id: u32, stream: u32, instancecount: i32);
+impl_DrawArraysInstancedBaseInstance:             proc "c" (mode: u32, first: i32, count: i32, instancecount: i32, baseinstance: u32);
+impl_DrawElementsInstancedBaseInstance:           proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, baseinstance: u32);
+impl_DrawElementsInstancedBaseVertexBaseInstance: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32, baseinstance: u32);
+impl_GetInternalformativ:                         proc "c" (target: u32, internalformat: u32, pname: u32, bufSize: i32, params: ^i32);
+impl_GetActiveAtomicCounterBufferiv:              proc "c" (program: u32, bufferIndex: u32, pname: u32, params: ^i32);
+impl_BindImageTexture:                            proc "c" (unit: u32, texture: u32, level: i32, layered: u8, layer: i32, access: u32, format: u32);
+impl_MemoryBarrier:                               proc "c" (barriers: u32);
+impl_TexStorage1D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32);
+impl_TexStorage2D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32);
+impl_TexStorage3D:                                proc "c" (target: u32, levels: i32, internalformat: u32, width: i32, height: i32, depth: i32);
+impl_DrawTransformFeedbackInstanced:              proc "c" (mode: u32, id: u32, instancecount: i32);
+impl_DrawTransformFeedbackStreamInstanced:        proc "c" (mode: u32, id: u32, stream: u32, instancecount: i32);
 
 load_4_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance");
-    set_proc_address(&DrawElementsInstancedBaseInstance,           "glDrawElementsInstancedBaseInstance");
-    set_proc_address(&DrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance");
-    set_proc_address(&GetInternalformativ,                         "glGetInternalformativ");
-    set_proc_address(&GetActiveAtomicCounterBufferiv,              "glGetActiveAtomicCounterBufferiv");
-    set_proc_address(&BindImageTexture,                            "glBindImageTexture");
-    set_proc_address(&MemoryBarrier,                               "glMemoryBarrier");
-    set_proc_address(&TexStorage1D,                                "glTexStorage1D");
-    set_proc_address(&TexStorage2D,                                "glTexStorage2D");
-    set_proc_address(&TexStorage3D,                                "glTexStorage3D");
-    set_proc_address(&DrawTransformFeedbackInstanced,              "glDrawTransformFeedbackInstanced");
-    set_proc_address(&DrawTransformFeedbackStreamInstanced,        "glDrawTransformFeedbackStreamInstanced");
+    set_proc_address(&impl_DrawArraysInstancedBaseInstance,             "glDrawArraysInstancedBaseInstance");
+    set_proc_address(&impl_DrawElementsInstancedBaseInstance,           "glDrawElementsInstancedBaseInstance");
+    set_proc_address(&impl_DrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance");
+    set_proc_address(&impl_GetInternalformativ,                         "glGetInternalformativ");
+    set_proc_address(&impl_GetActiveAtomicCounterBufferiv,              "glGetActiveAtomicCounterBufferiv");
+    set_proc_address(&impl_BindImageTexture,                            "glBindImageTexture");
+    set_proc_address(&impl_MemoryBarrier,                               "glMemoryBarrier");
+    set_proc_address(&impl_TexStorage1D,                                "glTexStorage1D");
+    set_proc_address(&impl_TexStorage2D,                                "glTexStorage2D");
+    set_proc_address(&impl_TexStorage3D,                                "glTexStorage3D");
+    set_proc_address(&impl_DrawTransformFeedbackInstanced,              "glDrawTransformFeedbackInstanced");
+    set_proc_address(&impl_DrawTransformFeedbackStreamInstanced,        "glDrawTransformFeedbackStreamInstanced");
 }
 
 // VERSION_4_3
