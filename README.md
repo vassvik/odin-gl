@@ -25,4 +25,5 @@ Some useful helper procedures can be found in `helpers.odin`, for tasks such as:
  - loading vertex, fragment and compute shaders (from source or files) using `load_shaders_file`, `load_shaders_source`, `load_compute_file` and `load_compute_source`
  - grabbing uniform and attribute locations using `get_uniform_location` and `get_attribute_location`
  - getting all active uniforms from a program using `get_uniforms_from_program`
+ - hot reloading of shaders (windows only right now) using `update_shader_if_changed` and `update_shader_if_changed_compute`
 
