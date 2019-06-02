@@ -5,6 +5,7 @@ package gl
 import "core:os";
 import "core:fmt";
 
+@private
 Shader_Type :: enum i32 {
     FRAGMENT_SHADER        = 0x8B30,
     VERTEX_SHADER          = 0x8B31,
@@ -22,6 +23,7 @@ import "core:runtime"
 // except for calling differently named GL functions
 // it's a bit ugly looking, but meh
 when ODIN_DEBUG {
+    @private
     check_error :: proc(id: u32, type_: Shader_Type, status: u32,
                         iv_func: proc "c" (u32, u32, ^i32, runtime.Source_Code_Location),
                         log_func: proc "c" (u32, i32, ^i32, ^u8, runtime.Source_Code_Location), loc := #caller_location) -> bool {
@@ -42,6 +44,7 @@ when ODIN_DEBUG {
         return false;
     }
 } else {
+    @private
     check_error :: proc(id: u32, type_: Shader_Type, status: u32,
                         iv_func: proc "c" (u32, u32, ^i32),
                         log_func: proc "c" (u32, i32, ^i32, ^u8)) -> bool {
@@ -64,6 +67,7 @@ when ODIN_DEBUG {
 }
 
 // Compiling shaders are identical for any shader (vertex, geometry, fragment, tesselation, (maybe compute too))
+@private
 compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
     shader_id := CreateShader(cast(u32)shader_type);
     length := i32(len(shader_data));
@@ -78,6 +82,7 @@ compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type
 }
 
 // only used once, but I'd just make a subprocedure(?) for consistency
+@private
 create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
     program_id := CreateProgram();
     for id in shader_ids {
