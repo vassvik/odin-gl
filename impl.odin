@@ -720,46 +720,46 @@ load_3_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
 
 
 // VERSION_3_2
-DrawElementsBaseVertex:          proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
-DrawRangeElementsBaseVertex:     proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
-DrawElementsInstancedBaseVertex: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32);
-MultiDrawElementsBaseVertex:     proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32, basevertex: ^i32);
-ProvokingVertex:                 proc "c" (mode: u32);
-FenceSync:                       proc "c" (condition: u32, flags: u32) -> sync_t;
-IsSync:                          proc "c" (sync: sync_t) -> u8;
-DeleteSync:                      proc "c" (sync: sync_t);
-ClientWaitSync:                  proc "c" (sync: sync_t, flags: u32, timeout: u64) -> u32;
-WaitSync:                        proc "c" (sync: sync_t, flags: u32, timeout: u64);
-GetInteger64v:                   proc "c" (pname: u32, data: ^i64);
-GetSynciv:                       proc "c" (sync: sync_t, pname: u32, bufSize: i32, length: ^i32, values: ^i32);
-GetInteger64i_v:                 proc "c" (target: u32, index: u32, data: ^i64);
-GetBufferParameteri64v:          proc "c" (target: u32, pname: u32, params: ^i64);
-FramebufferTexture:              proc "c" (target: u32, attachment: u32, texture: u32, level: i32);
-TexImage2DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8);
-TexImage3DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8);
-GetMultisamplefv:                proc "c" (pname: u32, index: u32, val: ^f32);
-SampleMaski:                     proc "c" (maskNumber: u32, mask: u32);
+impl_DrawElementsBaseVertex:          proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
+impl_DrawRangeElementsBaseVertex:     proc "c" (mode: u32, start: u32, end: u32, count: i32, type_: u32, indices: rawptr, basevertex: i32);
+impl_DrawElementsInstancedBaseVertex: proc "c" (mode: u32, count: i32, type_: u32, indices: rawptr, instancecount: i32, basevertex: i32);
+impl_MultiDrawElementsBaseVertex:     proc "c" (mode: u32, count: ^i32, type_: u32, indices: ^rawptr, drawcount: i32, basevertex: ^i32);
+impl_ProvokingVertex:                 proc "c" (mode: u32);
+impl_FenceSync:                       proc "c" (condition: u32, flags: u32) -> sync_t;
+impl_IsSync:                          proc "c" (sync: sync_t) -> u8;
+impl_DeleteSync:                      proc "c" (sync: sync_t);
+impl_ClientWaitSync:                  proc "c" (sync: sync_t, flags: u32, timeout: u64) -> u32;
+impl_WaitSync:                        proc "c" (sync: sync_t, flags: u32, timeout: u64);
+impl_GetInteger64v:                   proc "c" (pname: u32, data: ^i64);
+impl_GetSynciv:                       proc "c" (sync: sync_t, pname: u32, bufSize: i32, length: ^i32, values: ^i32);
+impl_GetInteger64i_v:                 proc "c" (target: u32, index: u32, data: ^i64);
+impl_GetBufferParameteri64v:          proc "c" (target: u32, pname: u32, params: ^i64);
+impl_FramebufferTexture:              proc "c" (target: u32, attachment: u32, texture: u32, level: i32);
+impl_TexImage2DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, fixedsamplelocations: u8);
+impl_TexImage3DMultisample:           proc "c" (target: u32, samples: i32, internalformat: u32, width: i32, height: i32, depth: i32, fixedsamplelocations: u8);
+impl_GetMultisamplefv:                proc "c" (pname: u32, index: u32, val: ^f32);
+impl_SampleMaski:                     proc "c" (maskNumber: u32, mask: u32);
 
 load_3_2 :: proc(set_proc_address: Set_Proc_Address_Type) {
-    set_proc_address(&DrawElementsBaseVertex,          "glDrawElementsBaseVertex");
-    set_proc_address(&DrawRangeElementsBaseVertex,     "glDrawRangeElementsBaseVertex");
-    set_proc_address(&DrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex");
-    set_proc_address(&MultiDrawElementsBaseVertex,     "glMultiDrawElementsBaseVertex");
-    set_proc_address(&ProvokingVertex,                 "glProvokingVertex");
-    set_proc_address(&FenceSync,                       "glFenceSync");
-    set_proc_address(&IsSync,                          "glIsSync");
-    set_proc_address(&DeleteSync,                      "glDeleteSync");
-    set_proc_address(&ClientWaitSync,                  "glClientWaitSync");
-    set_proc_address(&WaitSync,                        "glWaitSync");
-    set_proc_address(&GetInteger64v,                   "glGetInteger64v");
-    set_proc_address(&GetSynciv,                       "glGetSynciv");
-    set_proc_address(&GetInteger64i_v,                 "glGetInteger64i_v");
-    set_proc_address(&GetBufferParameteri64v,          "glGetBufferParameteri64v");
-    set_proc_address(&FramebufferTexture,              "glFramebufferTexture");
-    set_proc_address(&TexImage2DMultisample,           "glTexImage2DMultisample");
-    set_proc_address(&TexImage3DMultisample,           "glTexImage3DMultisample");
-    set_proc_address(&GetMultisamplefv,                "glGetMultisamplefv");
-    set_proc_address(&SampleMaski,                     "glSampleMaski");
+    set_proc_address(&impl_DrawElementsBaseVertex,          "glDrawElementsBaseVertex");
+    set_proc_address(&impl_DrawRangeElementsBaseVertex,     "glDrawRangeElementsBaseVertex");
+    set_proc_address(&impl_DrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex");
+    set_proc_address(&impl_MultiDrawElementsBaseVertex,     "glMultiDrawElementsBaseVertex");
+    set_proc_address(&impl_ProvokingVertex,                 "glProvokingVertex");
+    set_proc_address(&impl_FenceSync,                       "glFenceSync");
+    set_proc_address(&impl_IsSync,                          "glIsSync");
+    set_proc_address(&impl_DeleteSync,                      "glDeleteSync");
+    set_proc_address(&impl_ClientWaitSync,                  "glClientWaitSync");
+    set_proc_address(&impl_WaitSync,                        "glWaitSync");
+    set_proc_address(&impl_GetInteger64v,                   "glGetInteger64v");
+    set_proc_address(&impl_GetSynciv,                       "glGetSynciv");
+    set_proc_address(&impl_GetInteger64i_v,                 "glGetInteger64i_v");
+    set_proc_address(&impl_GetBufferParameteri64v,          "glGetBufferParameteri64v");
+    set_proc_address(&impl_FramebufferTexture,              "glFramebufferTexture");
+    set_proc_address(&impl_TexImage2DMultisample,           "glTexImage2DMultisample");
+    set_proc_address(&impl_TexImage3DMultisample,           "glTexImage3DMultisample");
+    set_proc_address(&impl_GetMultisamplefv,                "glGetMultisamplefv");
+    set_proc_address(&impl_SampleMaski,                     "glSampleMaski");
 }
 
 
