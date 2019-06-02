@@ -5,7 +5,6 @@ package gl
 import "core:os";
 import "core:fmt";
 
-@private
 Shader_Type :: enum i32 {
     FRAGMENT_SHADER        = 0x8B30,
     VERTEX_SHADER          = 0x8B31,
