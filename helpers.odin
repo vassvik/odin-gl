@@ -70,7 +70,7 @@ when ODIN_DEBUG {
 compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
     shader_id := CreateShader(cast(u32)shader_type);
     length := i32(len(shader_data));
-    ShaderSource(shader_id, 1, (^^u8)(&shader_data), &length);
+    ShaderSource(shader_id, 1, (^^u8)(&shader_data[0]), &length);
     CompileShader(shader_id);
 
     if check_error(shader_id, shader_type, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog) {
@@ -174,13 +174,14 @@ when os.OS == "windows" {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
         current_vertex_time, _ := os.last_write_time_by_name(vertex_name);
         current_fragment_time, _ := os.last_write_time_by_name(fragment_name);
+        old_program := program;
 
         updated := false;
         if current_vertex_time != last_vertex_time || current_fragment_time != last_fragment_time {
             new_program, success := load_shaders(vertex_name, fragment_name);
             if success {
-                DeleteProgram(program);
-                program = new_program;
+                DeleteProgram(old_program);
+                old_program = new_program;
                 fmt.println("Updated shaders");
                 updated = true;
             } else {
@@ -188,18 +189,19 @@ when os.OS == "windows" {
             }
         }
 
-        return program, current_vertex_time, current_fragment_time, updated;
+        return old_program, current_vertex_time, current_fragment_time, updated;
     }
 
     update_shader_if_changed_compute :: proc(compute_name: string, program: u32, last_compute_time: os.File_Time) -> (u32, os.File_Time, bool) {
         current_compute_time, _ := os.last_write_time_by_name(compute_name);
+        old_program := program;
 
         updated := false;
         if current_compute_time != last_compute_time {
             new_program, success := load_compute_file(compute_name);
             if success {
-                DeleteProgram(program);
-                program = new_program;
+                DeleteProgram(old_program);
+                old_program = new_program;
                 fmt.println("Updated shaders");
                 updated = true;
             } else {
@@ -207,7 +209,7 @@ when os.OS == "windows" {
             }
         }
 
-        return program, current_compute_time, updated;
+        return old_program, current_compute_time, updated;
     }
 }
 
