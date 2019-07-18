@@ -70,7 +70,8 @@ when ODIN_DEBUG {
 compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type) -> (u32, bool) {
     shader_id := CreateShader(cast(u32)shader_type);
     length := i32(len(shader_data));
-    ShaderSource(shader_id, 1, (^^u8)(&shader_data[0]), &length);
+    shader_data_copy := shader_data;
+    ShaderSource(shader_id, 1, (^^u8)(&shader_data_copy), &length);
     CompileShader(shader_id);
 
     if check_error(shader_id, shader_type, COMPILE_STATUS, GetShaderiv, GetShaderInfoLog) {
