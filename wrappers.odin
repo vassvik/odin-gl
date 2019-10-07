@@ -753,7 +753,7 @@ when !ODIN_DEBUG {
 			STACK_UNDERFLOW = STACK_UNDERFLOW,
 			STACK_OVERFLOW = STACK_OVERFLOW,
 			// TODO: What if the return enum is invalid?
-		}
+		};
 
 		// There can be multiple errors, so we're required to continuously call glGetError until there are no more errors
 		for i := 0;; i += 1 {
