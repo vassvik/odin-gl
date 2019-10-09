@@ -56,7 +56,7 @@ when ODIN_DEBUG {
             defer delete(error_message);
 
             log_func(id, i32(info_log_length), nil, &error_message[0]);
-            fmt.printf_err("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
+            fmt.eprintf("Error in %v:\n%s", type_, string(error_message[0:len(error_message)-1]));
 
             return true;
         }
