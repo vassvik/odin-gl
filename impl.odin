@@ -1,15 +1,15 @@
 package gl
 
-loaded_up_to: string;
+loaded_up_to: [2]int;
 loaded_up_to_major := 0;
 loaded_up_to_minor := 0;
 
 Set_Proc_Address_Type :: #type proc(p: rawptr, name: cstring);
 
 load_up_to :: proc(major, minor : int, set_proc_address: Set_Proc_Address_Type) {
-    loaded_up_to = "0.0";
-    loaded_up_to[0] = '0' + u8(major);
-    loaded_up_to[2] = '0' + u8(minor);
+    loaded_up_to = {0, 0};
+    loaded_up_to[0] = major;
+    loaded_up_to[1] = minor;
     loaded_up_to_major = major;
     loaded_up_to_minor = minor;
 
