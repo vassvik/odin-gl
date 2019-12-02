@@ -1,5 +1,8 @@
 package gl
 
+import "core:mem"
+import "core:runtime"
+
 loaded_up_to: string;
 loaded_up_to_major := 0;
 loaded_up_to_minor := 0;
@@ -8,8 +11,11 @@ Set_Proc_Address_Type :: #type proc(p: rawptr, name: cstring);
 
 load_up_to :: proc(major, minor : int, set_proc_address: Set_Proc_Address_Type) {
     loaded_up_to = "0.0";
-    loaded_up_to[0] = '0' + u8(major);
-    loaded_up_to[2] = '0' + u8(minor);
+
+    loaded_up_to_raw := transmute(mem.Raw_String) loaded_up_to;
+    loaded_up_to_bytes := transmute([]u8) runtime.Raw_Slice{loaded_up_to_raw.data, len(loaded_up_to)};
+    loaded_up_to_bytes[0] = '0' + u8(major);
+    loaded_up_to_bytes[2] = '0' + u8(minor);
     loaded_up_to_major = major;
     loaded_up_to_minor = minor;
 
