@@ -16,12 +16,12 @@ Shader_Type :: enum i32 {
 }
 
 
-import "core:runtime"
 
 // Shader checking and linking checking are identical
 // except for calling differently named GL functions
 // it's a bit ugly looking, but meh
 when ODIN_DEBUG {
+    import "core:runtime"
     @private
     check_error :: proc(id: u32, type_: Shader_Type, status: u32,
                         iv_func: proc "c" (u32, u32, ^i32, runtime.Source_Code_Location),
