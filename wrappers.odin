@@ -1,6 +1,5 @@
 package gl 
 
-import "core:fmt"
 
 
 when !ODIN_DEBUG {
@@ -742,6 +741,8 @@ when !ODIN_DEBUG {
 	PolygonOffsetClamp             :: inline proc "c" (factor, units, clamp: f32)                                                                                  { impl_PolygonOffsetClamp(factor, units, clamp);                                                          }
 } else {
 	import "core:runtime"
+	import "core:fmt"
+
 	debug_helper :: inline proc(from_loc: runtime.Source_Code_Location, num_ret: int, args: ..any, loc := #caller_location) {
 		Error_Enum :: enum {
 			NO_ERROR = NO_ERROR,

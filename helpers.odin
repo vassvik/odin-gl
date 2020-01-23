@@ -16,12 +16,12 @@ Shader_Type :: enum i32 {
 }
 
 
-import "core:runtime"
 
 // Shader checking and linking checking are identical
 // except for calling differently named GL functions
 // it's a bit ugly looking, but meh
 when ODIN_DEBUG {
+    import "core:runtime"
     @private
     check_error :: proc(id: u32, type_: Shader_Type, status: u32,
                         iv_func: proc "c" (u32, u32, ^i32, runtime.Source_Code_Location),
@@ -83,12 +83,16 @@ compile_shader_from_source :: proc(shader_data: string, shader_type: Shader_Type
 
 // only used once, but I'd just make a subprocedure(?) for consistency
 @private
-create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
+create_and_link_program :: proc(shader_ids: []u32, binary_retrievable := false) -> (u32, bool) {
     program_id := CreateProgram();
     for id in shader_ids {
         AttachShader(program_id, id);
     }
+    if binary_retrievable {
+        ProgramParameteri(program_id, PROGRAM_BINARY_RETRIEVABLE_HINT, TRUE);
+    }
     LinkProgram(program_id);
+
 
     if check_error(program_id, Shader_Type.SHADER_LINK, LINK_STATUS, GetProgramiv, GetProgramInfoLog) {
         return 0, false;
@@ -97,7 +101,7 @@ create_and_link_program :: proc(shader_ids: []u32) -> (u32, bool) {
     return program_id, true;
 }
 
-load_compute_file :: proc(filename: string) -> (u32, bool) {
+load_compute_file :: proc(filename: string, binary_retrievable := false) -> (u32, bool) {
     cs_data, success_cs := os.read_entire_file(filename);
     if !success_cs do return 0, false;
     defer delete(cs_data);
@@ -109,7 +113,7 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
         return 0, false;
     }
 
-    program_id, ok2 := create_and_link_program([]u32{compute_shader_id});
+    program_id, ok2 := create_and_link_program([]u32{compute_shader_id}, binary_retrievable);
     if !ok2 {
         return 0, false;
     }
@@ -117,7 +121,7 @@ load_compute_file :: proc(filename: string) -> (u32, bool) {
     return program_id, true;
 }
 
-load_compute_source :: proc(cs_data: string) -> (u32, bool) {
+load_compute_source :: proc(cs_data: string, binary_retrievable := false) -> (u32, bool) {
     // Create the shaders
     compute_shader_id, ok1 := compile_shader_from_source(cs_data, Shader_Type(COMPUTE_SHADER));
 
@@ -125,7 +129,7 @@ load_compute_source :: proc(cs_data: string) -> (u32, bool) {
         return 0, false;
     }
 
-    program_id, ok2 := create_and_link_program([]u32{compute_shader_id});
+    program_id, ok2 := create_and_link_program([]u32{compute_shader_id}, binary_retrievable);
     if !ok2 {
         return 0, false;
     }
@@ -133,7 +137,7 @@ load_compute_source :: proc(cs_data: string) -> (u32, bool) {
     return program_id, true;
 }
 
-load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
+load_shaders_file :: proc(vs_filename, fs_filename: string, binary_retrievable := false) -> (u32, bool) {
     vs_data, success_vs := os.read_entire_file(vs_filename);
     if !success_vs do return 0, false;
     defer delete(vs_data);
@@ -142,11 +146,11 @@ load_shaders_file :: proc(vs_filename, fs_filename: string) -> (u32, bool) {
     defer delete(fs_data);
 
 
-    return load_shaders_source(string(vs_data), string(fs_data));
+    return load_shaders_source(string(vs_data), string(fs_data), binary_retrievable);
 
 }
 
-load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
+load_shaders_source :: proc(vs_source, fs_source: string, binary_retrievable := false) -> (u32, bool) {
 
 
     // actual function from here
@@ -160,7 +164,7 @@ load_shaders_source :: proc(vs_source, fs_source: string) -> (u32, bool) {
         return 0, false;
     }
 
-    program_id, ok := create_and_link_program([]u32{vertex_shader_id, fragment_shader_id});
+    program_id, ok := create_and_link_program([]u32{vertex_shader_id, fragment_shader_id}, binary_retrievable);
     if !ok {
         return 0, false;
     }
