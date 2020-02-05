@@ -19,8 +19,11 @@ Shader_Type :: enum i32 {
 @private
 last_error_message: []byte;
 
-get_last_error_message :: proc() -> string {
-    return cast(string)last_error_message[:len(last_error_message)-1];
+@private 
+last_error_type: Shader_Type;
+
+get_last_error_message :: proc() -> (string, Shader_Type) {
+    return cast(string)last_error_message[:len(last_error_message)-1], last_error_type;
 }
 
 // Shader checking and linking checking are identical
@@ -39,7 +42,8 @@ when ODIN_DEBUG {
         if result == 0 {
             delete(last_error_message);
             last_error_message = make([]byte, info_log_length);
-
+            last_error_type = type_;
+            
             log_func(id, i32(info_log_length), nil, &last_error_message[0], loc);
             //fmt.printf_err("Error in %v:\n%s", type_, string(last_error_message[0:len(last_error_message)-1]));
 
@@ -60,7 +64,8 @@ when ODIN_DEBUG {
         if result == 0 {
             delete(last_error_message);
             last_error_message = make([]u8, info_log_length);
-
+            last_error_type = type_;
+            
             log_func(id, i32(info_log_length), nil, &last_error_message[0]);
             //fmt.eprintf("Error in %v:\n%s", type_, string(last_error_message[0:len(last_error_message)-1]));
 
