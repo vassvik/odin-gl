@@ -17,13 +17,21 @@ Shader_Type :: enum i32 {
 
 
 @private
-last_error_message: []byte;
+last_compile_error_message: []byte;
+@private
+last_link_error_message: []byte;
 
 @private 
-last_error_type: Shader_Type;
+last_compile_error_type: Shader_Type;
+@private 
+last_link_error_type: Shader_Type;
+
+get_last_error_messages :: proc() -> (string, Shader_Type, string, Shader_Type) {
+    return cast(string)last_compile_error_message[:max(0, len(last_compile_error_message)-1)], last_compile_error_type, cast(string)last_link_error_message[:max(0, len(last_link_error_message)-1)], last_link_error_type;
+}
 
 get_last_error_message :: proc() -> (string, Shader_Type) {
-    return cast(string)last_error_message[:len(last_error_message)-1], last_error_type;
+    return cast(string)last_compile_error_message[:max(0, len(last_compile_error_message)-1)], last_compile_error_type;
 }
 
 // Shader checking and linking checking are identical
@@ -40,12 +48,22 @@ when ODIN_DEBUG {
         iv_func(id, INFO_LOG_LENGTH, &info_log_length, loc);
 
         if result == 0 {
-            delete(last_error_message);
-            last_error_message = make([]byte, info_log_length);
-            last_error_type = type_;
-            
-            log_func(id, i32(info_log_length), nil, &last_error_message[0], loc);
-            //fmt.printf_err("Error in %v:\n%s", type_, string(last_error_message[0:len(last_error_message)-1]));
+            if log_func == gl.GetShaderInfoLog {
+                delete(last_compile_error_message);
+                last_compile_error_message = make([]byte, info_log_length);
+                last_compile_error_type = type_;
+                
+                log_func(id, i32(info_log_length), nil, &last_compile_error_message[0], loc);
+                //fmt.printf_err("Error in %v:\n%s", type_, string(last_compile_error_message[0:len(last_compile_error_message)-1]));
+            } else {
+
+                delete(last_link_error_message);
+                last_link_error_message = make([]byte, info_log_length);
+                last_compile_error_type = type_;
+                
+                log_func(id, i32(info_log_length), nil, &last_link_error_message[0], loc);
+                //fmt.printf_err("Error in %v:\n%s", type_, string(last_link_error_message[0:len(last_link_error_message)-1]));
+            }
 
             return true;
         }
@@ -62,12 +80,22 @@ when ODIN_DEBUG {
         iv_func(id, INFO_LOG_LENGTH, &info_log_length);
 
         if result == 0 {
-            delete(last_error_message);
-            last_error_message = make([]u8, info_log_length);
-            last_error_type = type_;
-            
-            log_func(id, i32(info_log_length), nil, &last_error_message[0]);
-            //fmt.eprintf("Error in %v:\n%s", type_, string(last_error_message[0:len(last_error_message)-1]));
+            if log_func == GetShaderInfoLog {
+                delete(last_compile_error_message);
+                last_compile_error_message = make([]u8, info_log_length);
+                last_link_error_type = type_;
+                
+                log_func(id, i32(info_log_length), nil, &last_compile_error_message[0]);
+                //fmt.eprintf("Error in %v:\n%s", type_, string(last_compile_error_message[0:len(last_compile_error_message)-1]));
+            } else {
+                delete(last_link_error_message);
+                last_link_error_message = make([]u8, info_log_length);
+                last_link_error_type = type_;
+                
+                log_func(id, i32(info_log_length), nil, &last_link_error_message[0]);
+                //fmt.eprintf("Error in %v:\n%s", type_, string(last_link_error_message[0:len(last_link_error_message)-1]));
+
+            }
 
             return true;
         }
