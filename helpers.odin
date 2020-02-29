@@ -6,13 +6,14 @@ import "core:os";
 import "core:fmt";
 
 Shader_Type :: enum i32 {
+    NONE = 0x0000,
     FRAGMENT_SHADER        = 0x8B30,
     VERTEX_SHADER          = 0x8B31,
     GEOMETRY_SHADER        = 0x8DD9,
     COMPUTE_SHADER         = 0x91B9,
     TESS_EVALUATION_SHADER = 0x8E87,
     TESS_CONTROL_SHADER    = 0x8E88,
-    SHADER_LINK            = 0x0000, // @Note: Not an OpenGL constant, but used for error checking.
+    SHADER_LINK            = -1, // @Note: Not an OpenGL constant, but used for error checking.
 }
 
 
@@ -48,7 +49,7 @@ when ODIN_DEBUG {
         iv_func(id, INFO_LOG_LENGTH, &info_log_length, loc);
 
         if result == 0 {
-            if log_func == gl.GetShaderInfoLog {
+            if log_func == GetShaderInfoLog {
                 delete(last_compile_error_message);
                 last_compile_error_message = make([]byte, info_log_length);
                 last_compile_error_type = type_;
