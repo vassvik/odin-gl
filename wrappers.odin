@@ -743,7 +743,9 @@ when !ODIN_DEBUG {
 	import "core:runtime"
 	import "core:fmt"
 
-	debug_helper :: inline proc(from_loc: runtime.Source_Code_Location, num_ret: int, args: ..any, loc := #caller_location) {
+	debug_helper :: inline proc"c"(from_loc: runtime.Source_Code_Location, num_ret: int, args: ..any, loc := #caller_location) {
+		context = runtime.default_context();
+
 		Error_Enum :: enum {
 			NO_ERROR = NO_ERROR,
 			INVALID_VALUE = INVALID_VALUE,
