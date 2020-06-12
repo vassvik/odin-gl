@@ -1431,6 +1431,7 @@ impl_GetnSeparableFilter:                      proc "c" (target: u32, format: u3
 impl_GetnHistogram:                            proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
 impl_GetnMinmax:                               proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
 impl_TextureBarrier:                           proc "c" ();
+impl_glGetUnsignedBytevEXT:                    proc "c" (pname: u32, data: ^byte);
 
 load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
     set_proc_address(&impl_ClipControl,                              "glClipControl");
@@ -1555,6 +1556,7 @@ load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
     set_proc_address(&impl_GetnHistogram,                            "glGetnHistogram");
     set_proc_address(&impl_GetnMinmax,                               "glGetnMinmax");
     set_proc_address(&impl_TextureBarrier,                           "glTextureBarrier");
+    set_proc_address(&impl_glGetUnsignedBytevEXT,                    "glGetUnsignedBytevEXT");
 }
 
 
