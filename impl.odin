@@ -573,7 +573,7 @@ load_2_1 :: proc(set_proc_address: Set_Proc_Address_Type) {
  impl_ClearBufferuiv:                      proc "c" (buffer: u32, drawbuffer: i32, value: ^u32);
  impl_ClearBufferfv:                       proc "c" (buffer: u32, drawbuffer: i32, value: ^f32);
  impl_ClearBufferfi:                       proc "c" (buffer: u32, drawbuffer: i32, depth: f32, stencil: i32) -> rawptr;
- impl_GetStringi:                          proc "c" (name: u32, index: u32) -> u8;
+ impl_GetStringi:                          proc "c" (name: u32, index: u32) -> cstring;
  impl_IsRenderbuffer:                      proc "c" (renderbuffer: u32) -> u8;
  impl_BindRenderbuffer:                    proc "c" (target: u32, renderbuffer: u32);
  impl_DeleteRenderbuffers:                 proc "c" (n: i32, renderbuffers: ^u32);
