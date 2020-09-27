@@ -734,6 +734,15 @@ when !ODIN_DEBUG {
 	GetnMinmax                               :: inline proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr)                                                                                      {        impl_GetnMinmax(target, reset, format, type_, bufSize, values);                                                                                }
 	TextureBarrier                           :: inline proc "c" ()                                                                                                                                                                   {        impl_TextureBarrier();                                                                                                                         }
 	GetUnsignedBytevEXT                      :: inline proc "c" (pname: u32, data: ^byte)                                                                                                                                            {        impl_glGetUnsignedBytevEXT(pname, data);                                                                                                       }
+	TexPageCommitmentARB                     :: inline proc "c"(target: u32,
+                                                        level: i32,
+                                                        xoffset: i32,
+                                                        yoffset: i32,
+                                                        zoffset: i32,
+                                                        width: i32,
+                                                        height: i32,
+                                                        depth: i32,
+                                                        commit: b8) {impl_TexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit); }
 
 	// VERSION_4_6
 	SpecializeShader               :: inline proc "c" (shader: u32, pEntryPoint: ^u8, numSpecializationConstants: u32, pConstantIndex: ^u32, pConstantValue: ^u32) { impl_SpecializeShader(shader, pEntryPoint, numSpecializationConstants, pConstantIndex, pConstantValue); }
@@ -1534,7 +1543,18 @@ when !ODIN_DEBUG {
 	GetnMinmax                               :: inline proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr, loc := #caller_location)                                                                                      {        impl_GetnMinmax(target, reset, format, type_, bufSize, values);                                                                    debug_helper(loc, 0, target, reset, format, type_, bufSize, values);                                                                      }
 	TextureBarrier                           :: inline proc "c" (loc := #caller_location)                                                                                                                                                                     {        impl_TextureBarrier();                                                                                                             debug_helper(loc, 0);                                                                                                                     }
 	GetUnsignedBytevEXT                      :: inline proc "c" (pname: u32, data: ^byte, loc := #caller_location)                                                                                                                                            {        impl_glGetUnsignedBytevEXT(pname, data);                                                                                           debug_helper(loc, 0, pname, data);                                                                                                                     }
-
+	TexPageCommitmentARB                     :: inline proc "c"(target: u32,
+                                                        level: i32,
+                                                        xoffset: i32,
+                                                        yoffset: i32,
+                                                        zoffset: i32,
+                                                        width: i32,
+                                                        height: i32,
+                                                        depth: i32,
+                                                        commit: b8) {
+			impl_TexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit); 
+			debug_helper(loc, 0, target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
+		}
 	// VERSION_4_6
 	SpecializeShader               :: inline proc "c" (shader: u32, pEntryPoint: ^u8, numSpecializationConstants: u32, pConstantIndex: ^u32, pConstantValue: ^u32, loc := #caller_location) { impl_SpecializeShader(shader, pEntryPoint, numSpecializationConstants, pConstantIndex, pConstantValue); debug_helper(loc, 0, shader, pEntryPoint, numSpecializationConstants, pConstantIndex, pConstantValue); }
 	MultiDrawArraysIndirectCount   :: inline proc "c" (mode: i32, indirect: rawptr, drawcount: int, maxdrawcount, stride: i32, loc := #caller_location)                                     { impl_MultiDrawArraysIndirectCount(mode, indirect, drawcount, maxdrawcount, stride);                     debug_helper(loc, 0, mode, indirect, drawcount, maxdrawcount, stride);                                 }

@@ -1432,6 +1432,15 @@ impl_GetnHistogram:                            proc "c" (target: u32, reset: u8,
 impl_GetnMinmax:                               proc "c" (target: u32, reset: u8, format: u32, type_: u32, bufSize: i32, values: rawptr);
 impl_TextureBarrier:                           proc "c" ();
 impl_glGetUnsignedBytevEXT:                    proc "c" (pname: u32, data: ^byte);
+impl_TexPageCommitmentARB:                     proc "c"(target: u32,
+                                                        level: i32,
+                                                        xoffset: i32,
+                                                        yoffset: i32,
+                                                        zoffset: i32,
+                                                        width: i32,
+                                                        height: i32,
+                                                        depth: i32,
+                                                        commit: b8);
 
 load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
     set_proc_address(&impl_ClipControl,                              "glClipControl");
@@ -1557,6 +1566,7 @@ load_4_5 :: proc(set_proc_address: Set_Proc_Address_Type) {
     set_proc_address(&impl_GetnMinmax,                               "glGetnMinmax");
     set_proc_address(&impl_TextureBarrier,                           "glTextureBarrier");
     set_proc_address(&impl_glGetUnsignedBytevEXT,                    "glGetUnsignedBytevEXT");
+    set_proc_address(&impl_TexPageCommitmentARB,                    "glTexPageCommitmentARB");
 }
 
 
