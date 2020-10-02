@@ -1551,7 +1551,7 @@ when !ODIN_DEBUG {
                                                         width: i32,
                                                         height: i32,
                                                         depth: i32,
-                                                        commit: b8) {
+                                                        commit: b8, loc := #caller_location) {
 			impl_TexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit); 
 			debug_helper(loc, 0, target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
 		}
