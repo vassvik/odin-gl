@@ -215,7 +215,7 @@ load_shaders_source :: proc(vs_source, fs_source: string, binary_retrievable := 
 load_shaders :: proc{load_shaders_file};
 
 
-when os.OS == "windows" {
+when os.OS == .Windows {
     update_shader_if_changed :: proc(vertex_name, fragment_name: string, program: u32, last_vertex_time, last_fragment_time: os.File_Time) -> (u32, os.File_Time, os.File_Time, bool) {
         current_vertex_time, _ := os.last_write_time_by_name(vertex_name);
         current_fragment_time, _ := os.last_write_time_by_name(fragment_name);
