@@ -1234,7 +1234,7 @@ impl_DebugMessageCallback:            proc "c" (callback: debug_proc_t, userPara
 impl_GetDebugMessageLog:              proc "c" (count: u32, bufSize: i32, sources: ^u32, types: ^u32, ids: ^u32, severities: ^u32, lengths: ^i32, messageLog: ^u8) -> u32;
 impl_PushDebugGroup:                  proc "c" (source: u32, id: u32, length: i32, message: cstring);
 impl_PopDebugGroup:                   proc "c" ();
-impl_ObjectLabel:                     proc "c" (identifier: u32, name: u32, length: i32, label: ^u8);
+impl_ObjectLabel:                     proc "c" (identifier: u32, name: u32, length: i32, label: cstring);
 impl_GetObjectLabel:                  proc "c" (identifier: u32, name: u32, bufSize: i32, length: ^i32, label: ^u8);
 impl_ObjectPtrLabel:                  proc "c" (ptr: rawptr, length: i32, label: ^u8);
 impl_GetObjectPtrLabel:               proc "c" (ptr: rawptr, bufSize: i32, length: ^i32, label: ^u8);
